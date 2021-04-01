@@ -10,7 +10,7 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de software na Universi
 ## Ferramentas selecionadas
 - [MariaDB](https://mariadb.org);
 - [Nodejs](https://nodejs.org/en/);
-- [VUE or Reactjs]
+- [VUE or Reactjs].
 
 ## User stories
 ### Usuario
@@ -28,5 +28,5 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de software na Universi
 - [ ] Registrar um imovel para venda;
 - [ ] Desaverbar um imovel de locacao;
 - [ ] Desaverbar um imovel de venda;
-- [ ] Alterar situacao do imovel (venda/locacao/ambos)
+- [ ] Alterar situacao do imovel (venda/locacao/ambos);
 - [ ] Solicitar imovel devolta.
