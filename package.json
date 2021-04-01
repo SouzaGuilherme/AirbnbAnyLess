@@ -1,0 +1,22 @@
+{
+  "name": "airbnbanyless",
+  "version": "1.0.0",
+  "description": "Trabalho desenvolvido para disciplina de Desenvolvimento de Software na Universidade Federal de Pelotas (UFPel-RS). O AirbnbAnyLess é \"Tipo Airbnb\". Um Sistema Web que disponibiliza aos seus usuários um lugar onde possam colocar seus imóveis para alugar/vender e alugar/comprar os imóveis disponíveis na plataforma.",
+  "scripts": {
+    "start": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SouzaGuilherme/AirbnbAnyLess.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SouzaGuilherme/AirbnbAnyLess/issues"
+  },
+  "homepage": "https://github.com/SouzaGuilherme/AirbnbAnyLess#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
