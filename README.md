@@ -33,7 +33,7 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de Software na Universi
 
 ## Links Importantes
 - [Frontend design](https://www.figma.com/file/6qkOFYaCl58t0HABiNtkwv/AirbnbAnyLess?node-id=0%3A1)
-
+- [Imagens de acesso/uso liberado](https://unsplash.com)
 
 ## Diagramas
 
