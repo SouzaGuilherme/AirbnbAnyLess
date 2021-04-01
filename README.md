@@ -30,3 +30,6 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de software na Universi
 - [ ] Desaverbar um imovel de venda;
 - [ ] Alterar situacao do imovel (venda/locacao/ambos);
 - [ ] Solicitar imovel devolta.
+
+## Links Importantes
+- [UI](https://www.figma.com/file/6qkOFYaCl58t0HABiNtkwv/AirbnbAnyLess?node-id=0%3A1)
