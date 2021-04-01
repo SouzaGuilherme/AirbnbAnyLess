@@ -32,4 +32,4 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de software na Universi
 - [ ] Solicitar imovel devolta.
 
 ## Links Importantes
-- [UI](https://www.figma.com/file/6qkOFYaCl58t0HABiNtkwv/AirbnbAnyLess?node-id=0%3A1)
+- [Frontend](https://www.figma.com/file/6qkOFYaCl58t0HABiNtkwv/AirbnbAnyLess?node-id=0%3A1)
