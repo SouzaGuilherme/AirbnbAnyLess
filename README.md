@@ -32,7 +32,7 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de Software na Universi
 - [ ] Solicitar imóvel de volta.
 
 ## Links Importantes
-- [UI](https://www.figma.com/file/6qkOFYaCl58t0HABiNtkwv/AirbnbAnyLess?node-id=0%3A1)
+- [Frontend design](https://www.figma.com/file/6qkOFYaCl58t0HABiNtkwv/AirbnbAnyLess?node-id=0%3A1)
 
 
 ## Diagramas
