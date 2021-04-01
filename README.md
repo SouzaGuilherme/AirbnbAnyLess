@@ -17,11 +17,13 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de software na Universi
 - [ ] Criar conta;
 - [ ] Login;
 - [ ] Solicitar limpeza.
-###Usuario Locatario/comprador
+
+### Usuario Locatario/comprador
 - [ ] Locar um imovel;
 - [ ] Comprar um imovel;
 - [ ] Devolver um imovel.
-###Usuario Proprietario
+
+### Usuario Proprietario
 - [ ] Registrar um imovel para locacao;
 - [ ] Registrar um imovel para venda;
 - [ ] Desaverbar um imovel de locacao;
