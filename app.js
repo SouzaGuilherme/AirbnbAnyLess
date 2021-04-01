@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 // [Rotas]
 const router = express.Router();
 
