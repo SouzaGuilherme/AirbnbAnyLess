@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Trabalho desenvolvido para disciplina de Desenvolvimento de Software na Universidade Federal de Pelotas (UFPel-RS). O AirbnbAnyLess é \"Tipo Airbnb\". Um Sistema Web que disponibiliza aos seus usuários um lugar onde possam colocar seus imóveis para alugar/vender e alugar/comprar os imóveis disponíveis na plataforma.",
   "scripts": {
-    "start": "service mongod start; nodemon ./server.js",
-    "stop": "service mongod stop"
+    "start": "nodemon ./server.js"
   },
   "repository": {
     "type": "git",
