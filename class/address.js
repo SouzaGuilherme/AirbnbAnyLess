@@ -8,7 +8,7 @@ class address{
   };
 
   get address(){};
-  set address(newUser){};
+  set address(newAddress){};
 }
 
 export address;
