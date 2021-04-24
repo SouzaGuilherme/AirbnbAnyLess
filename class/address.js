@@ -11,4 +11,3 @@ class address{
   set address(newAddress){};
 }
 
-export address;
