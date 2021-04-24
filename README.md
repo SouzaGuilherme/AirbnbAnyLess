@@ -41,10 +41,10 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de Software na Universi
 
 
 ### Diagrama de Casos de Uso
-[Diagrama de Casos de Uso](./src/diagrams/casos_de_uso.png)
+![Diagrama de Casos de Uso](./src/diagrams/casos_de_uso.png)
 
 ### Diagramas de Classes
-[Diagrama de Classes](./src/diagrams/classes.png)
+![Diagrama de Classes](./src/diagrams/classes.png)
 
 
 ### Diagrama Entidade Relacionamento
