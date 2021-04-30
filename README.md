@@ -1,7 +1,7 @@
 # AirbnbAnyLess
 Trabalho desenvolvido para disciplina de Desenvolvimento de Software na Universidade Federal de Pelotas (UFPel-RS). O AirbnbAnyLess é "Tipo Airbnb". Um Sistema Web que disponibiliza aos seus usuários um lugar onde possam colocar seus imóveis para alugar/vender e alugar/comprar os imóveis disponíveis na plataforma.
 
-# Instalação
+# Instalação PHP
 
 1. Baixe o XAMPP: https://downloadsapachefriends.global.ssl.fastly.net/8.0.3/xampp-linux-x64-8.0.3-0-installer.run?from_af=true
 2. No diretório do arquivo baixado, torne o arquivo um executável com: `sudo chmod -R 777 xampp-linux-x64-8.0.3-0-installer.run`
@@ -20,7 +20,14 @@ Trabalho desenvolvido para disciplina de Desenvolvimento de Software na Universi
 - Procure `<Directory  "/opt/lampp/htdocs">`
   - Mude para `<Directory "/home/thiagoheron/Documents/ufpel/DS/AirbnbAnyLess">`
 - Acesse: `http://localhost/phpmyadmin/`
-- 
+ 
+
+# Configurando Banco de Dados
+- Acesse `http://localhost/phpmyadmin/`
+- Clique na aba **Importar**
+- No tópico "Choose File" (Escolher arquivo), importe o arquivo localizado no projeto em `assets/database/airbnb_any_less.sql`
+- Após isso, clique em **Executar**
+- Verifique se no menu da esquerda, apareceu o banco de dados `airbnb_any_less`.
 
 ## Diagramas
 
