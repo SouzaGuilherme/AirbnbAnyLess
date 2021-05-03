@@ -73,8 +73,55 @@ class User {
         return $this->token;
     }
 
+    public function setCpf($cpf){
+        $this->cpf = $cpf;
+    }
+
+    public function setNumeroSeqEnd($numeroSeqEnd){
+        $this->numeroSeqEnd = $numeroSeqEnd;
+    }
+
+    public function setCodigoCidade($codigoCidade){
+        $this->codigoCidade = $codigoCidade;
+    }
+
+    public function setUf($uf){
+        $this->uf = $uf;
+    }
+
+    public function setNome($nome){
+        $this->nome = $nome;
+    }
+
+    public function setEmail($email){
+        $this->email = $email;
+    }
+
+    public function setTelefone($telefone){
+        $this->telefone = $telefone;
+    }
+
+    public function setFoto($foto){
+        $this->foto = $foto;
+    }
+
+    public function setTipoUsuario($tipoUsuario){
+        $this->tipoUsuario = $tipoUsuario;
+    }
+
+    public function setSenha($senha){
+        $this->senha = $senha;
+    }
+
+    public function setToken($token){
+        $this->token = $token;
+    }
+
 }
 
 interface UserDAO {
     public function findByToken($token);
+    public function insert(User $user);
+    public function remove(User $user);
+    public function edit(User $user);
 }
