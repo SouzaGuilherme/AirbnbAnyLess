@@ -1,7 +1,7 @@
 <?php
 
 
-class User {
+class Usuario {
     private $cpf;
     private $numeroSeqEnd;
     private $codigoCidade;
@@ -119,9 +119,10 @@ class User {
 
 }
 
-interface UserDAO {
+interface UsuarioDAO {
     public function findByToken($token);
-    public function insert(User $user);
-    public function remove(User $user);
-    public function edit(User $user);
+    public function findByEmail($email);
+    public function add(Usuario $user);
+    public function remove(Usuario $user);
+    public function update(Usuario $user);
 }
