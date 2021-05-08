@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$base_url = "http://localhost/";
+$base_url = "http://localhost";
 
 $db_name = "airbnb_any_less";
 $db_host = "localhost";

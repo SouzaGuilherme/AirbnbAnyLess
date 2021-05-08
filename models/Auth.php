@@ -1,5 +1,5 @@
 <?php
-require 'dao/UserDaoMysql.php';
+require 'dao/UsuarioDaoMysql.php';
 
 
 class Auth {
@@ -21,7 +21,7 @@ class Auth {
         if (!empty($_SESSION["token"])) {
             $token = $_SESSION["token"];
             
-            $userDao = new UserDaoMysql($this->pdo);
+            $userDao = new UsuarioDaoMysql($this->pdo);
             $user = $userDao->findByToken($token);
             if ($user) {
                 return $user;
@@ -29,6 +29,25 @@ class Auth {
         }
         header("Location: ".$this->base_url."/login.php");
         exit;
+    }
+
+    public function validateLogin($email, $password) {
+        $userDao = new UsuarioDaoMysql($this->pdo);
+
+        $user = $userDao->findByEmail($email);
+        if ($user) {            
+            if($password == $user->getSenha()){
+                $token = md5(time().rand(0, 9999));
+                $_SESSION["token"] = $token;
+                $user->setToken($token);
+                $userDao->update($user);
+
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
 }
