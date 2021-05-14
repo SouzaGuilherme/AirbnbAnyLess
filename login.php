@@ -19,7 +19,7 @@ require 'config.php';
         </div>
     </header>
     <section class="container main">
-        <form method="POST" action="<?=$base_url;?>/login_action.php">
+        <form method="POST" action="<?=$base_url;?>/actions/login_action.php">
 
             <?php if(!empty($_SESSION["flash"])): ?>
                 <?=$_SESSION["flash"];?>
@@ -30,7 +30,7 @@ require 'config.php';
             <input placeholder="Digite sua senha" class="input" type="password" name="password" />
             <input class="button" type="submit" value="Acessar o sistema" />
 
-            <a href="<?=$base_url;?>/signup.php">Ainda não tem conta? Cadastre-se</a>
+            <a href="<?=$base_url;?>/actions/signup.php">Ainda não tem conta? Cadastre-se</a>
         </form>
     </section>
 </body>
