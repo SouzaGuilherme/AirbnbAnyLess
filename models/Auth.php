@@ -1,5 +1,5 @@
 <?php
-require 'dao/UserDaoMysql.php';
+require 'dao/UsuarioDaoMysql.php';
 
 
 class Auth {
