@@ -3,8 +3,8 @@
 
 class Usuario {
     private $cpf;
-    private $numeroSeqEnd;
-    private $codigoCidade;
+    private $numero_seq_end;
+    private $codigo_cidade;
     private $uf;
     private $nome;
     private $email;
@@ -15,10 +15,10 @@ class Usuario {
     private $token;
 
 
-    public function __construct($cpf, $numeroSeqEnd, $codigoCidade, $uf, $nome, $email, $telefone, $foto, $tipoUsuario, $senha, $token) {
+    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $nome, $email, $telefone, $foto, $tipoUsuario, $senha, $token) {
         $this->cpf = $cpf;
-        $this->numeroSeqEnd = $numeroSeqEnd;
-        $this->codigoCidade = $codigoCidade;
+        $this->numero_seq_end = $numero_seq_end;
+        $this->codigo_cidade = $codigo_cidade;
         $this->uf = $uf;
         $this->nome = $nome;
         $this->email = $email;
@@ -34,11 +34,11 @@ class Usuario {
     }
 
     public function getNumeroSeqEnd(){
-        return $this->numeroSeqEnd;
+        return $this->numero_seq_end;
     }
 
     public function getCodigoCidade(){
-        return $this->codigoCidade;
+        return $this->codigo_cidade;
     }
 
     public function getUf(){
@@ -77,12 +77,12 @@ class Usuario {
         $this->cpf = $cpf;
     }
 
-    public function setNumeroSeqEnd($numeroSeqEnd){
-        $this->numeroSeqEnd = $numeroSeqEnd;
+    public function setNumeroSeqEnd($numero_seq_end){
+        $this->numero_seq_end = $numero_seq_end;
     }
 
-    public function setCodigoCidade($codigoCidade){
-        $this->codigoCidade = $codigoCidade;
+    public function setCodigoCidade($codigo_cidade){
+        $this->codigo_cidade = $codigo_cidade;
     }
 
     public function setUf($uf){
