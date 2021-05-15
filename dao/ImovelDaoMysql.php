@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Imovel.php';
+require_once __DIR__ .  '/../models/Imovel.php';
 
 
 class ImovelDaoMysql implements ImovelDAO {
@@ -12,7 +12,7 @@ class ImovelDaoMysql implements ImovelDAO {
     private function generateImovel($dictData){
         return new Imovel(
            $dictData['codigo_imovel'],
-           $dictData['codigo_usuario'],
+           $dictData['cpf'],
            $dictData['numero_seq_end'],
            $dictData['codigo_cidade'],
            $dictData['uf'],
@@ -23,19 +23,18 @@ class ImovelDaoMysql implements ImovelDAO {
            $dictData['piscina'],
            $dictData['vagas_garagem'],
            $dictData['valor'],
-           $dictData['alugado'],
+           $dictData['habilitado'],
         );
     }
 
     public function add(Imovel $imovel) {
         $sql = $this->pdo->prepare("INSERT INTO imoveis (
-            codigo_imovel, codigo_usuario, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, alugado
+            cpf, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado
         ) VALUES (
-            :codigo_imovel,:codigo_usuario,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :alugado
+            :cpf,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :habilitado
         );");
-        $sql->bindValue(":codigo_imovel", $imovel->getCodigoImovel());
         $sql->bindValue(":codigo_cidade", $imovel->getCodigoCidade());
-        $sql->bindValue(":codigo_usuario", $imovel->getCodigoUsuario());
+        $sql->bindValue(":cpf", $imovel->getCpf());
         $sql->bindValue(":numero_seq_end", $imovel->getNumeroSeqEnd());
         $sql->bindValue(":uf", $imovel->getUf());
         $sql->bindValue(":descricao", $imovel->getDescricao());
@@ -45,16 +44,16 @@ class ImovelDaoMysql implements ImovelDAO {
         $sql->bindValue(":piscina", $imovel->getPiscina());
         $sql->bindValue(":vagas_garagem", $imovel->getVagasGaragem());
         $sql->bindValue(":valor", $imovel->getValor());
-        $sql->bindValue(":alugado", $imovel->getAlugado());
+        $sql->bindValue(":habilitado", $imovel->getHabilitado());
         $sql->execute();
     }
 
-    public function findByKeys($codigo_imovel, $codigo_cidade, $codigo_usuario, $numero_seq_end) {
-      if (!empty($codigo_imovel AND $codigo_cidade AND $codigo_usuario AND $numero_seq_end)){
-          $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel AND codigo_cidade = :codigo_cidade AND codigo_usuario = :codigo_usuario AND numero_seq_end = :numero_seq_end");
+    public function findByKeys($codigo_imovel, $codigo_cidade, $cpf, $numero_seq_end) {
+      if (!empty($codigo_imovel AND $codigo_cidade AND $cpf AND $numero_seq_end)){
+          $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel AND codigo_cidade = :codigo_cidade AND cpf = :cpf AND numero_seq_end = :numero_seq_end");
           $sql->bindValue(":codigo_imovel", $codigo_imovel);
           $sql->bindValue(":codigo_cidade", $codigo_cidade);
-          $sql->bindValue(":codigo_usuario", $codigo_usuario);
+          $sql->bindValue(":cpf", $cpf);
           $sql->bindValue(":numero_seq_end", $numero_seq_end);
           $sql->execute();
 
@@ -97,10 +96,10 @@ class ImovelDaoMysql implements ImovelDAO {
       return false;
     }
 
-    public function findByCodigoUsuario($codigo_usuario){
-      if (!empty($codigo_usuario)){
-          $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_usuario = :codigo_usuario");
-          $sql->bindValue(":codigo_usuario", $codigo_usuario);
+    public function findByCodigoUsuario($cpf){
+      if (!empty($cpf)){
+          $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
+          $sql->bindValue(":cpf", $cpf);
           $sql->execute();
 
           if ($sql->rowCount() > 0){
@@ -130,7 +129,7 @@ class ImovelDaoMysql implements ImovelDAO {
     public function update(Imovel $imovel){
       $sql = $this->pdo->prepare("UPDATE imoveis SET
         codigo_imovel = :codigo_imovel,
-        codigo_usuario = :codigo_usuario,
+        cpf = :cpf,
         numero_seq_end = :numero_seq_end,
         codigo_cidade = :codigo_cidade,
         uf = :uf,
@@ -141,12 +140,12 @@ class ImovelDaoMysql implements ImovelDAO {
         piscina = :piscina,
         vagas_garagem = :vagas_garagem,
         valor = :valor,
-        alugado = :alugado
+        habilitado = :habilitado
         WHERE codigo_imovel = :codigo_imovel;"
     );
 
       $sql->bindValue(":codigo_imovel", $imovel->getCodigoImovel());
-      $sql->bindValue(":codigo_usuario", $imovel->getCodigoUsuario());
+      $sql->bindValue(":cpf", $imovel->getCpf());
       $sql->bindValue(":numero_seq_end", $imovel->getNumeroSeqEnd());
       $sql->bindValue(":codigo_cidade", $imovel->getCodigoCidade());
       $sql->bindValue(":uf", $imovel->getUf());
@@ -157,7 +156,7 @@ class ImovelDaoMysql implements ImovelDAO {
       $sql->bindValue(":piscina", $imovel->getPiscina());
       $sql->bindValue(":vagas_garagem", $imovel->getVagasGaragem());
       $sql->bindValue(":valor", $imovel->getValor());
-      $sql->bindValue(":alugado", $imovel->getAlugado());
+      $sql->bindValue(":habilitado", $imovel->getHabilitado());
       $sql->execute();
 
     return true;
@@ -168,4 +167,15 @@ class ImovelDaoMysql implements ImovelDAO {
       $sql->bindValue(":codigo_imovel", $imovel->getCodigoImovel());
       $sql->execute();
     }
+
+
+    public function findAllImoveis(){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis");
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+    }
+
 }

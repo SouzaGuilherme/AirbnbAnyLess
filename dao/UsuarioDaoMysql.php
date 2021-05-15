@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Usuario.php';
+require __DIR__ . '/../models/Usuario.php';
 
 
 class UsuarioDaoMysql implements UsuarioDAO {
@@ -11,35 +11,21 @@ class UsuarioDaoMysql implements UsuarioDAO {
 
     private function generateUser($dictData) {
 
-        if ($dictData['tipo_usuario'] == "LOCATARIO") {
-            return new Locatario(
-                $dictData['cpf'],
-                $dictData['numero_seq_end'],
-                $dictData['codigo_cidade'],
-                $dictData['uf'],
-                $dictData['nome'],
-                $dictData['email'],
-                $dictData['telefone'],
-                $dictData['foto'],
-                $dictData['tipo_usuario'],
-                $dictData['senha'],
-                $dictData['token'],
-            );}
-        elseif ($dictData['tipo_usuario'] == "PROPRIETARIO") {
-            return new Proprietario(
-                $dictData['cpf'],
-                $dictData['numero_seq_end'],
-                $dictData['codigo_cidade'],
-                $dictData['uf'],
-                $dictData['nome'],
-                $dictData['email'],
-                $dictData['telefone'],
-                $dictData['foto'],
-                $dictData['tipo_usuario'],
-                $dictData['senha'],
-                $dictData['token'],
-            );
-        } 
+        
+        return new Usuario(
+            $dictData['cpf'],
+            $dictData['numero_seq_end'],
+            $dictData['codigo_cidade'],
+            $dictData['uf'],
+            $dictData['nome'],
+            $dictData['email'],
+            $dictData['telefone'],
+            $dictData['foto'],
+            $dictData['tipo_usuario'],
+            $dictData['senha'],
+            $dictData['token'],
+        );
+        
     }
 
     public function findByToken($token) {
@@ -68,7 +54,6 @@ class UsuarioDaoMysql implements UsuarioDAO {
             if ($sql->rowCount() > 0){
                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
                 $user = $this->generateUser($dictData);
-                $SESSION["flash"] .= "Encontrou Email-";
                 return $user;
             }
         }
