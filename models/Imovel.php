@@ -3,7 +3,7 @@
 class Imovel {
 
     private $codigo_imovel;
-    private $codigo_usuario;
+    private $cpf;
     private $numero_seq_end;
     private $codigo_cidade;
     private $uf;
@@ -14,11 +14,11 @@ class Imovel {
     private $piscina;
     private $vagas_garagem;
     private $valor;
-    private $alugado;
+    private $habilitado;
 
-    public function __construct($codigo_imovel, $codigo_usuario, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $alugado){
-      $this->codigo_imovel = $codigo_imovel;
-      $this->codigo_usuario = $codigo_usuario;
+    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado){
+      $this->codigo_imovel = NULL;
+      $this->cpf = $cpf;
       $this->numero_seq_end = $numero_seq_end;
       $this->codigo_cidade = $codigo_cidade;
       $this->uf = $uf;
@@ -35,8 +35,8 @@ class Imovel {
     public function getCodigoImovel(){
         return $this->codigo_imovel;
     }
-    public function getCodigoUsuario(){
-        return $this->codigo_usuario;
+    public function getCpf(){
+        return $this->cpf;
     }
     public function getNumeroSeqEnd(){
         return $this->numero_seq_end;
@@ -74,8 +74,8 @@ class Imovel {
     public function setCodigoImovel($codigo_imovel){
         $this->codigo_imovel = $codigo_imovel;
     }
-    public function setCodigoUsuario($codigo_usuario){
-        $this->codigo_usuario = $codigo_usuario;
+    public function setCpf($cpf){
+        $this->cpf = $cpf;
     }
     public function setNumeroSeqEnd($numero_seq_end){
         $this->numero_seq_end = $numero_seq_end;
@@ -113,9 +113,9 @@ class Imovel {
   }
 
 interface ImovelDAO {
-    public function findByKeys($codigo_imovel, $codigo_cidade, $codigo_usuario, $numero_seq_end);
+    public function findByKeys($codigo_imovel, $codigo_cidade, $cpf, $numero_seq_end);
     public function findByCodigoCidade($codigo_cidade);
-    public function findByCodigoUsuario($codigo_usuario);
+    public function findByCodigoUsuario($cpf);
     public function findByCodigoImovel($codigo_imovel);
     public function findByNumeroSeqEnd($numero_seq_end);
     public function add(Imovel $imovel);
