@@ -4,16 +4,21 @@ require 'config.php';
 require 'models/Endereco.php';
 require 'dao/EnderecoDaoMysql.php';
 
-#$userDao = new UsuarioDaoMysql($pdo);
-#$userDao->add($user);
-/*
-*/
 $endereco = new Endereco(
-    "3",
-    "123456789",
-    "RS",
     "From hell",
+    "RS",
+    "3",
     "666",
+    "ao lado do purgatório",
+    "loucuras de meu deus",
+    "40400666"
+);
+
+$endereco1 = new Endereco(
+    "Fr",
+    "RJ",
+    "6",
+    "66",
     "ao lado do purgatório",
     "loucuras de meu deus",
     "40400666"
@@ -22,5 +27,8 @@ $endereco = new Endereco(
 $enderecoDao = new EnderecoDaoMysql($pdo);
 $enderecoDao->add($endereco);
 
-# $userDao->remove($user);
+$enderecoDao = new EnderecoDaoMysql($pdo);
+$enderecoDao->add($endereco1);
+
+#$enderecoDao->remove($endereco);
 

@@ -11,6 +11,8 @@ class EnderecoDaoMysql implements EnderecoDAO {
 
     private function generateEndereco($dictData) {
         return new Endereco(
+            $dictData['codigoCidade'],
+            $dictData['uf'],
             $dictData['logradouro'],
             $dictData['numero'],
             $dictData['complemento'],
@@ -27,7 +29,7 @@ class EnderecoDaoMysql implements EnderecoDAO {
 
            if ($sql->rowCount() > 0){
                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                $endereco = $this->generateUser($dictData);
+                $endereco = $this->generateEndereco($dictData);
                 return $endereco;
            }
        }
@@ -42,7 +44,7 @@ class EnderecoDaoMysql implements EnderecoDAO {
 
             if ($sql->rowCount() > 0){
                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                $endereco = $this->generateUser($dictData);
+                $endereco = $this->generateEndereco($dictData);
                 return $endereco;
             }
         }
@@ -57,7 +59,7 @@ class EnderecoDaoMysql implements EnderecoDAO {
 
             if ($sql->rowCount() > 0){
                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                $endereco = $this->generateUser($dictData);
+                $endereco = $this->generateEndereco($dictData);
                 return $endereco;
             }
         }
@@ -65,6 +67,10 @@ class EnderecoDaoMysql implements EnderecoDAO {
     }
 
     public function add(Endereco $endereco) {
+
+        $newCodigoSeqEnd = $this->lastSeqEnd() + 1;
+        $endereco->setNumeroSeqEnd($newCodigoSeqEnd);
+
         $sql = $this->pdo->prepare("INSERT INTO enderecos (
             numero_seq_end, codigo_cidade, uf, logradouro, numero, complemento, bairro, cep
         ) VALUES (
@@ -114,4 +120,14 @@ class EnderecoDaoMysql implements EnderecoDAO {
 
         return true;
     }
+
+    private function lastSeqEnd(){
+        $sql = $this->pdo->prepare("SELECT MAX(numero_seq_end) FROM enderecos");
+        $sql->execute();
+        if ($sql->rowCount() > 0){
+            $data = $sql->fetch(PDO::FETCH_ASSOC);
+            return $data["MAX(numero_seq_end)"];
+       }
+    }
+    
 }   

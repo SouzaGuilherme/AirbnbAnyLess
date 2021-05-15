@@ -11,9 +11,8 @@ class Endereco {
     private $cep;
 
 
-    public function __construct($logradouro, $numeroSeqEnd, $uf, $codigoCidade, $numero, $complemento, $bairro, $cep) {
+    public function __construct($logradouro, $uf, $codigoCidade, $numero, $complemento, $bairro, $cep) {
         $this->logradouro   = $logradouro;
-        $this->numeroSeqEnd = $numeroSeqEnd;
         $this->uf = $uf;
         $this->codigoCidade = $codigoCidade;
         $this->numero       = $numero;
