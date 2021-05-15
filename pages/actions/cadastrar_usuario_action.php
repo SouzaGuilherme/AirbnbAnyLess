@@ -1,12 +1,9 @@
 <?php
-require 'config.php';
-require 'models/Auth.php';
-require 'models/Estado.php';
-
-require 'dao/CidadeDaoMysql.php';
-require 'dao/EnderecoDaoMysql.php';
-
-
+require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/../../models/Auth.php';
+require_once __DIR__ . '/../../models/Estado.php';
+require_once __DIR__ . '/../../dao/CidadeDaoMysql.php';
+require_once __DIR__ . '/../../dao/EnderecoDaoMysql.php';
 
 
 $input_email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
@@ -26,9 +23,6 @@ $input_siglaUF = filter_input(INPUT_POST, "siglaUF");
 
 $input_password = filter_input(INPUT_POST, "password"); 
 $input_password_again = filter_input(INPUT_POST, "password_again"); 
-
-
- 
 
 
 $auth = new Auth($pdo, $base_url);
@@ -73,21 +67,15 @@ if ($input_password && $input_password_again) {
                     "token",
                 );
                 $usuarioDao->add($usuario);
+                $_SESSION["flash"] = "Cadastrado realizado com sucesso!";
+                header("Location: ".$base_url."/pages/login.php");
                 return true;
+                exit;
             }
-            return false;
         }
-
-        return false;
-        
-        
-        
-        header("Location: ".$base_url);
-        exit;
     }
 }
 
-# $_SESSION["flash"] = "E-mail ou senha errados!";
-
-header("Location: ".$base_url."/login.php");
+return false;
+header("Location: ".$base_url."/pages/cadastrar_usuario.php");
 exit;
