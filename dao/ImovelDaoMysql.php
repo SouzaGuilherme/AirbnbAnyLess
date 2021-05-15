@@ -167,4 +167,15 @@ class ImovelDaoMysql implements ImovelDAO {
       $sql->bindValue(":codigo_imovel", $imovel->getCodigoImovel());
       $sql->execute();
     }
+
+
+    public function findAllImoveis(){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis");
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+    }
+
 }
