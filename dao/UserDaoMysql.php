@@ -25,6 +25,7 @@ class UsuarioDaoMysql implements UsuarioDAO {
                 $dictData['senha'],
                 $dictData['token'],
             );
+        }
         elseif ($dictData['tipo_usuario'] == "PROPRIETARIO") {
             return new Proprietario(
                 $dictData['cpf'],
