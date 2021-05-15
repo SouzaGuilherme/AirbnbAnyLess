@@ -23,15 +23,15 @@ class ImovelDaoMysql implements ImovelDAO {
            $dictData['piscina'],
            $dictData['vagas_garagem'],
            $dictData['valor'],
-           $dictData['alugado'],
+           $dictData['habilitado'],
         );
     }
 
     public function add(Imovel $imovel) {
         $sql = $this->pdo->prepare("INSERT INTO imoveis (
-            codigo_imovel, codigo_usuario, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, alugado
+            codigo_imovel, codigo_usuario, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado
         ) VALUES (
-            :codigo_imovel,:codigo_usuario,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :alugado
+            :codigo_imovel,:codigo_usuario,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :habilitado
         );");
         $sql->bindValue(":codigo_imovel", $imovel->getCodigoImovel());
         $sql->bindValue(":codigo_cidade", $imovel->getCodigoCidade());
@@ -45,7 +45,7 @@ class ImovelDaoMysql implements ImovelDAO {
         $sql->bindValue(":piscina", $imovel->getPiscina());
         $sql->bindValue(":vagas_garagem", $imovel->getVagasGaragem());
         $sql->bindValue(":valor", $imovel->getValor());
-        $sql->bindValue(":alugado", $imovel->getAlugado());
+        $sql->bindValue(":habilitado", $imovel->getHabilitado());
         $sql->execute();
     }
 
@@ -141,7 +141,7 @@ class ImovelDaoMysql implements ImovelDAO {
         piscina = :piscina,
         vagas_garagem = :vagas_garagem,
         valor = :valor,
-        alugado = :alugado
+        habilitado = :habilitado
         WHERE codigo_imovel = :codigo_imovel;"
     );
 
@@ -157,7 +157,7 @@ class ImovelDaoMysql implements ImovelDAO {
       $sql->bindValue(":piscina", $imovel->getPiscina());
       $sql->bindValue(":vagas_garagem", $imovel->getVagasGaragem());
       $sql->bindValue(":valor", $imovel->getValor());
-      $sql->bindValue(":alugado", $imovel->getAlugado());
+      $sql->bindValue(":habilitado", $imovel->getHabilitado());
       $sql->execute();
 
     return true;

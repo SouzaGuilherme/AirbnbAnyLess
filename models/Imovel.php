@@ -29,7 +29,7 @@ class Imovel {
       $this->piscina = $piscina;
       $this->vagas_garagem = $vagas_garagem;
       $this->valor = $valor;
-      $this->alugado = $alugado;
+      $this->habilitado = $habilitado;
     }
 
     public function getCodigoImovel(){
@@ -68,8 +68,8 @@ class Imovel {
   	public function getValor(){
       return $this->valor;
     }
-  	public function getAlugado(){
-      return $this->alugado;
+  	public function getHabilitado(){
+      return $this->habilitado;
     }
     public function setCodigoImovel($codigo_imovel){
         $this->codigo_imovel = $codigo_imovel;
@@ -107,8 +107,8 @@ class Imovel {
     public function setValor($valor){
       $this->valor = $valor;
     }
-    public function setAlugado($alugado){
-      $this->alugado = $alugado;
+    public function setHabilidade($habilitado){
+      $this->habilitado = $habilitado;
     }
   }
 
