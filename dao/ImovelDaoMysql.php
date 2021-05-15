@@ -9,6 +9,11 @@ class ImovelDaoMysql implements ImovelDAO {
         $this->pdo = $pdo;
     }
 
+
+    /** ----------------------------------------------------------- */
+
+    
+    // GenerateImovel:
     private function generateImovel($dictData){
         return new Imovel(
            $dictData['codigo_imovel'],
@@ -27,11 +32,22 @@ class ImovelDaoMysql implements ImovelDAO {
         );
     }
 
+
+    /** ----------------------------------------------------------- */
+
+
+    // ADD:
     public function add(Imovel $imovel) {
         $sql = $this->pdo->prepare("INSERT INTO imoveis (
-            codigo_imovel, codigo_usuario, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, alugado
+            codigo_imovel, codigo_usuario, numero_seq_end, 
+            codigo_cidade, uf, descricao, qtd_quartos,
+            qtd_banheiros, qtd_salas, piscina,
+            vagas_garagem, valor, alugado
         ) VALUES (
-            :codigo_imovel,:codigo_usuario,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :alugado
+            :codigo_imovel,:codigo_usuario,:numero_seq_end,
+            :codigo_cidade,:uf,:descricao, 
+            :qtd_quartos, :qtd_banheiros, :qtd_salas,
+            :piscina, :vagas_garagem, :valor, :alugado
         );");
         $sql->bindValue(":codigo_imovel", $imovel->getCodigo_imovel());
         $sql->bindValue(":codigo_cidade", $imovel->getCodigo_cidade());
@@ -49,7 +65,13 @@ class ImovelDaoMysql implements ImovelDAO {
         $sql->execute();
     }
 
-    public function findByKeys($codigo_imovel, $codigo_cidade, $codigo_usuario, $numero_seq_end) {
+
+    /** ----------------------------------------------------------- */
+
+    
+    // FindByKeys:
+    public function findByKeys($codigo_imovel, $codigo_cidade, 
+                               $codigo_usuario, $numero_seq_end) {
       if (!empty($codigo_imovel AND $codigo_cidade AND $codigo_usuario AND $numero_seq_end)){
           $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel AND codigo_cidade = :codigo_cidade AND codigo_usuario = :codigo_usuario AND numero_seq_end = :numero_seq_end");
           $sql->bindValue(":codigo_imovel", $codigo_imovel);
@@ -67,6 +89,11 @@ class ImovelDaoMysql implements ImovelDAO {
       return false;
     }
 
+
+    /** ----------------------------------------------------------- */
+
+
+    // FindByCodigo:
     public function findByCodigo_imovel($codigo_imovel){
       if (!empty($codigo_imovel)){
           $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel");
@@ -82,6 +109,11 @@ class ImovelDaoMysql implements ImovelDAO {
       return false;
     }
 
+
+    /** ----------------------------------------------------------- */
+
+
+    // FindByCodigoCidade
     public function findByCodigo_cidade($codigo_cidade){
       if (!empty($codigo_cidade)){
           $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_cidade = :codigo_cidade");
@@ -97,6 +129,11 @@ class ImovelDaoMysql implements ImovelDAO {
       return false;
     }
 
+
+    /** ----------------------------------------------------------- */
+
+
+    // FindByCodigoUsuario
     public function findByCodigo_usuario($codigo_usuario){
       if (!empty($codigo_usuario)){
           $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_usuario = :codigo_usuario");
@@ -112,6 +149,11 @@ class ImovelDaoMysql implements ImovelDAO {
       return false;
     }
 
+
+    /** ----------------------------------------------------------- */
+
+
+    // FindByNumero:
     public function findByNumero_seqEnd($numero_seq_end){
       if (!empty($numero_seq_end)){
           $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE numero_seq_end = :numero_seq_end");
@@ -127,6 +169,11 @@ class ImovelDaoMysql implements ImovelDAO {
       return false;
     }
 
+
+    /** ----------------------------------------------------------- */
+
+
+    // UPDATE:
     public function update(Imovel $imovel){
       $sql = $this->pdo->prepare("UPDATE imoveis SET
         codigo_imovel = :codigo_imovel,
@@ -163,6 +210,10 @@ class ImovelDaoMysql implements ImovelDAO {
     return true;
   }
 
+
+  /** ----------------------------------------------------------- */
+
+    // REMOVE:
     public function remove(Imovel $imovel){
       $sql = $this->pdo->prepare("DELETE FROM imoveis WHERE codigo_imovel = :codigo_imovel");
       $sql->bindValue(":codigo_imovel", $imovel->getCodigo_imovel());
