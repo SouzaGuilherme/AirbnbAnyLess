@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 30-Abr-2021 às 03:38
+-- Tempo de geração: 15-Maio-2021 às 21:41
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
@@ -33,6 +33,22 @@ CREATE TABLE `cidades` (
   `nome` varchar(200) NOT NULL COMMENT 'Nome do Cidade por extenso	'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `cidades`
+--
+
+INSERT INTO `cidades` (`codigo_cidade`, `uf`, `nome`) VALUES
+(1, 'ES', 'Afonso Cláudio'),
+(2, 'ES', 'Água Doce do Norte'),
+(3, 'ES', 'Águia Branca'),
+(4, 'ES', 'Alegre'),
+(5, 'ES', 'Alfredo Chaves'),
+(6, 'ES', 'Alto Rio Novo'),
+(7, 'ES', 'Anchieta'),
+(8, 'ES', 'Apiacá'),
+(9, 'ES', 'Aracruz'),
+(10, 'ES', 'Atilio Vivacqua');
+
 -- --------------------------------------------------------
 
 --
@@ -40,7 +56,7 @@ CREATE TABLE `cidades` (
 --
 
 CREATE TABLE `enderecos` (
-  `numero_seq_end` int(10) NOT NULL COMMENT 'Número sequencial do endereço	',
+  `numero_seq_end` int(10) NOT NULL COMMENT 'Número sequencial do endereço ',
   `codigo_cidade` int(10) NOT NULL COMMENT 'Código da cidade',
   `uf` varchar(200) NOT NULL COMMENT 'Nome do UF por extenso',
   `logradouro` varchar(200) NOT NULL COMMENT 'Logradouro do Endereço',
@@ -49,6 +65,13 @@ CREATE TABLE `enderecos` (
   `bairro` varchar(200) NOT NULL COMMENT 'Bairro do Endereço',
   `cep` varchar(9) NOT NULL COMMENT 'CEP do Endereço'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `enderecos`
+--
+
+INSERT INTO `enderecos` (`numero_seq_end`, `codigo_cidade`, `uf`, `logradouro`, `numero`, `complemento`, `bairro`, `cep`) VALUES
+(2, 4, 'ES', 'Moreria Cesar', 671, 'Loja X', 'Centro', '96450000');
 
 -- --------------------------------------------------------
 
@@ -60,6 +83,39 @@ CREATE TABLE `estados` (
   `uf` varchar(200) NOT NULL COMMENT 'Nome do UF por extenso'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `estados`
+--
+
+INSERT INTO `estados` (`uf`) VALUES
+('AC'),
+('AL'),
+('AM'),
+('AP'),
+('BA'),
+('CE'),
+('DF'),
+('ES'),
+('GO'),
+('MA'),
+('MG'),
+('MS'),
+('MT'),
+('PA'),
+('PB'),
+('PE'),
+('PI'),
+('PR'),
+('RJ'),
+('RN'),
+('RO'),
+('RR'),
+('RS'),
+('SC'),
+('SE'),
+('SP'),
+('TO');
+
 -- --------------------------------------------------------
 
 --
@@ -68,7 +124,7 @@ CREATE TABLE `estados` (
 
 CREATE TABLE `imoveis` (
   `codigo_imovel` int(10) NOT NULL COMMENT 'Código do Imóvel',
-  `codigo_usuario` int(10) NOT NULL COMMENT 'Código de Usuário',
+  `cpf` varchar(11) NOT NULL COMMENT 'CPF de Usuário',
   `numero_seq_end` int(10) NOT NULL COMMENT 'Número sequência do endereço',
   `codigo_cidade` int(10) NOT NULL COMMENT 'Código da Cidade',
   `uf` varchar(200) NOT NULL COMMENT 'Nome do UF por extenso	',
@@ -79,8 +135,15 @@ CREATE TABLE `imoveis` (
   `piscina` tinyint(1) NOT NULL COMMENT 'Piscina ',
   `vagas_garagem` int(2) NOT NULL COMMENT 'Quantidade de vagas na garagem',
   `valor` double NOT NULL COMMENT 'Valor para alugar o Imóvel',
-  `alugado` tinyint(1) NOT NULL COMMENT 'Representa se o imóvel está alugado ou não'
+  `habilitado` tinyint(1) NOT NULL COMMENT 'Representa se o imóvel está alugado ou não'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `imoveis`
+--
+
+INSERT INTO `imoveis` (`codigo_imovel`, `cpf`, `numero_seq_end`, `codigo_cidade`, `uf`, `descricao`, `qtd_quartos`, `qtd_banheiros`, `qtd_salas`, `piscina`, `vagas_garagem`, `valor`, `habilitado`) VALUES
+(1, '0348123123', 2, 4, 'ES', '123', 1, 1, 3, 4, 2, 123, 1);
 
 -- --------------------------------------------------------
 
@@ -91,9 +154,9 @@ CREATE TABLE `imoveis` (
 CREATE TABLE `reservas` (
   `codigo_reserva` int(10) NOT NULL COMMENT 'Código da Reserva',
   `codigo_imovel` int(10) NOT NULL COMMENT 'Código do Imóvel',
-  `cpf` int(11) NOT NULL COMMENT 'CPF do Usuário',
+  `cpf` varchar(11) NOT NULL COMMENT 'CPF do Usuário',
   `data_inicial` date NOT NULL COMMENT 'Data Final da Inicial',
-  `date_final` date NOT NULL COMMENT 'Código Final da Reserva'
+  `data_final` date NOT NULL COMMENT 'Código Final da Reserva'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -117,6 +180,15 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`cpf`, `numero_seq_end`, `codigo_cidade`, `uf`, `nome`, `email`, `telefone`, `foto`, `tipo_usuario`, `senha`, `token`) VALUES
+('0348123123', 2, 4, 'ES', 'Thiago Heron Ávila', 'thiagoheronavila@gmail.com', '53999589276', 'FOTO', 'AMBOS', '1234', 'a88a866ffe3545464f41aa19fb9fead0'),
+('03482023000', 2, 4, 'ES', 'Thiago Heron Ávila', 'thiagoheronavila@gmail.com', '53999589276', 'FOTO', '', '1234', '05033af5a97f09af2521163d0c52a3a1'),
+('0348202323', 2, 4, 'ES', 'Thiago Heron Ávila', 'thiagoheronavila@gmail.com', '53999589276', 'FOTO', 'AMBOS', '1234', 'token');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -124,13 +196,16 @@ CREATE TABLE `usuarios` (
 -- Índices para tabela `cidades`
 --
 ALTER TABLE `cidades`
-  ADD PRIMARY KEY (`codigo_cidade`,`uf`);
+  ADD PRIMARY KEY (`codigo_cidade`,`uf`),
+  ADD KEY `cidade_uf` (`uf`);
 
 --
 -- Índices para tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  ADD PRIMARY KEY (`numero_seq_end`,`codigo_cidade`,`uf`);
+  ADD PRIMARY KEY (`numero_seq_end`,`codigo_cidade`,`uf`),
+  ADD KEY `endereco_uf` (`uf`),
+  ADD KEY `codigo_cidade` (`codigo_cidade`);
 
 --
 -- Índices para tabela `estados`
@@ -142,19 +217,83 @@ ALTER TABLE `estados`
 -- Índices para tabela `imoveis`
 --
 ALTER TABLE `imoveis`
-  ADD PRIMARY KEY (`codigo_imovel`);
+  ADD PRIMARY KEY (`codigo_imovel`),
+  ADD KEY `imoveis_cpf` (`cpf`),
+  ADD KEY `imoveis_codigo_cidade` (`codigo_cidade`),
+  ADD KEY `imoveis_numero_seq_end` (`numero_seq_end`);
 
 --
 -- Índices para tabela `reservas`
 --
 ALTER TABLE `reservas`
-  ADD PRIMARY KEY (`codigo_reserva`,`codigo_imovel`,`cpf`);
+  ADD PRIMARY KEY (`codigo_imovel`,`cpf`,`data_inicial`),
+  ADD UNIQUE KEY `codigo_reserva` (`codigo_reserva`),
+  ADD KEY `reservas_cpf` (`cpf`);
 
 --
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`cpf`);
+  ADD PRIMARY KEY (`cpf`),
+  ADD KEY `usuario_codigo_cidade` (`codigo_cidade`),
+  ADD KEY `usuario_uf` (`uf`),
+  ADD KEY `usuario_numero_seq_end` (`numero_seq_end`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `enderecos`
+--
+ALTER TABLE `enderecos`
+  MODIFY `numero_seq_end` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Número sequencial do endereço ', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `imoveis`
+--
+ALTER TABLE `imoveis`
+  MODIFY `codigo_imovel` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Código do Imóvel', AUTO_INCREMENT=2;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `cidades`
+--
+ALTER TABLE `cidades`
+  ADD CONSTRAINT `cidade_uf` FOREIGN KEY (`uf`) REFERENCES `estados` (`uf`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD CONSTRAINT `codigo_cidade` FOREIGN KEY (`codigo_cidade`) REFERENCES `cidades` (`codigo_cidade`),
+  ADD CONSTRAINT `endereco_uf` FOREIGN KEY (`uf`) REFERENCES `estados` (`uf`);
+
+--
+-- Limitadores para a tabela `imoveis`
+--
+ALTER TABLE `imoveis`
+  ADD CONSTRAINT `imoveis_codigo_cidade` FOREIGN KEY (`codigo_cidade`) REFERENCES `cidades` (`codigo_cidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `imoveis_cpf` FOREIGN KEY (`cpf`) REFERENCES `usuarios` (`cpf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `imoveis_numero_seq_end` FOREIGN KEY (`numero_seq_end`) REFERENCES `enderecos` (`numero_seq_end`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `reservas`
+--
+ALTER TABLE `reservas`
+  ADD CONSTRAINT `reservas_codigo_imovel` FOREIGN KEY (`codigo_imovel`) REFERENCES `imoveis` (`codigo_imovel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `reservas_cpf` FOREIGN KEY (`cpf`) REFERENCES `usuarios` (`cpf`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuario_codigo_cidade` FOREIGN KEY (`codigo_cidade`) REFERENCES `enderecos` (`codigo_cidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `usuario_numero_seq_end` FOREIGN KEY (`numero_seq_end`) REFERENCES `enderecos` (`numero_seq_end`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `usuario_uf` FOREIGN KEY (`uf`) REFERENCES `enderecos` (`uf`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
