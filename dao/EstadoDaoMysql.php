@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Estado.php';
+require __DIR__ . '/../models/Estado.php';
 
 
 class EstadoDaoMysql implements EstadoDAO {

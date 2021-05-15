@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Cidade.php';
+require __DIR__ . '/../models/Cidade.php';
 
 
 class CidadeDaoMysql implements CidadeDAO {

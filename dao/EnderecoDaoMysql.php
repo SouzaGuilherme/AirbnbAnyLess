@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Endereco.php';
+require __DIR__ . '/../models/Endereco.php';
 
 
 class EnderecoDaoMysql implements EnderecoDao {
