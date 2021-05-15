@@ -1,7 +1,5 @@
 <?php
     require_once __DIR__ . '/../config.php';
-
-
 ?>
 
 
@@ -23,9 +21,16 @@
     
     <section class="container main">
         <form method="POST" action="<?=$base_url;?>/pages/cadastrar_imovel.php">
-
             <input class="button" type="submit" value="Cadastrar Imóvel" />
         </form>
+
+
+        <form method="POST" action="<?=$base_url;?>/pages/visualizar_imoveis.php">
+            <input class="button" type="submit" value="Visualizar Todos Imóveis" />
+        </form>
     </section>
+
+
+
 </body>
 </html>
