@@ -1,16 +1,21 @@
 <?php
 
-
 class Endereco {
     private $logradouro;
     private $numero;
+    private $numeroSeqEnd;
+    private $codigoCidade;
+    private $uf;
     private $complemento;
     private $bairro;
     private $cep;
 
 
-    public function __construct($logradouro, $numero, $complemento, $bairro, $cep) {
+    public function __construct($logradouro, $numeroSeqEnd, $uf, $codigoCidade, $numero, $complemento, $bairro, $cep) {
         $this->logradouro   = $logradouro;
+        $this->numeroSeqEnd = $numeroSeqEnd;
+        $this->uf = $uf;
+        $this->codigoCidade = $codigoCidade;
         $this->numero       = $numero;
         $this->complemento  = $complemento;
         $this->bairro       = $bairro;
@@ -19,6 +24,18 @@ class Endereco {
 
     public function getLogradouro(){
         return $this->logradouro;
+    }
+
+    public function getNumeroSeqEnd(){
+        return $this->numeroSeqEnd;
+    }
+
+    public function getUf(){
+        return $this->uf;
+    }
+
+    public function getCodigoCidade(){
+        return $this->codigoCidade;
     }
 
     public function getNumero(){
@@ -39,6 +56,18 @@ class Endereco {
 
     public function setLogradouro($logradouro){
         $this->logradouro = $logradouro;
+    }
+
+    public function setNumeroSeqEnd($numeroSeqEnd){
+        $this->numeroSeqEnd = $numeroSeqEnd;
+    }
+
+    public function setUf($uf){
+        $this->uf = $uf;
+    }
+
+    public function setCodigoCidade($codigoCidade){
+        $this->codigoCidade = $codigoCidade;
     }
 
     public function setNumero($numero){
@@ -62,8 +91,8 @@ class Endereco {
 interface EnderecoDAO {
     public function findByCep($cep);
     public function findByLogradouro($logradouro);
-    public function findByBairro($bairro)
-    //public function add(Usuario $user);
-    //public function remove(Usuario $user);
-    //public function update(Usuario $user);
+    public function findByBairro($bairro);
+    public function add(Endereco $endereco);
+    public function remove(Endereco $endereco);
+    public function update(Endereco $endereco);
 }
