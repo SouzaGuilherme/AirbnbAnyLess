@@ -2,16 +2,8 @@
 
 require 'config.php';
 require 'models/Reserva.php';
-#require 'models/Usuario.php';
-#require 'models/Locatario.php';
-#require 'dao/UsuarioDaoMysql.php';
 require 'dao/ReservaDaoMysql.php';
 
-
-#$userDao = new UsuarioDaoMysql($pdo);
-#$userDao->add($user);
-/*
-*/
 $reserva = new Reserva(
     "3",
     "123456789",
@@ -20,7 +12,5 @@ $reserva = new Reserva(
 );
 
 $reservaDao = new ReservaDaoMysql($pdo);
-$reservaDao->add($reserva);
-
+# $reservaDao->add($reserva);
 # $userDao->remove($user);
-

@@ -32,16 +32,16 @@ class Imovel {
       $this->alugado = $alugado;
     }
 
-    public function getCodigo_imovel(){
+    public function getCodigoImovel(){
         return $this->codigo_imovel;
     }
-    public function getCodigo_usuario(){
+    public function getCodigoUsuario(){
         return $this->codigo_usuario;
     }
-    public function getNumero_seq_end(){
+    public function getNumeroSeqEnd(){
         return $this->numero_seq_end;
     }
-    public function getCodigo_cidade(){
+    public function getCodigoCidade(){
         return $this->codigo_cidade;
     }
     public function getUf(){
@@ -50,19 +50,19 @@ class Imovel {
     public function getDescricao(){
         return $this->descricao;
     }
-    public function getQtd_quartos(){
+    public function getQtdQuartos(){
         return $this->qtd_quartos;
     }
-    public function getQtd_banheiros(){
+    public function getQtdBanheiros(){
         return $this->qtd_banheiros;
     }
-    public function getQtd_salas(){
+    public function getQtdSalas(){
         return $this->qtd_salas;
     }
     public function getPiscina(){
         return $this->piscina;
     }
-  	public function getVagas_garagem(){
+  	public function getVagasGaragem(){
         return $this->vagas_garagem;
     }
   	public function getValor(){
@@ -71,16 +71,16 @@ class Imovel {
   	public function getAlugado(){
       return $this->alugado;
     }
-    public function setCodigo_imovel($codigo_imovel){
+    public function setCodigoImovel($codigo_imovel){
         $this->codigo_imovel = $codigo_imovel;
     }
-    public function setCodigo_usuario($codigo_usuario){
+    public function setCodigoUsuario($codigo_usuario){
         $this->codigo_usuario = $codigo_usuario;
     }
-    public function setNumero_seq_end($numero_seq_end){
+    public function setNumeroSeqEnd($numero_seq_end){
         $this->numero_seq_end = $numero_seq_end;
     }
-    public function setCodigo_cidade($codigo_cidade){
+    public function setCodigoCidade($codigo_cidade){
         $this->codigo_cidade = $codigo_cidade;
     }
     public function setUf($uf){
@@ -89,13 +89,13 @@ class Imovel {
     public function setDescricao($descricao){
       $this->descricao = $descricao;
     }
-    public function setQtd_quartos($qtd_quartos){
+    public function setQtdQuartos($qtd_quartos){
       $this->qtd_quartos = $qtd_quartos;
     }
-    public function setQtd_banheiros($qtd_banheiros){
+    public function setQtdBanheiros($qtd_banheiros){
       $this->qtd_banheiros = $qtd_banheiros;
     }
-    public function setQtd_salas($qtd_salas){
+    public function setQtdSalas($qtd_salas){
       $this->qtd_salas = $qtd_salas;
     }
     public function setPiscina($piscina){
@@ -114,10 +114,10 @@ class Imovel {
 
 interface ImovelDAO {
     public function findByKeys($codigo_imovel, $codigo_cidade, $codigo_usuario, $numero_seq_end);
-    public function findByCodigo_cidade($codigo_cidade);
-    public function findByCodigo_usuario($codigo_usuario);
-    public function findByCodigo_imovel($codigo_imovel);
-    public function findByNumero_seqEnd($numero_seq_end);
+    public function findByCodigoCidade($codigo_cidade);
+    public function findByCodigoUsuario($codigo_usuario);
+    public function findByCodigoImovel($codigo_imovel);
+    public function findByNumeroSeqEnd($numero_seq_end);
     public function add(Imovel $imovel);
     public function remove(Imovel $imovel);
     public function update(Imovel $imovel);
