@@ -1,5 +1,6 @@
 <?php
-require 'dao/UsuarioDaoMysql.php';
+
+require __DIR__ . '/../dao/UsuarioDaoMysql.php';
 
 
 class Auth {
@@ -9,7 +10,6 @@ class Auth {
     public function __construct(PDO $pdo, $base_url){
         $this->pdo = $pdo;
         $this->base_url = $base_url;
-
     }
 
     public function checkToken() {
@@ -24,24 +24,24 @@ class Auth {
             $userDao = new UsuarioDaoMysql($this->pdo);
             $user = $userDao->findByToken($token);
             if ($user) {
-                return $user;
-            } 
+                return $user->getToken();
+            } else {
+                return false;
+            }
         }
-        header("Location: ".$this->base_url."/login.php");
         exit;
     }
 
     public function validateLogin($email, $password) {
         $userDao = new UsuarioDaoMysql($this->pdo);
-
         $user = $userDao->findByEmail($email);
-        if ($user) {            
+
+        if ($user) {          
             if($password == $user->getSenha()){
                 $token = md5(time().rand(0, 9999));
                 $_SESSION["token"] = $token;
                 $user->setToken($token);
                 $userDao->update($user);
-
                 return true;
             }
         }
@@ -50,4 +50,10 @@ class Auth {
 
     }
 
+    public function validateEqualPassword($password, $password_to_check) {
+        if ($password == $password_to_check){
+            return true;
+        };
+        return false;
+    }
 }
