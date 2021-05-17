@@ -17,7 +17,7 @@ class Imovel {
     private $habilitado;
 
     public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado){
-      $this->codigo_imovel = NULL;
+      $this->codigo_imovel = -1;
       $this->cpf = $cpf;
       $this->numero_seq_end = $numero_seq_end;
       $this->codigo_cidade = $codigo_cidade;

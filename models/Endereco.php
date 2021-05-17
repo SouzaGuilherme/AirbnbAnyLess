@@ -12,7 +12,7 @@ class Endereco {
     private $cep;
 
     public function __construct($codigo_cidade, $uf, $logradouro, $numero, $complemento, $bairro, $cep) {
-        $this->numero_seq_end = NULL;
+        $this->numero_seq_end = -1;
         $this->codigo_cidade = $codigo_cidade;
         $this->uf = $uf;
         $this->logradouro = $logradouro;

@@ -38,9 +38,9 @@
         <input required placeholder="Quantidade de Banheiros" class="input" type="qtd_banheiros" name="qtd_banheiros" />
         <input required placeholder="Vagas Garagem" class="input" type="qtd_vagas_garagem" name="qtd_vagas_garagem" />
         <input required placeholder="Quantidade de Salas" class="input" type="qtd_salas" name="qtd_salas" />
-        <input required placeholder="Piscina (Sim ou Não)" class="input" type="piscina" name="piscina" />
+        <input required placeholder="Piscina (1 ou 0)" class="input" type="piscina" name="piscina" />
         <input required placeholder="Valor" class="input" type="valor" name="valor" />
-        <input required placeholder="habilitado (Sim ou Não)" class="input" type="habilitado" name="habilitado" />
+        <input required placeholder="habilitado (1 ou 0)" class="input" type="habilitado" name="habilitado" />
 
 
         <input class="button" type="submit" value="Registrar Imóvel" />
