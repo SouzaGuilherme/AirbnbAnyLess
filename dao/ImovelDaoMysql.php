@@ -33,9 +33,9 @@ class ImovelDaoMysql implements ImovelDAO {
         ) VALUES (
             :cpf,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :habilitado
         );");
+        $sql->bindValue(":numero_seq_end", $imovel->getNumeroSeqEnd());
         $sql->bindValue(":codigo_cidade", $imovel->getCodigoCidade());
         $sql->bindValue(":cpf", $imovel->getCpf());
-        $sql->bindValue(":numero_seq_end", $imovel->getNumeroSeqEnd());
         $sql->bindValue(":uf", $imovel->getUf());
         $sql->bindValue(":descricao", $imovel->getDescricao());
         $sql->bindValue(":qtd_quartos", $imovel->getQtdQuartos());
