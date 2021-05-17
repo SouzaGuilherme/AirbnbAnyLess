@@ -40,7 +40,7 @@ require_once __DIR__ . '/../config.php';
         <input required placeholder="UF" class="input" type="cep" name="siglaUF" />
 
         <input required placeholder="Senha" class="input" type="password" name="password" />
-        <input required placeholder="Confirmar Senha" class="input" type="password_again" name="password_again" />
+        <input required placeholder="Confirmar Senha" class="input" type="password" name="password_again" />
         
         <input required class="button" type="submit" value="Cadastrar" />
 
