@@ -15,15 +15,15 @@ class EnderecoDaoMysql implements EnderecoDao {
         ) VALUES (
             :codigo_cidade, :uf, :logradouro, :numero, :complemento, :bairro, :cep
         );");
-        print_r($endereco);
+        # print_r($endereco);
         # $sql->bindValue(":numero_seq_end",  $endereco->getNumeroSeqEnd());
         $sql->bindValue(":codigo_cidade",   $endereco->getCodigoCidade());
         $sql->bindValue(":uf",              $endereco->getUf());
         $sql->bindValue(":logradouro",      $endereco->getLogradouro());
-        $sql->bindValue(":numero", $endereco->getNumero());
-        $sql->bindValue(":complemento", $endereco->getComplemento());
-        $sql->bindValue(":bairro", $endereco->getBairro());
-        $sql->bindValue(":cep", $endereco->getCep());
+        $sql->bindValue(":numero",          $endereco->getNumero());
+        $sql->bindValue(":complemento",     $endereco->getComplemento());
+        $sql->bindValue(":bairro",          $endereco->getBairro());
+        $sql->bindValue(":cep",             $endereco->getCep());
         $sql->execute();
 
         return true;
