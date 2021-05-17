@@ -58,6 +58,9 @@ if ($cidade){
     };
 
     if ($endereco) {
+
+        $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
+
         $imovel = new Imovel(            
             $usuario->getCpf(),
             $endereco->getNumeroSeqEnd(),
