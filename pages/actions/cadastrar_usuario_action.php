@@ -53,6 +53,8 @@ if ($input_password && $input_password_again) {
                 $enderecoDao->add($endereco);
             };
             if ($endereco) {
+                $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
+                
                 $usuario = new Usuario(
                     $input_cpf,
                     $endereco->getNumeroSeqEnd(),
