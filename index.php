@@ -27,9 +27,6 @@ require_once __DIR__ . '/config.php';
         </section>
     </div>
 
-
-
-
 </body>
 
 </html>
