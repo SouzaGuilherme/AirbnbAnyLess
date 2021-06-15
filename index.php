@@ -12,11 +12,13 @@ require_once __DIR__ . '/config.php';
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
     <link rel="icon" type="image/png" href="<?= $base_url; ?>/assets/images/favicon-32x32.png" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/home/home.css" />
 </head>
 
 <body>
 
-    <?php include "/assets/pages/header_register.php" ?>
+    <?php require_once __DIR__ . '/assets/pages/header_application.php' ?>
 
     <div class="container-background">
         <section class="container main">
@@ -27,6 +29,10 @@ require_once __DIR__ . '/config.php';
                 <input class="button" type="submit" value="Criar Conta" />
             </form>
         </section>
+    </div>
+
+    <div>
+        <?php require_once __DIR__ . '/assets/pages/home/home.php' ?>
     </div>
 
 </body>
