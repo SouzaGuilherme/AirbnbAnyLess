@@ -16,6 +16,8 @@ require_once __DIR__ . '/config.php';
 
 <body>
 
+    <?php include "/assets/pages/header_register.php" ?>
+
     <div class="container-background">
         <section class="container main">
             <form class="container-login-index" method="POST" action="<?= $base_url; ?>/pages/login.php">
