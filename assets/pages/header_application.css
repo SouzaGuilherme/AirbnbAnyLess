@@ -14,8 +14,9 @@
 }
 
 .users-links{
-    position: absolute;
-    right: 15%;
+    position: relative;
+    top: 30%;
+    right: 1%;
 }
 
 .link-user{
@@ -23,8 +24,7 @@
     text-decoration: none;
     width: auto;
     height: 28px;
-    top: 150%;
-    right: 180%;
+    right: 15%;
     font-family: Roboto;
     font-size: 16px;
     line-height: 28px;
@@ -36,8 +36,7 @@
     text-decoration: none;
     width: auto;
     height: 28px;
-    top: 150%;
-    right: 180%;
+    right: 5%;
     font-family: Roboto;
     font-size: 16px;
     line-height: 28px;

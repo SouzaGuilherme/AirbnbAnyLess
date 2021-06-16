@@ -1,27 +1,78 @@
 .options-component{
-    position: relative;
-    width: auto;
-    height: 20vh;
-    top: 0px;
-    background: #817a7a;
+    position: absolute;
+    width: 100%;
+    height: 210px;
+    top: calc(50% - 210px/2 - 228px);
+    background: rgba(196, 196, 196, 0.5);
 }
 
 .city{
-    background: url(images/image12.png) no-repeat scroll 7px 7px;
-    padding-left:30px;
+    background-image: url(images/image12.png) 7px 7px;
+    position: absolute;
+    width: 563px;
+    height: 63px;
+    left: calc(50% - 563px/2 - 277.5px);
+    top: calc(160% - 63px/2 - 272.5px);
+    background: #E8E5E5;
+    border-radius: 30px;
 }
 
 .country{
-    background: url(images/image13.png) no-repeat scroll 7px 7px;
-    padding-left:30px;
+    position: absolute;
+    width: 563px;
+    height: 63px;
+    left: calc(50% - 563px/2 + 296.5px);
+    top: calc(160% - 63px/2 - 272.5px);
+    background: #E8E5E5;
+    border-radius: 30px;
 }
 
 .start-date{
-    background: url(images/image16.png) no-repeat scroll 7px 7px;
-    padding-left:30px;
+    position: absolute;
+    width: 156px;
+    height: 63px;
+    left: calc(50% - 156px/2 - 481px);
+    top: calc(160% - 63px/2 - 185.5px);
+    background: #E8E5E5;
+    border-radius: 30px;
 }
 
 .end-date{
-    background: url(images/image17.png) no-repeat scroll 7px 7px;
-    padding-left:30px;
+    position: absolute;
+    width: 153px;
+    height: 63px;
+    left: calc(50% - 153px/2 - 311.5px);
+    top: calc(160% - 63px/2 - 185.5px);
+    background: #E8E5E5;
+    border-radius: 30px;
+}
+
+.people{
+    position: absolute;
+    width: 186px;
+    height: 63px;
+    left: calc(50% - 186px/2 - 126px);
+    top: calc(160% - 63px/2 - 185.5px);
+    background: #E8E5E5;
+    border-radius: 30px;
+}
+
+.price{
+    position: absolute;
+    width: 184px;
+    height: 63px;
+    left: calc(50% - 184px/2 + 81px);
+    top: calc(160% - 63px/2 - 185.5px);
+    background: #E8E5E5;
+    border-radius: 30px;
+}
+
+.find{
+    position: absolute;
+    width: 184px;
+    height: 63px;
+    left: calc(50% - 384px/2 + 386px);
+    top: calc(160% - 63px/2 - 185.5px);
+    background: #E8E5E5;
+    border-radius: 30px;
 }

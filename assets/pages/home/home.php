@@ -9,8 +9,9 @@
         <input type="text" class="country">
         <input type="date" class="start-date">
         <input type="date" class="end-date">
-        <input type="number" class="people">
-        <input type="number" class="price">
+        <input type="text" class="people">
+        <input type="text" class="price">
+        <button type="submit" class="find"></button>
 
     </div>
 

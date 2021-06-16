@@ -1,0 +1,74 @@
+.property-modal{
+    position: absolute;
+    width: 1283px;
+    height: 468px;
+    left: calc(50% - 1283px/2 + 7.5px);
+    top: calc(50% - 468px/2 - 68px);
+    background: rgba(196, 196, 196, 0.5);
+}
+
+.city-image{
+    position: absolute;
+    width: 57px;
+    height: 57px;
+    left: calc(50% - 57px/2 + 138.5px);
+    top: calc(70% - 57px/2 - 264.5px);
+}
+
+.city-name{
+    position: absolute;
+    width: 121px;
+    height: 42px;
+    left: calc(50% - 121px/2 + 257.5px);
+    top: calc(70% - 42px/2 - 257px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    color: #000000;
+}
+
+.state-image{
+    position: absolute;
+    width: 57px;
+    height: 57px;
+    left: calc(50% - 57px/2 + 438.5px);
+    top: calc(50% - 57px/2 - 264.5px);    
+}
+
+.state-name{
+    position: absolute;
+    width: 44px;
+    height: 42px;
+    left: calc(50% - 44px/2 + 515px);
+    top: calc(50% - 42px/2 - 257px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    color: #000000;
+}
+
+.local-image{
+    position: absolute;
+    width: 39px;
+    height: 39px;
+    left: calc(50% - 39px/2 + 141.5px);
+    top: calc(50% - 39px/2 - 179.5px);    
+}
+
+.local-name{
+    position: absolute;
+    width: 208px;
+    height: 28px;
+    left: calc(50% - 208px/2 + 301px);
+    top: calc(50% - 28px/2 - 185px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
