@@ -1,9 +1,14 @@
-/* Rectangle 20 */
 .container-header-register{
-    position: absolute;
-    width: 1440px;
-    height: 141px;
-    left: -3px;
+    position: relative;
+    width: auto;
+    height: 8.3vh;
     top: 0px;
     background: #E36666;
+}
+
+.header-image{
+    position: absolute;
+    bottom: 35%;
+    left: 5%;
+    transform: scale(3.5);
 }

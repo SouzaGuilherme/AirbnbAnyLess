@@ -1,18 +1,14 @@
-<?php
-require_once __DIR__ . '/config.php';
-?>
-
 <!DOCTYPE html>
 <html>
 
 <body>
 
     <header class="container-header-register">
-
-        <h1 class="test">
-            <a href="#" title="teste">teste</a>
-        </h1>
-
+        <div class="header-image">
+            <a href="index.php">
+                <img src="/assets/images/logo1.png" alt="logo" />
+            </a>  
+        </div>
     </header>
 
 </body>

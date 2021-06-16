@@ -1,9 +1,45 @@
-/* Rectangle 20 */
-.container-header{
-    position: absolute;
-    width: 1440px;
-    height: 141px;
-    left: -2px;
+.container-header-application{
+    position: relative;
+    width: auto;
+    height: 8.3vh;
     top: 0px;
     background: #E36666;
+}
+
+.header-image-application{
+    position: absolute;
+    bottom: 35%;
+    left: 5%;
+    transform: scale(3.5);
+}
+
+.users-links{
+    position: absolute;
+    right: 15%;
+}
+
+.link-user{
+    position: absolute;
+    text-decoration: none;
+    width: auto;
+    height: 28px;
+    top: 150%;
+    right: 180%;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+.link-owner{
+    position: absolute;
+    text-decoration: none;
+    width: auto;
+    height: 28px;
+    top: 150%;
+    right: 180%;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 28px;
+    color: #FFFFFF; 
 }
