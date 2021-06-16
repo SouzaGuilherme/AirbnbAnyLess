@@ -1,0 +1,75 @@
+.container-top-left {
+    position: absolute;
+    width: 431px;
+    height: 381px;
+    left: calc(50% - 431px/2 - 450.5px);
+    top: calc(50% - 381px/2 - 150.5px);
+    background: rgba(196, 188, 188, 0.79);
+    border-radius: 30px;
+}
+
+.container-top-right {
+    position: absolute;
+    width: 854px;
+    height: 323px;
+    left: 560px;
+    top: 222px;
+}
+
+.container-down-left {
+    position: absolute;
+    width: 431px;
+    height: 340px;
+    left: calc(50% - 431px/2 - 450.5px);
+    top: calc(50% - 340px/2 + 220px);
+    background: rgba(196, 188, 188, 0.79);
+    border-radius: 30px;
+}
+
+.container-down-right {
+    position: absolute;
+    width: 854px;
+    height: 426px;
+    left: calc(50% - 854px/2 + 267px);
+    top: calc(50% - 426px/2 + 180px);
+    background: rgba(196, 188, 188, 0.79);
+    border-radius: 30px;
+}
+
+.container-text {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.container-description input {
+    position: absolute;
+    width: 419px;
+    height: 43px;
+    left: calc(50% - 419px/2 + 49.5px);
+    top: calc(50% - 63px/2 - 258.5px);
+    background: #FFFFFF;
+    border-radius: 30px;
+    outline: 0;
+    border: 0;
+    font-size: 24px;
+    padding: 15px;
+}
+
+.cidade-image {
+    position: absolute;
+    width: 57px;
+    height: 57px;
+    left: calc(50% - 57px/2 - 117.5px);
+    top: calc(50% - 63px/2 - 258.5px);
+    height: 43px;
+    width: auto;
+}
