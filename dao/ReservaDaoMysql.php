@@ -4,7 +4,7 @@ require_once 'models/Reserva.php';
 
 class ReservaDaoMysql implements ReservaDAO {
     private $pdo;
-    
+
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
     }
@@ -27,15 +27,16 @@ class ReservaDaoMysql implements ReservaDAO {
         $sql->execute();
     }
 
-    public function remove(Reserva $reserva){
+    public function remove(Reserva $reserva) {
         $sql = $this->pdo->prepare("DELETE FROM reservas WHERE codigo_imovel = :codigo_imovel");
         $sql->bindValue(":codigo_imovel", $reserva->getCodigoImovel());
         $sql->execute();
     }
 
-    public function update(Reserva $reserva){
+    public function update(Reserva $reserva) {
 
-        $sql = $this->pdo->prepare("UPDATE reservas SET
+        $sql = $this->pdo->prepare(
+            "UPDATE reservas SET
             codigo_reserva = :codigo_reserva,
             codigo_imovel = :codigo_imovel,
             cpf = :cpf,
@@ -54,33 +55,32 @@ class ReservaDaoMysql implements ReservaDAO {
     }
 
     public function findByCodigoReserva($codigo_reserva) {
-        if (!empty($codigo_reserva)){
+        if (!empty($codigo_reserva)) {
             $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE codigo_reserva = :codigo_reserva");
             $sql->bindValue(":codigo_reserva", $codigo_reserva);
             $sql->execute();
- 
-            if ($sql->rowCount() > 0){
-                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                 $reserva = new Reserva(
+
+            if ($sql->rowCount() > 0) {
+                $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+                $reserva = new Reserva(
                     $dictData['codigo_imovel'],
                     $dictData['cpf'],
                     $dictData['data_inicial'],
                     $dictData['data_final'],
-                 );
-                 $reserva->setCodigoReserva($dictData['codigo_reserva']);
-                 return $reserva;
+                );
+                $reserva->setCodigoReserva($dictData['codigo_reserva']);
+                return $reserva;
             }
         }
         return false;
-     }
-      
-    private function lastCodigoReserva(){
+    }
+
+    private function lastCodigoReserva() {
         $sql = $this->pdo->prepare("SELECT MAX(codigo_reserva) FROM reservas");
         $sql->execute();
-        if ($sql->rowCount() > 0){
+        if ($sql->rowCount() > 0) {
             $data = $sql->fetch(PDO::FETCH_ASSOC);
             return $data["MAX(codigo_reserva)"];
-       }
-
+        }
     }
 }

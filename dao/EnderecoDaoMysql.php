@@ -29,7 +29,7 @@ class EnderecoDaoMysql implements EnderecoDao {
         return true;
     }
 
-    public function remove(Endereco $endereco){
+    public function remove(Endereco $endereco) {
         $sql = $this->pdo->prepare("DELETE FROM enderecos WHERE numero_seq_end = :numero_seq_end AND codigo_cidade = :codigo_cidade AND uf = :uf");
         $sql->bindValue(":numero_seq_end", $endereco->getNumeroSeqEnd());
         $sql->bindValue(":codigo_cidade", $endereco->getCodigoCidade());
@@ -37,16 +37,16 @@ class EnderecoDaoMysql implements EnderecoDao {
         $sql->execute();
     }
 
-    
-    public function findEndereco($codigo_cidade, $uf, $numero, $cep){
+
+    public function findEndereco($codigo_cidade, $uf, $numero, $cep) {
         $sql = $this->pdo->prepare("SELECT * FROM enderecos WHERE codigo_cidade = :codigo_cidade AND uf = :uf AND numero = :numero AND cep = :cep");
         $sql->bindValue(":codigo_cidade", $codigo_cidade);
         $sql->bindValue(":uf", $uf);
         $sql->bindValue(":numero", $numero);
         $sql->bindValue(":cep", $cep);
         $sql->execute();
-        
-        if ($sql->rowCount() > 0){
+
+        if ($sql->rowCount() > 0) {
             $dictData = $sql->fetch(PDO::FETCH_ASSOC);
             print_r($dictData);
             $endereco = new Endereco(
@@ -63,6 +63,4 @@ class EnderecoDaoMysql implements EnderecoDao {
         }
         return false;
     }
-    
-
-}   
+}

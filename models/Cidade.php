@@ -12,16 +12,15 @@ class Cidade {
         $this->nome = $nome;
     }
 
-    public function getCodigoCidade(){
+    public function getCodigoCidade() {
         return $this->codigo_cidade;
     }
-    public function getUf(){
+    public function getUf() {
         return $this->uf;
     }
-    public function getNome(){
+    public function getNome() {
         return $this->nome;
     }
-
 }
 
 interface CidadeDao {

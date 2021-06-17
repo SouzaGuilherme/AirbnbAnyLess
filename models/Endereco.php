@@ -22,56 +22,54 @@ class Endereco {
         $this->cep = $cep;
     }
 
-    public function getNumeroSeqEnd(){
+    public function getNumeroSeqEnd() {
         return $this->numero_seq_end;
     }
-    public function getCodigoCidade(){
+    public function getCodigoCidade() {
         return $this->codigo_cidade;
     }
-    public function getUf(){
+    public function getUf() {
         return $this->uf;
     }
-    public function getLogradouro(){
+    public function getLogradouro() {
         return $this->logradouro;
     }
-    public function getNumero(){
+    public function getNumero() {
         return $this->numero;
     }
-    public function getComplemento(){
+    public function getComplemento() {
         return $this->complemento;
     }
-    public function getBairro(){
+    public function getBairro() {
         return $this->bairro;
     }
-    public function getCep(){
+    public function getCep() {
         return $this->cep;
     }
-    public function setNumeroSeqEnd($value){
+    public function setNumeroSeqEnd($value) {
         $this->numero_seq_end = $value;
     }
-    public function setCodigoCidade($value){
+    public function setCodigoCidade($value) {
         $this->codigo_cidade = $value;
     }
-    public function setUf($value){
+    public function setUf($value) {
         $this->uf = $value;
     }
-    public function setLogradouro($value){
+    public function setLogradouro($value) {
         $this->logradouro = $value;
     }
-    public function setNumero($value){
+    public function setNumero($value) {
         $this->numero = $value;
     }
-    public function setComplemento($value){
+    public function setComplemento($value) {
         $this->complemento = $value;
     }
-    public function setBairro($value){
+    public function setBairro($value) {
         $this->bairro = $value;
     }
-    public function setCep($value){
+    public function setCep($value) {
         $this->cep = $value;
     }
-
-
 }
 
 interface EnderecoDao {

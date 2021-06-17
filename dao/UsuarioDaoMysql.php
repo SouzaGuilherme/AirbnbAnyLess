@@ -10,8 +10,8 @@ class UsuarioDaoMysql implements UsuarioDAO {
     }
 
     private function generateUser($dictData) {
-
-        
+        /* Instância um objeto User a partir do retorno do DataBase.
+        */
         return new Usuario(
             $dictData['cpf'],
             $dictData['numero_seq_end'],
@@ -25,33 +25,36 @@ class UsuarioDaoMysql implements UsuarioDAO {
             $dictData['senha'],
             $dictData['token'],
         );
-        
     }
 
     public function findByToken($token) {
-       if (!empty($token)){
-           $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE token = :token");
-           $sql->bindValue(":token", $token);
-           $sql->execute();
+        /* Encontra um usuário no database de acordo com o token
+        */
+        if (!empty($token)) {
+            $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE token = :token");
+            $sql->bindValue(":token", $token);
+            $sql->execute();
 
-           if ($sql->rowCount() > 0){
+            if ($sql->rowCount() > 0) {
                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
                 $user = $this->generateUser($dictData);
                 return $user;
-           }
-       }
-       return false;
+            }
+        }
+        return false;
     }
 
-    public function findByEmail($email) { 
+    public function findByEmail($email) {
+        /* Encontra um usuário no database pelo e-mail
+        */
 
-        if (!empty($email)){
+        if (!empty($email)) {
 
             $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
             $sql->bindValue(":email", $email);
             $sql->execute();
 
-            if ($sql->rowCount() > 0){
+            if ($sql->rowCount() > 0) {
                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
                 $user = $this->generateUser($dictData);
                 return $user;
@@ -61,6 +64,8 @@ class UsuarioDaoMysql implements UsuarioDAO {
     }
 
     public function add(Usuario $user) {
+        /* Adiciona um usuário ao database.
+        */
         $sql = $this->pdo->prepare("INSERT INTO usuarios (
             cpf, numero_seq_end, codigo_cidade, uf, nome, email, telefone, foto, tipo_usuario, senha, token
         ) VALUES (
@@ -81,15 +86,20 @@ class UsuarioDaoMysql implements UsuarioDAO {
         $sql->execute();
     }
 
-    public function remove(Usuario $user){
+    public function remove(Usuario $user) {
+        /* Remove um usuário do database
+        */
         $sql = $this->pdo->prepare("DELETE FROM usuarios WHERE cpf = :cpf");
         $sql->bindValue(":cpf", $user->getCpf());
         $sql->execute();
     }
 
-    public function update(Usuario $user){
+    public function update(Usuario $user) {
+        /* Atualiza um usuário do database.
+        */
 
-        $sql = $this->pdo->prepare("UPDATE usuarios SET
+        $sql = $this->pdo->prepare(
+            "UPDATE usuarios SET
             cpf = :cpf,
             numero_seq_end = :numero_seq_end,
             senha = :senha,
@@ -119,4 +129,4 @@ class UsuarioDaoMysql implements UsuarioDAO {
 
         return true;
     }
-}   
+}
