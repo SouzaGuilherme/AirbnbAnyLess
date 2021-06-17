@@ -1,0 +1,92 @@
+.container{
+    width: 828px;
+    height: 302px;
+    left: 304px;
+    top: 427px;
+    background: rgba(196, 196, 196, 0.5);
+}
+
+.image{
+    width: 452px;
+    height: 301px;
+    background-size: cover;
+    background-image: url(../images/croissant-matzZGQk4o4-unsplash.jpg);
+    border-radius: 30px;
+}
+
+.text{
+    position: absolute;
+    width: 320px;
+    height: 28px;
+    left: 130%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.city{
+    position: relative;
+    left:58%;
+    bottom: 98%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/image12.png);
+}
+
+.state{
+    position: relative;
+    left:58%;
+    bottom: 92%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/image13.png);
+}
+
+.road{
+    position: relative;
+    left:58%;
+    bottom: 87%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/localization.png);
+}
+
+.price{
+    position: relative;
+    left:58%;
+    bottom: 81%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/image17.png);
+}
+
+.calendary{
+    position: relative;
+    width: 174px;
+    height: 41px;
+    left:56%;
+    bottom: 60%;
+
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.image-calendary{
+    position: relative;
+    left: 10%;
+    top: 20%;
+    max-width: 20px;
+    max-height: 20px;
+    width: auto;
+    height: auto;
+
+    background: url(../images/calendar.png);
+}
+

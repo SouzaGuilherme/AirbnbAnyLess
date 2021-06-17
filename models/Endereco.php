@@ -11,8 +11,8 @@ class Endereco {
     private $bairro;
     private $cep;
 
-    public function __construct($codigo_cidade, $uf, $logradouro, $numero, $complemento, $bairro, $cep) {
-        $this->numero_seq_end = -1;
+    public function __construct($numero_seq_end, $codigo_cidade, $uf, $logradouro, $numero, $complemento, $bairro, $cep) {
+        $this->numero_seq_end = $numero_seq_end;
         $this->codigo_cidade = $codigo_cidade;
         $this->uf = $uf;
         $this->logradouro = $logradouro;
@@ -77,4 +77,5 @@ class Endereco {
 interface EnderecoDao {
     public function add(Endereco $endereco);
     public function remove(Endereco $endereco);
+    public function findByNumeroSeqEnd($numero_seq_end);
 }

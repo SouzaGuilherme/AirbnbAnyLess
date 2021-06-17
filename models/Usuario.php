@@ -121,6 +121,7 @@ class Usuario {
 
 interface UsuarioDAO {
     public function findByToken($token);
+    public function findByCPF($cpf);
     public function findByEmail($email);
     public function add(Usuario $user);
     public function remove(Usuario $user);
