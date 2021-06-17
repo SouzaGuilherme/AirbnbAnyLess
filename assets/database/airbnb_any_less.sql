@@ -143,7 +143,7 @@ CREATE TABLE `imoveis` (
 --
 
 INSERT INTO `imoveis` (`codigo_imovel`, `cpf`, `numero_seq_end`, `codigo_cidade`, `uf`, `descricao`, `qtd_quartos`, `qtd_banheiros`, `qtd_salas`, `piscina`, `vagas_garagem`, `valor`, `habilitado`) VALUES
-(1, '0348123123', 2, 4, 'ES', '123', 1, 1, 3, 4, 2, 123, 1);
+(1, '0348123123', 2, 4, 'ES', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dignissim auctor dolor non ultrices. Etiam malesuada condimentum nisi, sed maximus nibh suscipit ut. Integer vel tincidunt nisi. In at facilisis elit. Phasellus vel elit nec sem lobortis suscipit. Nam mattis eros finibus dui imperdiet faucibus et sed risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum interdum feugiat lacus vel porttitor. Etiam felis sapien, auctor eget ipsum a, vulputate suscipit justo. In hac habitasse platea dictumst. Sed vel viverra quam. Curabitur imperdiet posuere nulla ac facilisis. Ut non pretium lacus. Etiam a metus pulvinar, dignissim nisi sit amet, cursus sem. Aliquam ac molestie lectus, sit amet ultricies purus. Suspendisse rutrum placerat lobortis. Duis quis diam sagittis, rutrum erat at, varius ex. Suspendisse potenti. Nulla ut varius sapien, at ullamcorper dolor. Integer et arcu est. Suspendisse.', 1, 1, 3, 4, 2, 123, 1);
 
 -- --------------------------------------------------------
 

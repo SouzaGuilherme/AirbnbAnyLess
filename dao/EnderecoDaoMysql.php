@@ -9,6 +9,19 @@ class EnderecoDaoMysql implements EnderecoDao {
         $this->pdo = $pdo;
     }
 
+    private function generateEndereco($dictData){
+        return new Endereco(
+           $dictData['numero_seq_end'],
+           $dictData['codigo_cidade'],
+           $dictData['uf'],
+           $dictData['logradouro'],
+           $dictData['numero'],
+           $dictData['complemento'],
+           $dictData['bairro'],
+           $dictData['cep'],
+        );
+    }
+
     public function add(Endereco $endereco) {
         $sql = $this->pdo->prepare("INSERT INTO enderecos (
             codigo_cidade, uf, logradouro, numero, complemento, bairro, cep
@@ -63,6 +76,21 @@ class EnderecoDaoMysql implements EnderecoDao {
         }
         return false;
     }
+
+    public function findByNumeroSeqEnd($numero_seq_end){
+        if (!empty($numero_seq_end)){
+            $sql = $this->pdo->prepare("SELECT * FROM enderecos WHERE numero_seq_end = :numero_seq_end");
+            $sql->bindValue(":numero_seq_end", $numero_seq_end);
+            $sql->execute();
+  
+            if ($sql->rowCount() > 0){
+                 $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+                 $endereco = $this->generateEndereco($dictData);
+                 return $endereco;
+            }
+        }
+        return false;
+      }
     
 
 }   
