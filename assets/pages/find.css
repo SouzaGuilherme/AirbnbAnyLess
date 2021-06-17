@@ -7,7 +7,6 @@
 }
 
 .city{
-    background-image: url(images/image12.png) 7px 7px;
     position: absolute;
     width: 563px;
     height: 63px;
@@ -15,6 +14,11 @@
     top: calc(160% - 63px/2 - 272.5px);
     background: #E8E5E5;
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    padding-left:15px;
+    font-family: Roboto;
+    font-size: 15px;
 }
 
 .country{
@@ -25,6 +29,11 @@
     top: calc(160% - 63px/2 - 272.5px);
     background: #E8E5E5;
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    padding-left:15px;
+    font-family: Roboto;
+    font-size: 15px;
 }
 
 .start-date{
@@ -35,6 +44,11 @@
     top: calc(160% - 63px/2 - 185.5px);
     background: #E8E5E5;
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    padding-left:15px;
+    font-family: Roboto;
+    font-size: 15px;
 }
 
 .end-date{
@@ -45,6 +59,11 @@
     top: calc(160% - 63px/2 - 185.5px);
     background: #E8E5E5;
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    padding-left:15px;
+    font-family: Roboto;
+    font-size: 15px;
 }
 
 .people{
@@ -55,6 +74,11 @@
     top: calc(160% - 63px/2 - 185.5px);
     background: #E8E5E5;
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    padding-left:15px;
+    font-family: Roboto;
+    font-size: 15px;
 }
 
 .price{
@@ -65,6 +89,11 @@
     top: calc(160% - 63px/2 - 185.5px);
     background: #E8E5E5;
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    padding-left:15px;
+    font-family: Roboto;
+    font-size: 15px;
 }
 
 .find{
@@ -73,6 +102,17 @@
     height: 63px;
     left: calc(50% - 384px/2 + 386px);
     top: calc(160% - 63px/2 - 185.5px);
-    background: #E8E5E5;
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    background: #29B8F5;
+    border-radius: 52px;
+    font-family: Roboto;
+    font-size: 15px;
+}
+
+.find:hover{
+    background-color: #477dbb;
+    transition: all 0.5s ease-in;
+    font-family: Roboto;
 }
