@@ -105,14 +105,15 @@
     border-radius: 30px;
     outline: 0;
     border: 0;
-    background: #29B8F5;
+    background: black;
     border-radius: 52px;
     font-family: Roboto;
     font-size: 15px;
+    color: white;
 }
 
 .find:hover{
-    background-color: #477dbb;
+    background-color: #373b42;
     transition: all 0.5s ease-in;
     font-family: Roboto;
 }
