@@ -45,7 +45,7 @@ if ($cidade){
     $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
 
     if (!$endereco) {
-        $endereco = new Endereco(
+        $endereco = new Endereco(NULL,
             $cidade->getCodigoCidade(),
             $cidade->getUf(),
             $input_logradouro,
@@ -61,7 +61,7 @@ if ($cidade){
 
         $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
 
-        $imovel = new Imovel(            
+        $imovel = new Imovel(NULL,            
             $usuario->getCpf(),
             $endereco->getNumeroSeqEnd(),
             $cidade->getCodigoCidade(),
