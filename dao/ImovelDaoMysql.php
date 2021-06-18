@@ -186,4 +186,20 @@ class ImovelDaoMysql implements ImovelDAO {
       return $sql->fetchAll();
     }
   }
+
+  public function findAllImoveisWithCity() {
+    $sql = $this->pdo->prepare("
+      SELECT `imoveis`.codigo_cidade, codigo_imovel, cpf, numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, `cidades`.nome FROM `imoveis` 
+      LEFT JOIN `cidades`
+      ON `imoveis`.`codigo_cidade` = `cidades`.`codigo_cidade`
+    ");
+    $sql->execute();
+
+    if ($sql->rowCount() > 0) {
+      return $sql->fetchAll();
+    }
+  }
+
+
+
 }
