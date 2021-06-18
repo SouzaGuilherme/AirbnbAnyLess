@@ -1,0 +1,45 @@
+.container-background2{
+    background-image: url(/assets/images/image45.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: local;
+}
+
+.bottom{
+    padding: 5px;
+    width: 244px;
+    height: 35px;
+    background: black;
+    border-radius: 52px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.option-style{
+    color: white;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+a:link 
+{ 
+ text-decoration:none; 
+} 
+
+.bottom:hover{
+    background-color: #373b42;
+    transition: all 0.5s ease-in;
+    font-family: Roboto;
+}
+
+.options{
+    width: 600px;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+}
