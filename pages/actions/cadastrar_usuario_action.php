@@ -80,4 +80,5 @@ if ($input_password && $input_password_again) {
 
 return false;
 header("Location: ".$base_url."/pages/cadastrar_usuario.php");
+header("Location:  ".$base_url."/fail");
 exit;
