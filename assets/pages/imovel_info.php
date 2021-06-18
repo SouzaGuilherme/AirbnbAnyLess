@@ -6,8 +6,8 @@ require_once __DIR__ . '/../../dao/EnderecoDaoMysql.php';
 $imovelDao = new ImovelDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 
-$imovel = $imovelDao->findByCodigoImovel($_SESSION["numero_seq_end"]);
-$endereco = $enderecoDao->findByNumeroSeqEnd($_SESSION["numero_seq_end"]);
+$imovel = $imovelDao->findByCodigoImovel($_SESSION['numero_seq_end']);
+$endereco = $enderecoDao->findByNumeroSeqEnd($_SESSION['numero_seq_end']);
 
 
 ?>
