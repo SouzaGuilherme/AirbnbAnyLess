@@ -3,7 +3,7 @@
     width: auto;
     height: 8.3vh;
     top: 0px;
-    background: #E36666;
+    background: black;
 }
 
 .header-image-application{
@@ -14,7 +14,8 @@
 }
 
 .users-links{
-    position: absolute;
+    position: relative;
+    top: 30%;
     right: 1%;
 }
 
@@ -23,12 +24,16 @@
     text-decoration: none;
     width: auto;
     height: 28px;
-    top: 150%;
-    right: 180%;
+    right: 15%;
     font-family: Roboto;
     font-size: 16px;
     line-height: 28px;
     color: #FFFFFF;
+}
+
+.link-user:hover{
+    color: #E36666;
+    transition: all 0.5s ease-in;
 }
 
 .link-owner{
@@ -36,10 +41,14 @@
     text-decoration: none;
     width: auto;
     height: 28px;
-    top: 150%;
-    right: 180%;
+    right: 5%;
     font-family: Roboto;
     font-size: 16px;
     line-height: 28px;
     color: #FFFFFF; 
+}
+
+.link-owner:hover{
+    color: #E36666;
+    transition: all 0.5s ease-in;
 }

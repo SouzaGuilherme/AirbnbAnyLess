@@ -62,7 +62,7 @@ class EnderecoDaoMysql implements EnderecoDao {
         if ($sql->rowCount() > 0){
             $dictData = $sql->fetch(PDO::FETCH_ASSOC);
             print_r($dictData);
-            $endereco = new Endereco(
+            $endereco = new Endereco(NULL,
                 $dictData['codigo_cidade'],
                 $dictData['uf'],
                 $dictData['logradouro'],
