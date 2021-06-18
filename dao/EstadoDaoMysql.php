@@ -9,20 +9,22 @@ class EstadoDaoMysql implements EstadoDAO {
         $this->pdo = $pdo;
     }
 
-    public function findByUF($uf) {
-        if (!empty($uf)){
-            $sql = $this->pdo->prepare("SELECT * FROM estado WHERE uf = :uf");
-            $sql->bindValue(":uf", $uf);
-            $sql->execute();
-
-            if ($sql->rowCount() > 0){
-                $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                $estado = return new Estado(
-                    $dictData['uf'],
-                );
-                return $estado;
-            }
-        }
-        return false;
+    public function findByUF($uf)
+    {
+        
     }
+
+    public function findAllUf() {
+        
+        $sql = $this->pdo->prepare("SELECT * FROM estados");
+        $sql->execute();
+
+        $array = [];
+        if ($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+        }
+        return $array;
+        
+    }
+
 }
