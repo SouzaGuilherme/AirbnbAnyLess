@@ -30,17 +30,17 @@ $imovelDao = new ImovelDaoMysql($pdo);
 
 <body class="container-background">
     <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
-    <?php foreach($imovelDao->findByCodigoImovel(1) as $imovel): ?>
-    <?php ($imovel['piscina'] === 1) ? $foo = "sim" : $foo = "nao"; ?>
+    <?php $imovel = $imovelDao->findByCodigoImovel(1) ?>
+    <?php ($imovel->getPiscina() === 1) ? $foo = "sim" : $foo = "nao"; ?>
     
     <div class="container-infos">
         <div class = "imovel-infos">
         <p style = "font-weight: bold";>Informações sobre o Imóvel <br/> 
-        <p> <span class="tab1"></span> Quartos   <span class="tab1"></span> &ensp;&nbsp; <?= $imovel['qtd_quartos']; ?> <br/> </p>
-        <p> <span class="tab1"></span> Salas     <span class="tab2"></span> <?= $imovel['qtd_salas']; ?> <br/> </p>
-        <p> <span class="tab1"></span> Banheiros <span class="tab1"></span> <?= $imovel['qtd_banheiros']; ?> <br/></p>
+        <p> <span class="tab1"></span> Quartos   <span class="tab1"></span> &ensp;&nbsp; <?= $imovel->getQtdQuartos() ?> <br/> </p>
+        <p> <span class="tab1"></span> Salas     <span class="tab2"></span> <?= $imovel->getQtdSalas() ?> <br/> </p>
+        <p> <span class="tab1"></span> Banheiros <span class="tab1"></span> <?= $imovel->getQtdBanheiros() ?> <br/></p>
         <p> <span class="tab1"></span> Piscina   <span class="tab1"></span> &ensp;&ensp; <?= $foo; ?> <br/> </p>
-        <p> <span class="tab1"></span> Garagem   <span class="tab1"></span> &ensp;<?= $imovel['vagas_garagem']; ?> <br/> </p>
+        <p> <span class="tab1"></span> Garagem   <span class="tab1"></span> &ensp;<?= $imovel->getVagasGaragem()?> <br/> </p>
     </div>    
 
         <div class="container-describe">
@@ -48,11 +48,10 @@ $imovelDao = new ImovelDaoMysql($pdo);
             </div>
 
             <div class="describe">
-                Descrição <?= $imovel['descricao']; ?> <br/>
+                Descrição <?= $imovel->getDescricao() ?> <br/>
             </div>
         </div>
     </div>
-    <?php endforeach; ?>
 </body>
 
 </html>
