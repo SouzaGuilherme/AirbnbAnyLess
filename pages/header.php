@@ -21,8 +21,8 @@
 					<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
 					<li><a href="sair.php">Sair</a></li>
 				<?php else : ?>
-					<li><a href="cadastrar.php">Cadastre-se</a></li>
 					<li><a href="login.php">Login</a></li>
+					<li><a href="cadastrar.php">Cadastre-se</a></li>
 				<?php endif; ?>
 			</ul>
 		</div>
