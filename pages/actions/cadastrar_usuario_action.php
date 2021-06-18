@@ -41,7 +41,7 @@ if ($input_password && $input_password_again) {
             print_r($endereco);
             
             if (!$endereco) {
-                $endereco = new Endereco(
+                $endereco = new Endereco(NULL,
                     $cidade->getCodigoCidade(),
                     $cidade->getUf(),
                     $input_logradouro,
