@@ -8,20 +8,23 @@ $password = filter_input(INPUT_POST, "password");
 
 
 if ($email && $password) {
-    
+
     if ($auth->validateLogin($email, $password)) {
+
         $token = $auth->checkToken();
+
         if ($token) {
             $_SESSION['token'] = $token;
-        } else{
+        } else {
             $_SESSION['token'] = false;
         }
-
-        header("Location: ".$base_url."/pages/home.php");
-    }
-    else {
+        header("Location: " . $base_url . "/pages/home.php");
+    } else {
         $_SESSION["msg"] = "E-mail ou senha errados!";
-        header("Location: ".$base_url."/pages/login.php");
+        header("Location: " . $base_url . "/pages/login.php");
     }
     exit;
+} else {
+    $_SESSION["msg"] = "E-mail ou senha não passados no formulário!";
+    header("Location: " . $base_url . "/pages/login.php");
 }
