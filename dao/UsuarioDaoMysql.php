@@ -88,7 +88,7 @@ class UsuarioDaoMysql implements UsuarioDAO {
             $sql->bindValue(":telefone", $user->getTelefone());
             $sql->bindValue(":foto", $user->getFoto());
             $sql->bindValue(":tipo_usuario", $user->getTipoUsuario());
-            $sql->bindValue(":senha", $user->getSenha());
+            $sql->bindValue(":senha", md5($user->getSenha()));
             $sql->bindValue(":token", $user->getToken());
             $sql->execute();
 
@@ -141,5 +141,21 @@ class UsuarioDaoMysql implements UsuarioDAO {
         $sql->execute();
 
         return true;
+    }
+
+    public function login($email, $password){
+
+        $sql = $this->pdo->prepare("SELECT cpf FROM usuarios WHERE email = :email AND senha = :senha");
+        $sql->bindValue(":email", $email);
+        $sql->bindValue(":senha", md5($password));
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $dados_usuario = $sql->fetch();
+            $_SESSION["cLogin"] = $dados_usuario["cpf"];
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -2,13 +2,14 @@
 <div class="container">
 	<h1>Login</h1>
 	<?php
-	require 'classes/usuarios.class.php';
-	$u = new Usuarios();
+	require 'dao/UsuarioDaoMysql.php';
+	$usuarioDao = new UsuarioDaoMysql($pdo);
+
 	if(isset($_POST['email']) && !empty($_POST['email'])) {
 		$email = addslashes($_POST['email']);
-		$senha = $_POST['senha'];
+		$password = $_POST['password'];
 
-		if($u->login($email, $senha)) {
+		if($usuarioDao->login($email, $password)) {
 			?>
 			<script type="text/javascript">window.location.href="./";</script>
 			<?php
@@ -27,8 +28,8 @@
 			<input type="email" name="email" id="email" class="form-control" />
 		</div>
 		<div class="form-group">
-			<label for="senha">Senha:</label>
-			<input type="password" name="senha" id="senha" class="form-control" />
+			<label for="password">Senha:</label>
+			<input type="password" name="password" id="password" class="form-control" />
 		</div>
 		<input type="submit" value="Fazer Login" class="btn btn-default" />
 	</form>
