@@ -28,4 +28,18 @@ class CidadeDaoMysql implements CidadeDAO {
         }
         return false;
     }
+
+    public function findAllCity() {
+        
+        $sql = $this->pdo->prepare("SELECT * FROM cidades ORDER BY uf, nome ASC");
+        $sql->execute();
+
+        $array = [];
+        if ($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+        }
+        return $array;
+        
+    }
+
 }
