@@ -18,7 +18,7 @@ require_once __DIR__ . '/config.php';
 
 <body>
 
-    <?php require_once __DIR__ . '/assets/pages/header_application.php' ?>
+    <?php require_once __DIR__ . '/assets/pages/header_application.php'?>
 
     <div class="container-background">
         <section class="container main">
