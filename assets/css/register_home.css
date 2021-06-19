@@ -264,7 +264,7 @@
     width: 59px;
     height: 28px;
     left: calc(50% - 295px/2);
-    top: calc(50% - 28px/2 + 290px);
+    top: calc(50% - 28px/2 + 305px);
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -273,18 +273,18 @@
     color: #000000;
 }
 
-.container-piscina input {
+.container-piscina select {
     position: absolute;
     width: 150px;
     height: 43px;
-    left: calc(50% - 190px/2);
+    left: calc(50% - 90px/2);
     top: calc(50% - 28px/2 + 290px);
     background: #FFFFFF;
     padding-left: 15px;
     border-radius: 30px;
 }
 
-.container-text input {
+.container-text select {
     position: absolute;
     width: 150px;
     height: 43px;

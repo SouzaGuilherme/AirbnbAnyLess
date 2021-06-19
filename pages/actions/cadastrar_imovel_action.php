@@ -81,5 +81,5 @@ if ($cidade){
     }
 }
 
-header("Location: ".$base_url."/pages/cadastrar_imovel.php");
+header("Location: ".$base_url."/pages/register_home.php");
 exit;
