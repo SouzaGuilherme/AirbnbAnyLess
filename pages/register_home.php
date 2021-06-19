@@ -2,6 +2,12 @@
 
 require_once __DIR__ . '/../config.php';
 
+if(!isset($_SESSION["token"]))
+{
+header("Location: login.php");
+exit;
+}
+
 ?>
 
 <!DOCTYPE html>

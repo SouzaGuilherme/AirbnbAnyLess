@@ -11,7 +11,6 @@ $usuarioDao = new UsuarioDaoMysql($pdo);
 
 if(!isset($_SESSION["token"]))
 {
-
 header("Location: login.php");
 exit;
 }
