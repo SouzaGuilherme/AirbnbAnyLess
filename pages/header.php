@@ -9,6 +9,14 @@
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/js/script.js"></script>
 </head>
+<?php
+require 'dao/UsuarioDaoMysql.php';
+$usuarioDaoMysql = new UsuarioDaoMysql($pdo);
+if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
+	$usuario = $usuarioDaoMysql->findByCpf($_SESSION['cLogin']);
+}
+
+?>
 
 <body>
 	<nav class="navbar navbar-inverse">
@@ -18,8 +26,21 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<?php if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) : ?>
-					<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
+					
+					<?php if ($usuario->getTipoUsuario() == "AMBOS") : ?>
+						<li><a href="meus_alugueis.php">Meus Alugueis</a></li>
+						<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
+
+					<?php elseif  ($usuario->getTipoUsuario() == "LOCATARIO"): ?>
+						<li><a href="meus_alugueis.php">Meus Alugueis</a></li>
+
+					<?php else : ?>
+						<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
+
+					<?php endif; ?>
 					<li><a href="sair.php">Sair</a></li>
+
+
 				<?php else : ?>
 					<li><a href="login.php">Login</a></li>
 					<li><a href="cadastrar.php">Cadastre-se</a></li>
