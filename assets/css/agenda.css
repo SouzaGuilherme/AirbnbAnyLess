@@ -4,3 +4,34 @@
     background-repeat: no-repeat;
     background-size: 100%;
 }
+
+.check_in{
+    position: relative;
+    left:58%;
+    bottom: 81%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+}
+
+.check_out{
+    position: relative;
+    left:58%;
+    bottom: 77%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+}
+
+.text{
+    position: absolute;
+    width: 320px;
+    height: 28px;
+    left: 130%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}

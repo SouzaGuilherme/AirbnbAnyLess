@@ -73,7 +73,17 @@ class ReservaDaoMysql implements ReservaDAO {
         }
         return false;
      }
-      
+    
+    public function findAllReservas($cpf){
+        $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE cpf = :cpf");
+        $sql->bindValue(":cpf", $cpf);
+        $sql->execute();
+  
+        if ($sql->rowCount() > 0){
+          return $sql->fetchAll();
+        }
+    }
+
     private function lastCodigoReserva(){
         $sql = $this->pdo->prepare("SELECT MAX(codigo_reserva) FROM reservas");
         $sql->execute();

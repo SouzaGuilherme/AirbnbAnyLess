@@ -20,7 +20,7 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
     <meta charset="UTF-8" />
     <title>Meus Imóveis</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
-    <link rel="icon" type="image/png" href="<?=$base_url;?>/assets/images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="<?=$base_url;?>/assets/images/favicon.png"/>
     <link rel="stylesheet" href="<?=$base_url;?>/assets/css/view_list.css"/>
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/find.css" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css"/>
