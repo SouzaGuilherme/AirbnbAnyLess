@@ -29,20 +29,16 @@ require_once __DIR__ . '/../config.php';
         <h1 class="title-city-container">Algumas cidades para você!</h1>
         
         <img src="/../assets/images/rio.jpg" class="city1">
-        <div class="middle">
-            <div class="text">Rio de Janeiro</div>
-        </div>
-
+        <!--span class="image-text">Rio de Janeiro</span-->
+    
         <img src="/../assets/images/porto2.jpeg" class="city2">
-        <div class="middle">
-            <div class="text">Porto Alegre</div>
-        </div>
+        <!--span class="image-text">Porto Alegre</span-->
 
         <img src="/../assets/images/belo.jpg" class="city3">
-        <div class="middle">
-            <div class="text">Belo Horizonte</div>
-        </div>
+        <!--span class="image-text">Belo Horizonte</span-->
+
         <?php require_once __DIR__ . '/../assets/pages/footer.php' ?>
+
     </div>
 
     
