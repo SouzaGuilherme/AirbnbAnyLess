@@ -45,7 +45,7 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
         </div>
 
         <div class="bottom">
-            <a href="home.php">
+            <a href="perfil_edit.php">
                 <p class = "option-style"> Editar Perfil </p>
             </a>
         </div>
