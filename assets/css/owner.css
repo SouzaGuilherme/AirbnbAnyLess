@@ -1,7 +1,5 @@
-@import 'defaults.css';
-
-.container-background{
-    background-image: url(/assets/images/background_owner.png);
+.container-background1{
+    background-image: url(/assets/images/owner_back.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     background-attachment: local;
@@ -10,7 +8,7 @@
 .user-image{
     width: 200px;
     height: 203px;
-    margin-top: 0.3%;
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     background: url(/assets/images/image27.png);
@@ -29,7 +27,7 @@
 .user-name{
     width: 419px;
     height: 40px;
-    margin-top: 0.5%;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
     background: #FFFFFF;
@@ -55,11 +53,12 @@
     justify-content: space-between;
     align-content: space-between;
 }
+
 .bottom{
     padding: 5px;
     width: 244px;
     height: 35px;
-    background: #FF363C;
+    background: black;
     border-radius: 52px;
     display: inline-block;
     vertical-align: middle;
@@ -73,12 +72,29 @@
     font-size: 20px;
 }
 
-.container-describe{
-    width: 662px;
-    height: 190px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3%;
-    background: #FFFFFF;
+.find{
+    position: absolute;
+    width: 184px;
+    height: 63px;
+    left: calc(50% - 384px/2 + 386px);
+    top: calc(160% - 63px/2 - 185.5px);
     border-radius: 30px;
+    outline: 0;
+    border: 0;
+    background: black;
+    border-radius: 52px;
+    font-family: Roboto;
+    font-size: 15px;
+    color: white;
+}
+
+a:link 
+{ 
+ text-decoration:none; 
+} 
+
+.bottom:hover{
+    background-color: #373b42;
+    transition: all 0.5s ease-in;
+    font-family: Roboto;
 }

@@ -6,7 +6,7 @@
     <header class="container-header-application">
 
         <div class="header-image-application">
-            <a href="index.php">
+            <a href="home.php">
                 <img src="/assets/images/logo1.png" alt="logo" />
             </a>    
         </div>
@@ -14,15 +14,9 @@
 
         <div class="users-links">
 
-            <div class="user">
-                <a class="link-user" href="#">
-                    Área do Cliente
-                </a>
-            </div>
-
             <div class="owner">    
-                <a class="link-owner" href="#">
-                    Área do Proprietario
+                <a class="link-owner" href="/pages/owner.php">
+                    Minha Área
                 </a>
             </div>
         </div>
