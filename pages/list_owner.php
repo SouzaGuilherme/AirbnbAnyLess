@@ -9,6 +9,12 @@ $imovelDao = new ImovelDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 $usuarioDao = new UsuarioDaoMysql($pdo);
 
+if(!isset($_SESSION["token"]))
+{
+
+header("Location: login.php");
+exit;
+}
 
 $usuario = $usuarioDao->findByToken($_SESSION["token"]);
     
