@@ -81,14 +81,15 @@ if ($usuario->getTipoUsuario() == "LOCATARIO") {
             <div class="options2">
                 <form method="GET" action="imovel_edit.php">
                     <input class="bottom" type="hidden" name="id" value="<?= $imovel['codigo_imovel']; ?>">
-                    <button class="bottom2">Editar</button>
+                    <button class="bottom2">
+                    <text class="color">Editar</text></button>
                 </form>
 
                 <div >
                     <form method="GET" action="<?= $base_url; ?>/pages/actions/imovel_remove.php">
                     
                         <input class="bottom" type="hidden" name="ids" value="<?= $imovel['codigo_imovel']; ?>">
-                        <button class="bottom2">Remover Imóvel</button>
+                        <button class="bottom2"> <text class="color">Remover</text></button></button>
                     </form>
                 </div>
             </div>

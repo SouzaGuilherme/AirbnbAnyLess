@@ -1,4 +1,4 @@
-.container-background2{
+.container-background2 {
     position: relative;
     background-image: url(/assets/images/image45.png);
     background-repeat: no-repeat;
@@ -6,7 +6,7 @@
     background-attachment: fixed;
 }
 
-.bottom{
+.bottom {
     padding: 5px;
     width: 244px;
     height: 35px;
@@ -16,27 +16,35 @@
     vertical-align: middle;
 }
 
-.bottom2{
+.color {
+    color: white;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.bottom2 {
     padding: 5px;
-    width: 48%;
+    width: 130px;
     height: 35px;
     background: black;
     border-radius: 52px;
     display: inline-block;
     vertical-align: middle;
 }
-.calendary{
+
+.calendary {
     position: relative;
     width: 174px;
     height: 41px;
-    left:56%;
+    left: 56%;
     bottom: 60%;
-
     background: #FFFFFF;
     border-radius: 30px;
 }
 
-.options{
+.options {
     position: relative;
     width: 600px;
     margin-top: 3%;
@@ -48,17 +56,17 @@
     align-content: space-between;
 }
 
-.options2{
+.options2 {
     position: relative;
     width: 350px;
-    left:56%;
+    left: 56%;
     bottom: 60%;
     display: flex;
     justify-content: space-between;
     align-content: space-between;
 }
 
-.option-style{
+.option-style {
     color: white;
     text-align: center;
     font-family: Roboto;
@@ -66,24 +74,23 @@
     font-size: 20px;
 }
 
-a:link 
-{ 
- text-decoration:none; 
-} 
+a:link {
+    text-decoration: none;
+}
 
-.bottom:hover{
+.bottom:hover {
     background-color: #373b42;
     transition: all 0.5s ease-in;
     font-family: Roboto;
 }
 
-.bottom2:hover{
+.bottom2:hover {
     background-color: #373b42;
     transition: all 0.5s ease-in;
     font-family: Roboto;
 }
 
-.container-imovel{
+.container-imovel {
     position: relative;
     width: 828px;
     height: 302px;
@@ -93,8 +100,7 @@ a:link
     background: rgba(196, 196, 196, 0.5);
 }
 
-
-.image{
+.image {
     width: 55%;
     height: 98%;
     background-size: cover;
@@ -102,12 +108,11 @@ a:link
     border-radius: 30px;
 }
 
-.text{
+.text {
     position: absolute;
     width: 320px;
     height: 28px;
     left: 130%;
-
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -115,9 +120,9 @@ a:link
     line-height: 28px;
 }
 
-.city{
+.city {
     position: relative;
-    left:58%;
+    left: 58%;
     bottom: 92%;
     width: 30px;
     height: 30px;
@@ -125,9 +130,9 @@ a:link
     background-image: url(../images/cidade.png);
 }
 
-.state{
+.state {
     position: relative;
-    left:58%;
+    left: 58%;
     bottom: 86%;
     width: 30px;
     height: 30px;
@@ -135,9 +140,9 @@ a:link
     background-image: url(../images/image13.png);
 }
 
-.road{
+.road {
     position: relative;
-    left:58%;
+    left: 58%;
     bottom: 81%;
     width: 30px;
     height: 30px;
@@ -145,9 +150,9 @@ a:link
     background-image: url(../images/localization.png);
 }
 
-.price{
+.price {
     position: relative;
-    left:58%;
+    left: 58%;
     bottom: 77%;
     width: 30px;
     height: 30px;
