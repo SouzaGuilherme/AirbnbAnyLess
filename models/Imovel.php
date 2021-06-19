@@ -107,7 +107,7 @@ class Imovel {
     public function setValor($valor){
       $this->valor = $valor;
     }
-    public function setHabilidade($habilitado){
+    public function setHabilitado($habilitado){
       $this->habilitado = $habilitado;
     }
   }

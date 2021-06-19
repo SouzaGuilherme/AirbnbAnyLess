@@ -11,6 +11,7 @@ if(!isset($_SESSION["token"]))
 header("Location: login.php");
 exit;
 }
+
 $usuarioDao = new UsuarioDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 $cidadeDao = new CidadeDaoMysql($pdo);
@@ -46,8 +47,8 @@ $endereco = $enderecoDao->findByNumeroSeqEnd($imovel->getNumeroSeqEnd());
 
     <!--div class="container-background"-->
     <section class="container-background">
-        <form method="POST" action="<?= $base_url; ?>/pages/actions/imovel_edit_action.php">
-            <input class="input" type="hidden" name="codigo_imovel" value ="<?php echo $imovel->getCodigoCidade(); ?>">
+        <form method="GET" action="<?= $base_url; ?>/pages/actions/imovel_edit_action.php">
+            <input class="input" type="hidden" name="ids" value ="<?php echo $imovel->getCodigoImovel(); ?>">
             <div class="container-top-left">
 
                 <div class="container-text">
