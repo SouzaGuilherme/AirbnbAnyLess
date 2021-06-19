@@ -64,4 +64,28 @@ class EnderecoDaoMysql implements EnderecoDao {
         }
         return false;
     }
+
+    public function findEnderecoByKeys($numero_seq_end, $uf, $codigo_cidade) {
+        $sql = $this->pdo->prepare("SELECT * FROM enderecos WHERE numero_seq_end = :numero_seq_end AND uf = :uf AND uf = :uf AND codigo_cidade = :codigo_cidade");
+        $sql->bindValue(":numero_seq_end", $numero_seq_end);
+        $sql->bindValue(":uf", $uf);
+        $sql->bindValue(":codigo_cidade", $codigo_cidade);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+            $endereco = new Endereco(
+                $dictData['codigo_cidade'],
+                $dictData['uf'],
+                $dictData['logradouro'],
+                $dictData['numero'],
+                $dictData['complemento'],
+                $dictData['bairro'],
+                $dictData['cep'],
+            );
+            $endereco->setNumeroSeqEnd($dictData["numero_seq_end"]);
+            return $endereco;
+        }
+        return false;
+    }
 }

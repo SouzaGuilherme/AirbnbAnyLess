@@ -16,8 +16,9 @@ class Imovel {
     private $valor;
     private $habilitado;
     private $titulo;
+    private $foto;
 
-    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado, $titulo){
+    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado, $titulo, $fotos){
       $this->codigo_imovel = -1;
       $this->cpf = $cpf;
       $this->numero_seq_end = $numero_seq_end;
@@ -32,6 +33,7 @@ class Imovel {
       $this->valor = $valor;
       $this->habilitado = $habilitado;
       $this->titulo = $titulo;
+      $this->fotos = $fotos;
     }
 
     public function getCodigoImovel(){
@@ -76,6 +78,9 @@ class Imovel {
     public function getTitulo(){
       return $this->titulo;
     }
+    public function getFotos(){
+      return $this->fotos;
+    }
     public function setCodigoImovel($codigo_imovel){
         $this->codigo_imovel = $codigo_imovel;
     }
@@ -118,6 +123,10 @@ class Imovel {
     public function setTitulos($titulo){
       $this->titulo = $titulo;
     }
+    public function setFotos($fotos){
+      $this->fotos = $fotos;
+    }
+
   }
 
 interface ImovelDAO {

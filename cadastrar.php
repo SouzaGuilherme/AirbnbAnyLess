@@ -2,7 +2,8 @@
 
 
 <div class="container">
-	<h1>Cadastre-se</h1>
+	<h1>Cadastre-se no AirbnbAnyLess</h1>
+	<hr/>
 
 	<?php
 
@@ -194,7 +195,7 @@
 			</select>
 		</div>
 
-		<input type="submit" value="Cadastrar" class="btn btn-default" />
+		<input type="submit" value="Cadastrar" class="btn btn-success btn-block btn-lg" />
 	</form>
 
 </div>

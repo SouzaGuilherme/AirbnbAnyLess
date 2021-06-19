@@ -29,7 +29,6 @@ if (
 	&& 	isset($_POST['complemento']) && !empty($_POST['complemento'])
 	&& 	isset($_POST['bairro']) && !empty($_POST['bairro'])
 	&& 	isset($_POST['cep']) && !empty($_POST['cep'])
-
 	&& 	isset($_POST['titulo']) && !empty($_POST['titulo'])
 	&& 	isset($_POST['descricao']) && !empty($_POST['descricao'])
 	&& 	isset($_POST['qtd_banheiros']) && !empty($_POST['qtd_banheiros'])
@@ -57,6 +56,7 @@ if (
 	$valor = $_POST["valor"];
 	$habilitado = $_POST["habilitado"];
 	$piscina = $_POST["piscina"];
+	$fotos = "";
 	if ($habilitado == "sim") {
 		$habilitado = 1;
 	} else {
@@ -96,7 +96,8 @@ if (
 		$vagas_garagem = $vagas_garagem,
 		$valor = $valor,
 		$habilitado = $habilitado,
-		$titulo = $titulo
+		$titulo = $titulo,
+		$fotos = $fotos
 	);
 
 	if ($imovelDao->add($imovel)) {
@@ -112,13 +113,8 @@ if (
 		</div>
 	<?php
 	}
-} else {
-	?>
-	<div class="alert alert-danger">
-		É necessário preencher todos os campos. Tente novamente!
-	</div>
-<?php
-}
+} 
+
 ?>
 
 
@@ -153,33 +149,32 @@ if (
 			<!-- Logradouro -->
 			<div class="form-group">
 				<label for="logradouro">Logradouro:</label>
-				<textarea name="logradouro" id="logradouro" class="form-control"> </textarea>
+				<textarea name="logradouro" id="logradouro" class="form-control" maxlength="200"> </textarea>
 			</div>
 
 			<!-- Complemento -->
 			<div class="form-group">
 				<label for="complemento">Complemento:</label>
-				<textarea name="complemento" id="complemento" class="form-control"> </textarea>
+				<textarea name="complemento" id="complemento" class="form-control" maxlength="200"> </textarea>
 			</div>
 
 			<!-- Bairro -->
 			<div class="form-group">
 				<label for="bairro">Bairro:</label>
-				<textarea name="bairro" id="bairro" class="form-control"> </textarea>
+				<textarea name="bairro" id="bairro" class="form-control" maxlength="200"> </textarea>
 			</div>
 
 			<!-- CEP -->
 			<div class="form-group">
 				<label for="cep">CEP:</label>
-				<textarea name="cep" id="cep" class="form-control"> </textarea>
+				<textarea name="cep" id="cep" class="form-control" maxlength="9"> </textarea>
 			</div>
 
 			<!-- Número do Endereço -->
 			<div class="form-group">
 				<label for="numero">Número do Endereço:</label>
-				<input type="text" name="numero" id="numero" class="form-control" />
+				<input type="text" name="numero" id="numero" class="form-control" maxlength="6"/>
 			</div>
-
 
 
 
@@ -189,14 +184,14 @@ if (
 
 				<!-- Titulo -->
 				<div class="form-group">
-					<label for="titulo">Descrição:</label>
-					<textarea name="titulo" id="titulo" class="form-control"> </textarea>
+					<label for="titulo">Título:</label>
+					<textarea name="titulo" id="titulo" class="form-control" maxlength="200"> </textarea>
 				</div>
 
 				<!-- Descrição -->
 				<div class="form-group">
 					<label for="descricao">Descrição:</label>
-					<textarea name="descricao" id="descricao" class="form-control"> </textarea>
+					<textarea name="descricao" id="descricao" class="form-control" maxlength="500"> </textarea>
 				</div>
 				<!-- Qtd. Banheiros -->
 				<div class="form-group">

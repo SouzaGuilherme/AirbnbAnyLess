@@ -75,14 +75,12 @@ $allImoveis = $imovelDaoMysql->findAllImoveisWithCity()
 					<tr>
 						<th>Foto</th>
 						<th>Código</th>
+						<th>Título</th>
 						<th>Valor</th>
 						<th>UF</th>
-						<th>Qtd. Quartos</th>
-						<th>Qtd. Banheiros</th>
-						<th>Qtd. Salas</th>
-						<th>Piscina</th>
-						<th>Vagas Garagem</th>
-						<th>Habilitado</th>
+						<th>Cidade</th>
+
+
 					</tr>
 				</thead>
 
@@ -90,9 +88,7 @@ $allImoveis = $imovelDaoMysql->findAllImoveisWithCity()
 				<?php
 
 
-				$imoveis_by_cpf = $imovelDaoMysql->findAllImoveisByCpf($_SESSION['cLogin']);
-
-				foreach ($imoveis_by_cpf as $imovel) :
+				foreach ($allImoveis as $imovel) :
 				?>
 					<tr>
 						<td>
@@ -103,28 +99,12 @@ $allImoveis = $imovelDaoMysql->findAllImoveisWithCity()
 								<img src="assets/images/default.jpg" height="50" border="0" />
 							<?php endif; ?>
 						</td>
-
 						<td><?php echo $imovel['codigo_imovel']; ?></td>
+						<td><?php echo $imovel['titulo']; ?></td>
 						<td>R$ <?php echo number_format($imovel['valor'], 2); ?></td>
 						<td><?php echo $imovel['uf']; ?></td>
-						<td><?php echo $imovel['qtd_quartos']; ?></td>
-						<td><?php echo $imovel['qtd_banheiros']; ?></td>
-						<td><?php echo $imovel['qtd_salas']; ?></td>
+						<td><?php echo $imovel['nome']; ?></td>
 
-						<?php if ($imovel['piscina']) : ?>
-							<td>Sim</td>
-						<?php else : ?>
-							<td>Não</td>
-						<?php endif; ?>
-
-						<td><?php echo $imovel['vagas_garagem']; ?></td>
-
-
-						<?php if ($imovel['habilitado']) : ?>
-							<td>Sim</td>
-						<?php else : ?>
-							<td>Não</td>
-						<?php endif; ?>
 
 
 
