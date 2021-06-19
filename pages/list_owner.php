@@ -31,7 +31,7 @@ if ($usuario->getTipoUsuario() == "LOCATARIO") {
     <meta charset="UTF-8" />
     <title>Meus Imóveis</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-    <link rel="icon" type="image/png" href="<?= $base_url; ?>/assets/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" href="<?=$base_url;?>/assets/images/favicon.png"/>
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/list_owner.css" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css" />
@@ -79,15 +79,17 @@ if ($usuario->getTipoUsuario() == "LOCATARIO") {
             </div>
 
             <div class="options2">
-                    <form method="GET" action="imovel_edit.php">
-                        <input class="bottom" type="hidden" name="id" value ="<?= $imovel['codigo_imovel']; ?>">
-                        <button class="bottom2" >Editar</button>
-                    </form>
+                <form method="GET" action="imovel_edit.php">
+                    <input class="bottom" type="hidden" name="id" value="<?= $imovel['codigo_imovel']; ?>">
+                    <button class="bottom2">Editar</button>
+                </form>
 
-                <div class="bottom2">
-                    <a href="home.php">
-                        <p class="option-style"> Remover </p>
-                    </a>
+                <div >
+                    <form method="GET" action="<?= $base_url; ?>/pages/actions/imovel_remove.php">
+                    
+                        <input class="bottom" type="hidden" name="ids" value="<?= $imovel['codigo_imovel']; ?>">
+                        <button class="bottom2">Remover Imóvel</button>
+                    </form>
                 </div>
             </div>
         </div>
