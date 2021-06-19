@@ -23,10 +23,11 @@ require_once __DIR__ . '/../config.php';
 
     <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
 
-    <div class="container-background">
+    <!--div class="container-background"-->
+    <section class="container-background">
+        <form method="POST" action="<?= $base_url; ?>/pages/actions/cadastrar_imovel_action.php">
 
-        <div class="container-top-left">
-            <form method="POST" action="<?= $base_url; ?>/pages/actions/cadastrar_imovel_action.php">
+            <div class="container-top-left">
 
                 <div class="container-text">
                     <text>Gostariamos de alertar que para seu imóvel
@@ -35,63 +36,26 @@ require_once __DIR__ . '/../config.php';
                         DESMARCADO seu imóvel não será visivel por nosso usuarios.
                         </br></br> Deseja HABILITAR seu imóvel?
                     </text>
-                    <input required class="input" type="checkbox" name="habilitado" />
-                </div>
-                <div class="container-bottons">
-
-                </div>
-            </form>
-        </div>
-
-        <div class="container-middle">
-            <form method="POST" action="<?= $base_url; ?>/pages/actions/cadastrar_imovel_action.php">
-
-                <text class="endereco-text">ENDEREÇO</text>
-                <div class="container-cidade">
-                    <input required placeholder="Cidade" class="input" type="cep" name="cidade" />
-                </div>
-                <div class="container-estado">
-                    <input required placeholder="Estado" class="input" type="cep" name="estado" />
-                </div>
-                <div class="container-logradouro">
-                    <input required placeholder="Logradouro" class="input" type="logradouro" name="logradouro" />
-                </div>
-                <div class="container-complemento">
-                    <input required placeholder="Complemento" class="input" type="complemento" name="complemento" />
-                </div>
-                <div class="container-numero">
-                    <input required placeholder="Número" class="input" type="numero" name="numero" />
-                </div>
-                <div class="container-bairro">
-                    <input required placeholder="Bairro" class="input" type="bairro" name="bairro" />
-                </div>
-                <div class="container-cep">
-                    <input required placeholder="Cep" class="input" type="cep" name="cep" />
-                </div>
-                <div class="container-addimage">
-                    <form class="container-add" method="POST" action="<?= $base_url; ?>/pages/adicionar_imagem.php">
-                        <input class="button" type="submit" value="Registrar Imóvel" />
-                    </form>
-                </div>
-            </form>
-        </div>
-
-        <div class="container-down-left">
-            <div class="container-text">
-                <text>
-                    Informe o valor deste imóvel
-                </text>
-                <div class="container-valor">
-                    <form method="POST" action="<?= $base_url; ?>/pages/actions/cadastrar_imovel_action.php">
-
-                        <input required class="input" type="valor" name="valor" />
-                    </form>
-                    <img src="/../assets/images/dinheiro.png" class="valor-image">
+                        <select class="input" name="habilitado">
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                        </select>
                 </div>
             </div>
-        </div>
-        <div class="container-right">
-            <form method="POST" action="<?= $base_url; ?>/pages/actions/cadastrar_imovel_action.php">
+            <div class="container-down-left">
+                <div class="container-text">
+                    <text>
+                        Informe o valor deste imóvel
+                    </text>
+                    <div class="container-valor">
+
+                        <input required class="input" type="valor" name="valor" />
+
+                        <img src="/../assets/images/dinheiro.png" class="valor-image">
+                    </div>
+                </div>
+            </div>
+            <div class="container-right">
 
                 <div class="container-descricao">
                     <input required placeholder="Descrição" class="input" type="descricao" name="descricao" />
@@ -114,13 +78,49 @@ require_once __DIR__ . '/../config.php';
                 </div>
                 <div class="container-piscina">
                     <text>Piscina</text>
-                    <input required class="input" type="checkbox" name="piscina" />
+                    
+                        <select class="input" name="piscina">
+                            <option value="0">Não</option>
+                            <option value="1">Sim</option>
+                        </select>
                 </div>
-            </form>
-        </div>
+
+            </div>
+            <div class="container-middle">
+
+                <text class="endereco-text">ENDEREÇO</text>
+                <div class="container-cidade">
+                    <input required placeholder="Cidade" class="input" type="cep" name="nome_cidade" />
+                </div>
+                <div class="container-estado">
+                    <input required placeholder="Estado" class="input" type="cep" name="uf" />
+                </div>
+                <div class="container-logradouro">
+                    <input required placeholder="Logradouro" class="input" type="logradouro" name="logradouro" />
+                </div>
+                <div class="container-complemento">
+                    <input required placeholder="Complemento" class="input" type="complemento" name="complemento" />
+                </div>
+                <div class="container-numero">
+                    <input required placeholder="Número" class="input" type="numero" name="numero" />
+                </div>
+                <div class="container-bairro">
+                    <input required placeholder="Bairro" class="input" type="bairro" name="bairro" />
+                </div>
+                <div class="container-cep">
+                    <input required placeholder="Cep" class="input" type="cep" name="cep" />
+                </div>
+                <div class="container-addimage">
+                    <input class="button" type="submit" value="Registrar Imóvel" />
+
+                </div>
+
+            </div>
 
 
-    </div>
+        </form>
+
+    </section>
 </body>
 
 </html>
