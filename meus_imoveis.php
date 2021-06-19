@@ -55,15 +55,27 @@ if (empty($_SESSION['cLogin'])) {
                 <td><?php echo $imovel['qtd_quartos']; ?></td>
                 <td><?php echo $imovel['qtd_banheiros']; ?></td>
                 <td><?php echo $imovel['qtd_salas']; ?></td>
-                <td><?php echo $imovel['piscina']; ?></td>
+                
+                <?php if ($imovel['piscina']): ?>
+                    <td>Sim</td>
+                <?php else : ?>
+                    <td>Não</td>
+                <?php endif; ?>
+
                 <td><?php echo $imovel['vagas_garagem']; ?></td>
-                <td><?php echo $imovel['habilitado']; ?></td>
+                
+
+                <?php if ($imovel['habilitado']): ?>
+                    <td>Sim</td>
+                <?php else : ?>
+                    <td>Não</td>
+                <?php endif; ?>
 
                 
 
                 <td>
-                    <a href="editar-anuncio.php?id=<?php echo $imovel['id']; ?>" class="btn btn-default">Editar</a>
-                    <a href="excluir-anuncio.php?id=<?php echo $imovel['id']; ?>" class="btn btn-danger">Excluir</a>
+                    <a href="editar_imovel.php?codigo_imovel=<?php echo $imovel['codigo_imovel']; ?>" class="btn btn-default">Editar</a>
+                    <a href="excluir_imovel.php?codigo_imovel=<?php echo $imovel['codigo_imovel']; ?>" class="btn btn-danger">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>
