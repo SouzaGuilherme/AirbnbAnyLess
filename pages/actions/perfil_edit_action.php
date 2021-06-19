@@ -64,8 +64,7 @@ $cidade = $cidadeDAO->findByCity($input_siglaUF, $input_nome_cidade);
                 header("Location: ".$base_url."/pages/home.php");
                 return true;
                 exit;
-            }
-        
+            }     
 }
 
 return false;
