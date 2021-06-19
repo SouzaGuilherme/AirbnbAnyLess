@@ -63,6 +63,28 @@ class UsuarioDaoMysql implements UsuarioDAO {
         return false;
     }
 
+    public function findByCpf($cpf) {
+        /* Encontra um usuário no database pelo e-mail
+        */
+
+        if (!empty($cpf)) {
+
+            $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");
+            $sql->bindValue(":cpf", $cpf);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+                $user = $this->generateUser($dictData);
+                return $user;
+            }
+        }
+        return false;
+    }
+
+
+
+
     public function add(Usuario $user) {
         /* Adiciona um usuário ao database.
         */
