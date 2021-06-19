@@ -57,11 +57,10 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
             
             <?php $reserva = new Reserva($usuario->getCpf(),"","", $imovel['codigo_imovel']); ?>
             <div class="check">
-                <form method="POST" action=<?=$reservaDao->add($reserva);?>>
+
+                <form method="POST" action="<?= $base_url; ?>/pages/actions/um_imovel_action.php">
                     <input type="date" name="check_in" id="check_in">
                     <input type="date" name="check_out" id="check_out">
-                    <?php $reserva->setDataInicial(filter_input(INPUT_POST, "check_in")); ?>
-                    <?php $reserva->setDataFinal(filter_input(INPUT_POST, "check_out")); ?>
                     <input type="submit" class = "option-style" value="Alocar">
                 </form>
             </div>
