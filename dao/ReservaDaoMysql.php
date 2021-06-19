@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Reserva.php';
+require __DIR__ .  '/../models/Reserva.php';
 
 
 class ReservaDaoMysql implements ReservaDAO {

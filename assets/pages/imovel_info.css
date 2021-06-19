@@ -90,3 +90,18 @@
     background: url(../images/calendar.png);
 }
 
+.bottom2{
+    padding: 5px;
+    width: 48%;
+    height: 35px;
+    background: black;
+    border-radius: 52px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.bottom2:hover{
+    background-color: #373b42;
+    transition: all 0.5s ease-in;
+    font-family: Roboto;
+}
