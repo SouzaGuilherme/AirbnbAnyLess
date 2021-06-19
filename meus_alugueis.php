@@ -16,6 +16,7 @@ if (empty($_SESSION['cLogin'])) {
 
 
     <h1>Imovéis que você alugou:</h1>
+    <hr/>
 
     <!-- Header Tabela -->
     <table class="table table-striped">

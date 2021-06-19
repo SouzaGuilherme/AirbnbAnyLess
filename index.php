@@ -69,7 +69,7 @@ $allImoveis = $imovelDaoMysql->findAllImoveisWithCity()
 
 		<!-- Imóveis -->
 		<div class="col-sm-9">
-			<h4>Últimos Anúncios de Imóveis</h4>
+			<h3><strong>Últimos Anúncios de Imóveis</strong></h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>

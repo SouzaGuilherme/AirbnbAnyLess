@@ -11,8 +11,9 @@ if (empty($_SESSION['cLogin'])) {
 ?>
 <div class="container">
     <h1>Meus Imóveis</h1>
+    <hr/>
 
-    <a href="add_imovel.php" class="btn btn-default">Adicionar Imóvel</a>
+    <a href="add_imovel.php" class="btn btn-success">Adicionar Imóvel</a> <br/><br/>
 
     <table class="table table-striped">
         <thead>
