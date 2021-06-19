@@ -42,10 +42,10 @@ exit;
                         DESMARCADO seu imóvel não será visivel por nosso usuarios.
                         </br></br> Deseja HABILITAR seu imóvel?
                     </text>
-                        <select class="input" name="habilitado">
-                            <option value="0">Não</option>
-                            <option value="1">Sim</option>
-                        </select>
+                    <select class="input" name="habilitado">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
                 </div>
             </div>
             <div class="container-down-left">
@@ -84,11 +84,11 @@ exit;
                 </div>
                 <div class="container-piscina">
                     <text>Piscina</text>
-                    
-                        <select class="input" name="piscina">
-                            <option value="0">Não</option>
-                            <option value="1">Sim</option>
-                        </select>
+
+                    <select class="input" name="piscina">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
                 </div>
 
             </div>
