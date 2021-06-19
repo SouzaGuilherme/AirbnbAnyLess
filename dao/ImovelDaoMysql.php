@@ -188,7 +188,7 @@ class ImovelDaoMysql implements ImovelDAO {
       }
     }
 
-    public function findAllByAll($nome_cidade,){
+    public function findAllByAll($nome_cidade){
       $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
       $sql->bindValue(":cpf", $cpf);
       $sql->execute();

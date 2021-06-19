@@ -55,7 +55,7 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
                 <text class="text"> <?= $imovel['valor'] ?> </text>
             </div>
             
-            <?php $reserva = new Reserva($usuario->getCpf(),"","", $imovel['codigo_imovel']); ?>
+            <?php $reserva = new Reserva(-1,$usuario->getCpf(),"","", $imovel['codigo_imovel']); ?>
             <div class="check">
 
                 <form method="POST" action="<?= $base_url; ?>/pages/actions/um_imovel_action.php">
