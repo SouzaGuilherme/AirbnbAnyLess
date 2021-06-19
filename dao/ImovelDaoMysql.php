@@ -121,17 +121,38 @@ class ImovelDaoMysql implements ImovelDAO {
 		}
 	}
 
-	public function findAllImoveisWithCity() {
+	public function findAllImoveisWithCity($filtros) {
+		$array = array();
+
+		$filtro_string = array('1=1');
+		if(!empty($filtros["city"])){
+			$filtro_string[] = "imoveis.codigo_cidade = :codigo_cidade";
+		}
+		if(!empty($filtros["preco"])){
+			$filtro_string[] = "imoveis.valor BETWEEN :preco1 AND :preco2";
+		}
+
 		$sql = $this->pdo->prepare("
 			SELECT `imoveis`.codigo_cidade, codigo_imovel, cpf, titulo,numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, `cidades`.nome FROM `imoveis` 
 			LEFT JOIN `cidades`
 			ON `imoveis`.`codigo_cidade` = `cidades`.`codigo_cidade`
-		");
+			WHERE ".implode(' AND ', $filtro_string).";");
+		if(!empty($filtros["city"])){
+			$sql->bindValue(":codigo_cidade", $filtros['city']);
+		}
+		if(!empty($filtros["preco"])){
+			$preco = explode("-", $filtros["preco"]);
+			$sql->bindValue(":preco1", $preco[0]);
+			$sql->bindValue(":preco2", $preco[1]);
+		}
+
+		
 		$sql->execute();
 
 		if ($sql->rowCount() > 0) {
-			return $sql->fetchAll();
+			$array = $sql->fetchAll();
 		}
+		return $array;
 	}
 
 	public function findAllImoveisByCpf($cpf) {
