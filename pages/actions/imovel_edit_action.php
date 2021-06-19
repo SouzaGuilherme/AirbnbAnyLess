@@ -14,37 +14,48 @@ $cidadeDao = new CidadeDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 $imovelDao = new ImovelDaoMysql($pdo);
 $usuarioDao = new UsuarioDaoMysql($pdo);
+$reservaDao = new UsuarioDaoMysql($pdo);
 
-$input_codigo_imovel = filter_input(INPUT_POST, "codigo_imovel");
-print($input_codigo_imovel);
+$input_codigo_imovel = filter_input(INPUT_GET, "ids");
 # Endereço
-$input_logradouro = filter_input(INPUT_POST, "logradouro");
-$input_numero = filter_input(INPUT_POST, "numero");
-$input_complemento = filter_input(INPUT_POST, "complemento");
-$input_bairro = filter_input(INPUT_POST, "bairro");
-$input_cep = filter_input(INPUT_POST, "cep");
+$input_logradouro = filter_input(INPUT_GET, "logradouro");
+$input_numero = filter_input(INPUT_GET, "numero");
+$input_complemento = filter_input(INPUT_GET, "complemento");
+$input_bairro = filter_input(INPUT_GET, "bairro");
+$input_cep = filter_input(INPUT_GET, "cep");
 
 # Cidade
-$input_nome_cidade = filter_input(INPUT_POST, "nome_cidade");
-$input_siglaUF = filter_input(INPUT_POST, "uf");
+$input_nome_cidade = filter_input(INPUT_GET, "nome_cidade");
+$input_siglaUF = filter_input(INPUT_GET, "uf");
 
 # Imóvel
-$input_descricao = filter_input(INPUT_POST, "descricao");
-$input_qtd_quartos = filter_input(INPUT_POST, "qtd_quartos");
-$input_qtd_banheiros = filter_input(INPUT_POST, "qtd_banheiros");
-$input_qtd_vagas_garagem = filter_input(INPUT_POST, "qtd_vagas_garagem");
-$input_qtd_salas = filter_input(INPUT_POST, "qtd_salas");
-$input_piscina = filter_input(INPUT_POST, "piscina");
-$input_valor = filter_input(INPUT_POST, "valor");
-$input_habilitado = filter_input(INPUT_POST, "habilitado");
+$input_descricao = filter_input(INPUT_GET, "descricao");
+$input_qtd_quartos = filter_input(INPUT_GET, "qtd_quartos");
+$input_qtd_banheiros = filter_input(INPUT_GET, "qtd_banheiros");
+$input_qtd_vagas_garagem = filter_input(INPUT_GET, "qtd_vagas_garagem");
+$input_qtd_salas = filter_input(INPUT_GET, "qtd_salas");
+$input_piscina = filter_input(INPUT_GET, "piscina");
+$input_valor = filter_input(INPUT_GET, "valor");
+$input_habilitado = filter_input(INPUT_GET, "habilitado");
+
+$imovel = $imovelDao->findByCodigoImovel($input_codigo_imovel);
+$imovel->setUf($input_siglaUF);
+$imovel->setDescricao($input_descricao);
+$imovel->setQtdQuartos($input_qtd_quartos);
+$imovel->setQtdBanheiros($input_qtd_banheiros);
+$imovel->setVagasGaragem($input_qtd_vagas_garagem);
+$imovel->setQtdSalas($input_qtd_salas);
+$imovel->setPiscina($input_piscina);
+$imovel->setValor($input_valor);
+$imovel->setHabilitado($input_habilitado);
 
 $usuario = $usuarioDao->findByToken($_SESSION["token"]);
 
-
 $cidade = $cidadeDao->findByCity($input_siglaUF, $input_nome_cidade);
+$imovel->setCodigoCidade($cidade->getCodigoCidade());
+
 if ($cidade) {
     $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
-
     if (!$endereco) {
         $endereco = new Endereco(
             NULL,
@@ -57,32 +68,16 @@ if ($cidade) {
             $input_cep,
         );
         $enderecoDao->add($endereco);
+
     };
+    #print($input_siglaUF); 
 
     if ($endereco) {
-
-        $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
-
-        if (isset($codigo_imovel)) {
-            $endereco = new Endereco(
-                $input_codigo_imovel,
-                $usuario->getCpf(),
-                $endereco->getNumeroSeqEnd(),
-                $cidade->getCodigoCidade(),
-                $cidade->getUf(),
-                $input_descricao,
-                $input_qtd_quartos,
-                $input_qtd_banheiros,
-                $input_qtd_salas,
-                $input_piscina,
-                $input_qtd_vagas_garagem,
-                $input_valor,
-                $input_habilitado
-            );
-            $imovelDao->update($imovelNew);
-        }
+        #$endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
+        $imovelDao->update($imovel);
         header("Location: " . $base_url . "/pages/list_owner.php");
         return true;
+        exit;
     }
 }
 

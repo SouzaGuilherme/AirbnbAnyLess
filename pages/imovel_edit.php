@@ -11,6 +11,7 @@ if(!isset($_SESSION["token"]))
 header("Location: login.php");
 exit;
 }
+
 $usuarioDao = new UsuarioDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 $cidadeDao = new CidadeDaoMysql($pdo);
@@ -34,7 +35,7 @@ $endereco = $enderecoDao->findByNumeroSeqEnd($imovel->getNumeroSeqEnd());
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="<?= $base_url; ?>/assets/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" href="<?=$base_url;?>/assets/images/favicon.png"/>
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/register_home.css" />
@@ -46,8 +47,8 @@ $endereco = $enderecoDao->findByNumeroSeqEnd($imovel->getNumeroSeqEnd());
 
     <!--div class="container-background"-->
     <section class="container-background">
-        <form method="POST" action="<?= $base_url; ?>/pages/actions/imovel_edit_action.php">
-            <input class="input" type="hidden" name="codigo_imovel" value ="<?php echo $imovel->getCodigoCidade(); ?>">
+        <form method="GET" action="<?= $base_url; ?>/pages/actions/imovel_edit_action.php">
+            <input class="input" type="hidden" name="ids" value ="<?php echo $imovel->getCodigoImovel(); ?>">
             <div class="container-top-left">
 
                 <div class="container-text">
