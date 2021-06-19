@@ -11,7 +11,7 @@
         <input type="text" class="end-date" placeholder="Check-out">
         <input type="text" class="people" placeholder="Nº de Quartos">
         <input type="text" class="price" placeholder="Preço">
-        <input type="submit" class="find" value="Procurar"></button>
+        <input type="submit" class="find" value="Procurar">
 
     </div>
 
