@@ -2,7 +2,6 @@
 <div class="container">
 	<h1>Login</h1>
 	<?php
-	require 'dao/UsuarioDaoMysql.php';
 	$usuarioDao = new UsuarioDaoMysql($pdo);
 
 	if(isset($_POST['email']) && !empty($_POST['email'])) {

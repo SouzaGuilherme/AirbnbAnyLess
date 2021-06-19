@@ -10,12 +10,10 @@ class Usuario {
     private $email;
     private $telefone;
     private $foto;
-    private $tipoUsuario;
+    private $tipo_usuario;
     private $senha;
-    private $token;
 
-
-    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $nome, $email, $telefone, $foto, $tipoUsuario, $senha, $token) {
+    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $nome, $email, $telefone, $foto, $tipo_usuario, $senha) {
         $this->cpf = $cpf;
         $this->numero_seq_end = $numero_seq_end;
         $this->codigo_cidade = $codigo_cidade;
@@ -24,103 +22,92 @@ class Usuario {
         $this->email = $email;
         $this->telefone = $telefone;
         $this->foto = $foto;
-        $this->tipoUsuario = $tipoUsuario;
+        $this->tipo_usuario = $tipo_usuario;
         $this->senha = $senha;
-        $this->token = $token;
     }
 
-    public function getCpf(){
+    public function getCpf() {
         return $this->cpf;
     }
 
-    public function getNumeroSeqEnd(){
+    public function getNumeroSeqEnd() {
         return $this->numero_seq_end;
     }
 
-    public function getCodigoCidade(){
+    public function getCodigoCidade() {
         return $this->codigo_cidade;
     }
 
-    public function getUf(){
+    public function getUf() {
         return $this->uf;
     }
 
-    public function getNome(){
+    public function getNome() {
         return $this->nome;
     }
 
-    public function getEmail(){
+    public function getEmail() {
         return $this->email;
     }
 
-    public function getTelefone(){
+    public function getTelefone() {
         return $this->telefone;
     }
 
-    public function getFoto(){
+    public function getFoto() {
         return $this->foto;
     }
 
-    public function getTipoUsuario(){
-        return $this->tipoUsuario;
+    public function getTipoUsuario() {
+        return $this->tipo_usuario;
     }
 
-    public function getSenha(){
+    public function getSenha() {
         return $this->senha;
     }
 
-    public function getToken(){
-        return $this->token;
-    }
-
-    public function setCpf($cpf){
+    public function setCpf($cpf) {
         $this->cpf = $cpf;
     }
 
-    public function setNumeroSeqEnd($numero_seq_end){
+    public function setNumeroSeqEnd($numero_seq_end) {
         $this->numero_seq_end = $numero_seq_end;
     }
 
-    public function setCodigoCidade($codigo_cidade){
+    public function setCodigoCidade($codigo_cidade) {
         $this->codigo_cidade = $codigo_cidade;
     }
 
-    public function setUf($uf){
+    public function setUf($uf) {
         $this->uf = $uf;
     }
 
-    public function setNome($nome){
+    public function setNome($nome) {
         $this->nome = $nome;
     }
 
-    public function setEmail($email){
+    public function setEmail($email) {
         $this->email = $email;
     }
 
-    public function setTelefone($telefone){
+    public function setTelefone($telefone) {
         $this->telefone = $telefone;
     }
 
-    public function setFoto($foto){
+    public function setFoto($foto) {
         $this->foto = $foto;
     }
 
-    public function setTipoUsuario($tipoUsuario){
-        $this->tipoUsuario = $tipoUsuario;
+    public function settipo_usuario($tipo_usuario) {
+        $this->tipo_usuario = $tipo_usuario;
     }
 
-    public function setSenha($senha){
+    public function setSenha($senha) {
         $this->senha = $senha;
     }
-
-    public function setToken($token){
-        $this->token = $token;
-    }
-
 }
 
 interface UsuarioDAO {
-    public function findByToken($token);
     public function findByEmail($email);
     public function add(Usuario $user);
     public function remove(Usuario $user);

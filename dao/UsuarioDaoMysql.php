@@ -10,43 +10,21 @@ class UsuarioDaoMysql implements UsuarioDAO {
     }
 
     private function generateUser($dictData) {
-        /* Instância um objeto User a partir do retorno do DataBase.
-        */
         return new Usuario(
-            $dictData['cpf'],
-            $dictData['numero_seq_end'],
-            $dictData['codigo_cidade'],
-            $dictData['uf'],
-            $dictData['nome'],
-            $dictData['email'],
-            $dictData['telefone'],
-            $dictData['foto'],
-            $dictData['tipo_usuario'],
-            $dictData['senha'],
-            $dictData['token'],
+            $cpf=$dictData['cpf'],
+            $numero_seq_end=$dictData['numero_seq_end'],
+            $codigo_cidade=$dictData['codigo_cidade'],
+            $uf=$dictData['uf'],
+            $nome=$dictData['nome'],
+            $email=$dictData['email'],
+            $telefone=$dictData['telefone'],
+            $foto=$dictData['foto'],
+            $tipo_usuario=$dictData['tipo_usuario'],
+            $senha=$dictData['senha'],
         );
     }
 
-    public function findByToken($token) {
-        /* Encontra um usuário no database de acordo com o token
-        */
-        if (!empty($token)) {
-            $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE token = :token");
-            $sql->bindValue(":token", $token);
-            $sql->execute();
-
-            if ($sql->rowCount() > 0) {
-                $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                $user = $this->generateUser($dictData);
-                return $user;
-            }
-        }
-        return false;
-    }
-
     public function findByEmail($email) {
-        /* Encontra um usuário no database pelo e-mail
-        */
 
         if (!empty($email)) {
 
@@ -64,9 +42,6 @@ class UsuarioDaoMysql implements UsuarioDAO {
     }
 
     public function findByCpf($cpf) {
-        /* Encontra um usuário no database pelo e-mail
-        */
-
         if (!empty($cpf)) {
 
             $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");
@@ -82,23 +57,18 @@ class UsuarioDaoMysql implements UsuarioDAO {
         return false;
     }
 
-
-
-
     public function add(Usuario $user) {
-        /* Adiciona um usuário ao database.
-        */
 
         $sql = $this->pdo->prepare("SELECT cpf FROM usuarios WHERE cpf = :cpf");
         $sql->bindValue(":cpf", $user->getCpf());
         $sql->execute();
-        
-        if($sql->rowCount() == 0){
-    
+
+        if ($sql->rowCount() == 0) {
+
             $sql = $this->pdo->prepare("INSERT INTO usuarios (
-                cpf, numero_seq_end, codigo_cidade, uf, nome, email, telefone, foto, tipo_usuario, senha, token
+                cpf, numero_seq_end, codigo_cidade, uf, nome, email, telefone, foto, tipo_usuario, senha
             ) VALUES (
-                :cpf, :numero_seq_end, :codigo_cidade, :uf, :nome, :email, :telefone, :foto, :tipo_usuario, :senha, :token
+                :cpf, :numero_seq_end, :codigo_cidade, :uf, :nome, :email, :telefone, :foto, :tipo_usuario, :senha
             );");
 
             $sql->bindValue(":cpf", $user->getCpf());
@@ -111,11 +81,9 @@ class UsuarioDaoMysql implements UsuarioDAO {
             $sql->bindValue(":foto", $user->getFoto());
             $sql->bindValue(":tipo_usuario", $user->getTipoUsuario());
             $sql->bindValue(":senha", md5($user->getSenha()));
-            $sql->bindValue(":token", $user->getToken());
             $sql->execute();
 
             return true;
-
         } else {
             return false;
         }
@@ -145,7 +113,6 @@ class UsuarioDaoMysql implements UsuarioDAO {
             email = :email,
             foto = :foto,
             tipo_usuario = :tipo_usuario,
-            token = :token
             WHERE cpf = :cpf;"
         );
 
@@ -159,25 +126,30 @@ class UsuarioDaoMysql implements UsuarioDAO {
         $sql->bindValue(":foto", $user->getFoto());
         $sql->bindValue(":tipo_usuario", $user->getTipoUsuario());
         $sql->bindValue(":senha", $user->getSenha());
-        $sql->bindValue(":token", $user->getToken());
         $sql->execute();
 
         return true;
     }
 
-    public function login($email, $password){
+    public function login($email, $password) {
 
         $sql = $this->pdo->prepare("SELECT cpf FROM usuarios WHERE email = :email AND senha = :senha");
         $sql->bindValue(":email", $email);
         $sql->bindValue(":senha", md5($password));
         $sql->execute();
 
-        if($sql->rowCount() > 0){
+        if ($sql->rowCount() > 0) {
             $dados_usuario = $sql->fetch();
             $_SESSION["cLogin"] = $dados_usuario["cpf"];
             return true;
         } else {
             return false;
         }
+    }
+
+    public function getTotalUsuarios() {
+        $sql = $this->pdo->query("SELECT COUNT(*) as c FROM usuarios");
+        $row = $sql->fetch();
+        return $row["c"];
     }
 }

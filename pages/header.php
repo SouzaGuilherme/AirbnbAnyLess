@@ -9,11 +9,15 @@
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/js/script.js"></script>
 </head>
+
 <?php
 require 'dao/UsuarioDaoMysql.php';
 $usuarioDaoMysql = new UsuarioDaoMysql($pdo);
 if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
 	$usuario = $usuarioDaoMysql->findByCpf($_SESSION['cLogin']);
+	$nome_usuario =  " - Olá, ".$usuario->getNome();
+} else {
+	$nome_usuario = "";
 }
 
 ?>
@@ -22,10 +26,10 @@ if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="./" class="navbar-brand">AirbnbAnyLess</a>
+				<a href="./" class="navbar-brand">AirbnbAnyLess <?php echo $nome_usuario ?></a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<?php if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) : ?>
+				<?php if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'] && $usuario)) : ?>
 					
 					<?php if ($usuario->getTipoUsuario() == "AMBOS") : ?>
 						<li><a href="meus_alugueis.php">Meus Alugueis</a></li>
@@ -38,7 +42,7 @@ if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
 						<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
 
 					<?php endif; ?>
-					<li><a href="sair.php">Sair</a></li>
+					<li > <a href="sair.php">Sair</a></li>
 
 
 				<?php else : ?>

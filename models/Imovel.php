@@ -15,8 +15,9 @@ class Imovel {
     private $vagas_garagem;
     private $valor;
     private $habilitado;
+    private $titulo;
 
-    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado){
+    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado, $titulo){
       $this->codigo_imovel = -1;
       $this->cpf = $cpf;
       $this->numero_seq_end = $numero_seq_end;
@@ -30,6 +31,7 @@ class Imovel {
       $this->vagas_garagem = $vagas_garagem;
       $this->valor = $valor;
       $this->habilitado = $habilitado;
+      $this->titulo = $titulo;
     }
 
     public function getCodigoImovel(){
@@ -71,6 +73,9 @@ class Imovel {
   	public function getHabilitado(){
       return $this->habilitado;
     }
+    public function getTitulo(){
+      return $this->titulo;
+    }
     public function setCodigoImovel($codigo_imovel){
         $this->codigo_imovel = $codigo_imovel;
     }
@@ -110,14 +115,13 @@ class Imovel {
     public function setHabilidade($habilitado){
       $this->habilitado = $habilitado;
     }
+    public function setTitulos($titulo){
+      $this->titulo = $titulo;
+    }
   }
 
 interface ImovelDAO {
-    public function findByKeys($codigo_imovel, $codigo_cidade, $cpf, $numero_seq_end);
-    public function findByCodigoCidade($codigo_cidade);
-    public function findByCodigoUsuario($cpf);
-    public function findByCodigoImovel($codigo_imovel);
-    public function findByNumeroSeqEnd($numero_seq_end);
+
     public function add(Imovel $imovel);
     public function remove(Imovel $imovel);
     public function update(Imovel $imovel);

@@ -1,41 +1,26 @@
 <?php require 'pages/header.php'; ?>
 <?php
-/*
-require 'classes/anuncios.class.php';
-require 'classes/usuarios.class.php';
-require 'classes/categorias.class.php';
-$a = new Anuncios();
-$u = new Usuarios();
-$c = new Categorias();
 
-$filtros = array(
-	'categoria' => '',
-	'preco' => '',
-	'estado' => ''
-);
-if (isset($_GET['filtros'])) {
-	$filtros = $_GET['filtros'];
-}
 
-$total_anuncios = $a->getTotalAnuncios($filtros);
-$total_usuarios = $u->getTotalUsuarios();
 
-$p = 1;
-if (isset($_GET['p']) && !empty($_GET['p'])) {
-	$p = addslashes($_GET['p']);
-}
+require 'dao/ImovelDaoMysql.php';
 
-$por_pagina = 2;
-$total_paginas = ceil($total_anuncios / $por_pagina);
+$imovelDaoMysql = new ImovelDaoMysql($pdo);
 
-$anuncios = $a->getUltimosAnuncios($p, $por_pagina, $filtros);
-$categorias = $c->getLista();
-*/
+
+$total_imoveis = $imovelDaoMysql->getTotalImoveis();
+$total_usuarios = $usuarioDaoMysql->getTotalusuarios();
+
+
+$allImoveis = $imovelDaoMysql->findAllImoveisWithCity()
+
 ?>
 
 <div class="container-fluid">
+
+	<!-- Banner -->
 	<div class="jumbotron">
-		<h2>Nós temos hoje <?php echo $total_anuncios; ?> imóveis.</h2>
+		<h2>Nós temos hoje <?php echo $total_imoveis; ?> imóveis.</h2>
 		<p>E mais de <?php echo $total_usuarios; ?> usuários cadastrados.</p>
 	</div>
 
@@ -86,31 +71,70 @@ $categorias = $c->getLista();
 		<div class="col-sm-9">
 			<h4>Últimos Anúncios de Imóveis</h4>
 			<table class="table table-striped">
-				<tbody>
-					<?php foreach ($anuncios as $anuncio) : ?>
-						<tr>
-							<td>
-								<?php if (!empty($anuncio['url'])) : ?>
-									<img src="assets/images/anuncios/<?php echo $anuncio['url']; ?>" height="50" border="0" />
-								<?php else : ?>
-									<img src="assets/images/default.jpg" height="50" border="0" />
-								<?php endif; ?>
-							</td>
-							<td>
-								<a href="produto.php?id=<?php echo $anuncio['id']; ?>"><?php echo $anuncio['titulo']; ?></a><br />
-								<?php echo utf8_encode($anuncio['categoria']); ?>
-							</td>
-							<td>R$ <?php echo number_format($anuncio['valor'], 2); ?></td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
+				<thead>
+					<tr>
+						<th>Foto</th>
+						<th>Código</th>
+						<th>Valor</th>
+						<th>UF</th>
+						<th>Qtd. Quartos</th>
+						<th>Qtd. Banheiros</th>
+						<th>Qtd. Salas</th>
+						<th>Piscina</th>
+						<th>Vagas Garagem</th>
+						<th>Habilitado</th>
+					</tr>
+				</thead>
+
+
+				<?php
+
+
+				$imoveis_by_cpf = $imovelDaoMysql->findAllImoveisByCpf($_SESSION['cLogin']);
+
+				foreach ($imoveis_by_cpf as $imovel) :
+				?>
+					<tr>
+						<td>
+
+							<?php if (!empty($imovel['url'])) : ?>
+								<img src="assets/images/imoveis/<?php echo $imovel['url']; ?>" height="50" border="0" />
+							<?php else : ?>
+								<img src="assets/images/default.jpg" height="50" border="0" />
+							<?php endif; ?>
+						</td>
+
+						<td><?php echo $imovel['codigo_imovel']; ?></td>
+						<td>R$ <?php echo number_format($imovel['valor'], 2); ?></td>
+						<td><?php echo $imovel['uf']; ?></td>
+						<td><?php echo $imovel['qtd_quartos']; ?></td>
+						<td><?php echo $imovel['qtd_banheiros']; ?></td>
+						<td><?php echo $imovel['qtd_salas']; ?></td>
+
+						<?php if ($imovel['piscina']) : ?>
+							<td>Sim</td>
+						<?php else : ?>
+							<td>Não</td>
+						<?php endif; ?>
+
+						<td><?php echo $imovel['vagas_garagem']; ?></td>
+
+
+						<?php if ($imovel['habilitado']) : ?>
+							<td>Sim</td>
+						<?php else : ?>
+							<td>Não</td>
+						<?php endif; ?>
+
+
+
+						<td>
+							<a href="produto.php?codigo_imovel=<?php echo $imovel['codigo_imovel']; ?>" class="btn btn-primary">Visualizar</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
 			</table>
 
-			<ul class="pagination">
-				<?php for ($q = 1; $q <= $total_paginas; $q++) : ?>
-					<li class="<?php echo ($p == $q) ? 'active' : ''; ?>"><a href="index.php?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
-				<?php endfor; ?>
-			</ul>
 		</div>
 	</div>
 

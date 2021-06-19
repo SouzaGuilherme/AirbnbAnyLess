@@ -37,18 +37,19 @@ class EnderecoDaoMysql implements EnderecoDao {
         $sql->execute();
     }
 
-
-    public function findEndereco($codigo_cidade, $uf, $numero, $cep) {
-        $sql = $this->pdo->prepare("SELECT * FROM enderecos WHERE codigo_cidade = :codigo_cidade AND uf = :uf AND numero = :numero AND cep = :cep");
-        $sql->bindValue(":codigo_cidade", $codigo_cidade);
-        $sql->bindValue(":uf", $uf);
-        $sql->bindValue(":numero", $numero);
-        $sql->bindValue(":cep", $cep);
+    public function findEndereco($endereco) {
+        $sql = $this->pdo->prepare("SELECT * FROM enderecos WHERE codigo_cidade = :codigo_cidade AND uf = :uf AND uf = :uf AND logradouro = :logradouro AND numero = :numero AND complemento = :complemento AND bairro = :bairro AND cep = :cep");
+        $sql->bindValue(":codigo_cidade", $endereco->getCodigoCidade());
+        $sql->bindValue(":uf", $endereco->getUf());
+        $sql->bindValue(":logradouro", $endereco->getLogradouro());
+        $sql->bindValue(":numero", $endereco->getNumero());
+        $sql->bindValue(":complemento", $endereco->getComplemento());
+        $sql->bindValue(":bairro", $endereco->getBairro());
+        $sql->bindValue(":cep", $endereco->getCep());
         $sql->execute();
 
         if ($sql->rowCount() > 0) {
             $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-            print_r($dictData);
             $endereco = new Endereco(
                 $dictData['codigo_cidade'],
                 $dictData['uf'],
