@@ -151,7 +151,28 @@ class ReservaDaoMysql implements ReservaDAO {
 		}
 		return [];
         
-        
+
+    }
+
+    public function minhasLocacoes($cpf_locatario){
+
+        if (!empty($cpf_locatario)) {
+			$sql = $this->pdo->prepare("SELECT `codigo_reserva`, `reservas`.codigo_imovel, `reservas`.cpf as CpfLocatario, `imoveis`.cpf as CpfDonoImovel, `usuarios`.`nome` as NomeDonoImove, `data_inicial`, `data_final` FROM `reservas`
+                LEFT JOIN `imoveis` 
+                ON `imoveis`.`codigo_imovel` = `reservas`.`codigo_imovel`
+                LEFT JOIN `usuarios`
+                ON `usuarios`.`cpf` = `imoveis`.`cpf`
+                WHERE `reservas`.cpf = :cpf_locatario;
+            "
+            );
+			$sql->bindValue(":cpf_locatario", $cpf_locatario);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				return $sql->fetchAll();
+			}
+		}
+		return [];
 
     }
 
