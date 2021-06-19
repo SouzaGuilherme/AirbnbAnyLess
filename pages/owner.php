@@ -4,6 +4,13 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../dao/UsuarioDaoMysql.php';
 
 $usuarioDao = new UsuarioDaoMysql($pdo);
+
+if(!isset($_SESSION["token"]))
+{
+header("Location: login.php");
+exit;
+}
+
 $usuario = $usuarioDao->findByToken($_SESSION["token"]);
 
 ?>

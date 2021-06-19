@@ -2,6 +2,13 @@
 
 require_once __DIR__ . '/../config.php'; 
 require_once __DIR__ . '/../dao/UsuarioDaoMysql.php';
+
+if(!isset($_SESSION["token"]))
+{
+header("Location: login.php");
+exit;
+}
+
 $usuarioDao = new UsuarioDaoMysql($pdo);
 
 ?>
