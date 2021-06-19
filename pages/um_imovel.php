@@ -4,11 +4,13 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../dao/ImovelDaoMysql.php';
 require_once __DIR__ . '/../dao/EnderecoDaoMysql.php';
 require_once __DIR__ . '/../dao/ReservaDaoMysql.php';
+require_once __DIR__ . '/../dao/UsuarioDaoMysql.php';
 
 $imovelDao = new ImovelDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 $reservaDao = new ReservaDaoMysql($pdo);
-$Newreserva = new Reserva($pdo);
+$usuarioDao = new UsuarioDaoMysql($pdo);
+$usuario = $usuarioDao->findByToken($_SESSION["token"]);
 
 ?>
 
@@ -31,9 +33,7 @@ $Newreserva = new Reserva($pdo);
 
     <?php foreach($imovelDao->findAllImoveis() as $imovel): ?>
     <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end'])?>
-        
-        <?php $reserva = $Newreserva->getCodigoImovel()?>    
-        <?php echo 'console.log($imovel)'?>
+           
 
         <div class="container-imovel">
             <div class="image">
@@ -55,13 +55,15 @@ $Newreserva = new Reserva($pdo);
                 <text class="text"> <?= $imovel['valor'] ?> </text>
             </div>
             
+            <?php $reserva = new Reserva($usuario->getCpf(),"","", $imovel['codigo_imovel']); ?>
             <div class="check">
-                <form action=<?=$$reservaDao->add($reserva);?> method="POST">
-                    <input type="date">
-                    <input type="date">
+                <form method="POST" action=<?=$reservaDao->add($reserva);?>>
+                    <input type="date" name="check_in" id="check_in">
+                    <input type="date" name="check_out" id="check_out">
+                    <?php $reserva->setDataInicial(filter_input(INPUT_POST, "check_in")); ?>
+                    <?php $reserva->setDataFinal(filter_input(INPUT_POST, "check_out")); ?>
                     <input type="submit" class = "option-style" value="Alocar">
                 </form>
-               
             </div>
 
             <div class = "options2">
