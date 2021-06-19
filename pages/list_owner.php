@@ -11,12 +11,17 @@ $usuarioDao = new UsuarioDaoMysql($pdo);
 
 if(!isset($_SESSION["token"]))
 {
-header("Location: login.php");
+header("Location: home.php");
 exit;
 }
 
 $usuario = $usuarioDao->findByToken($_SESSION["token"]);
     
+if($usuario->getTipoUsuario()=="LOCATARIO"){
+
+header("Location: owner.php?id=1");
+exit;
+}
 
 ?>
 
@@ -45,7 +50,7 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
         </div>
 
         <div class="bottom">
-            <a href="cadastrar_imovel.php">
+            <a href="register_home.php">
                 <p class = "option-style"> Cadastrar Imóveis </p>
             </a>
         </div>
