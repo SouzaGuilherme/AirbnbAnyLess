@@ -83,4 +83,38 @@ class ReservaDaoMysql implements ReservaDAO {
             return $data["MAX(codigo_reserva)"];
         }
     }
+
+    public function reservasCodigoImovel($codigo_imovel) {
+        $array = [];
+        if (!empty($codigo_imovel)) {
+            $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE codigo_imovel = :codigo_imovel");
+            $sql->bindValue(":codigo_imovel", $codigo_imovel);
+            $sql->execute();
+            
+            if ($sql->rowCount() > 0) {
+                $array = $sql->fetchAll();
+            }
+            return $array;
+        }
+        return $array;
+    }
+
+    public function estaAlugado($date_start, $date_end, $codigo_imovel){
+
+        if (!empty($date_start) || !empty($date_end) || !empty($codigo_imovel)) {
+            
+            $reservasImovel = $this->reservasCodigoImovel($codigo_imovel);
+
+            foreach ($reservasImovel as $reserva) {
+               
+                if (date($date_start) >= date($reserva["data_inicial"]) && date($date_end) <= date($reserva["data_final"])) {
+                    echo "   True</br>";
+                    return True;
+                }
+            }
+        return false;
+        }
+    }
+
+
 }

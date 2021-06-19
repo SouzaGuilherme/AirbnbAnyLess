@@ -4,18 +4,28 @@
 	<?php
 	$usuarioDao = new UsuarioDaoMysql($pdo);
 
-	if(isset($_POST['email']) && !empty($_POST['email'])) {
-		$email = addslashes($_POST['email']);
-		$password = $_POST['password'];
+	if (isset($_POST['email'])) {
+		if (!empty($_POST['email'])) {
+			$email = addslashes($_POST['email']);
+			$password = $_POST['password'];
 
-		if($usuarioDao->login($email, $password)) {
-			?>
-			<script type="text/javascript">window.location.href="./";</script>
-			<?php
+			if ($usuarioDao->login($email, $password)) {
+				?>
+				<script type="text/javascript">
+					window.location.href = "./";
+				</script>
+				<?php
+			} else {
+				?>
+				<div class="alert alert-danger">
+					Usuário e/ou Senha errados!
+				</div>
+				<?php
+			}
 		} else {
 			?>
-			<div class="alert alert-danger">
-				Usuário e/ou Senha errados!
+			<div class="alert alert-warning">
+				Por favor, preencha com e-mail e senha!.
 			</div>
 			<?php
 		}

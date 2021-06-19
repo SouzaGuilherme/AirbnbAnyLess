@@ -23,97 +23,121 @@ $imovelDao = new ImovelDaoMysql($pdo);
 
 
 if (
-	isset($_POST['codigo_cidade']) && !empty($_POST['codigo_cidade'])
-	&& 	isset($_POST['logradouro']) && !empty($_POST['logradouro'])
-	&& 	isset($_POST['numero']) && !empty($_POST['numero'])
-	&& 	isset($_POST['complemento']) && !empty($_POST['complemento'])
-	&& 	isset($_POST['bairro']) && !empty($_POST['bairro'])
-	&& 	isset($_POST['cep']) && !empty($_POST['cep'])
-	&& 	isset($_POST['titulo']) && !empty($_POST['titulo'])
-	&& 	isset($_POST['descricao']) && !empty($_POST['descricao'])
-	&& 	isset($_POST['qtd_banheiros']) && !empty($_POST['qtd_banheiros'])
-	&& 	isset($_POST['qtd_quartos']) && !empty($_POST['qtd_quartos'])
-	&& 	isset($_POST['qtd_salas']) && !empty($_POST['qtd_salas'])
-	&& 	isset($_POST['vagas_garagem']) && !empty($_POST['vagas_garagem'])
-	&& 	isset($_POST['valor']) && !empty($_POST['valor'])
-	&& 	isset($_POST['habilitado']) && !empty($_POST['habilitado'])
-	&& 	isset($_POST['piscina']) && !empty($_POST['piscina'])
+	isset($_POST['codigo_cidade'])
+	&& 	isset($_POST['logradouro'])
+	&& 	isset($_POST['numero'])
+	&& 	isset($_POST['complemento'])
+	&& 	isset($_POST['bairro'])
+	&& 	isset($_POST['cep'])
+	&& 	isset($_POST['titulo'])
+	&& 	isset($_POST['descricao'])
+	&& 	isset($_POST['qtd_banheiros'])
+	&& 	isset($_POST['qtd_quartos'])
+	&& 	isset($_POST['qtd_salas'])
+	&& 	isset($_POST['vagas_garagem'])
+	&& 	isset($_POST['valor'])
+	&& 	isset($_POST['habilitado'])
+	&& 	isset($_POST['piscina'])
 ) {
 
-	$codigo_cidade = $_POST['codigo_cidade'];
-	$logradouro = $_POST['logradouro'];
-	$numero = $_POST['numero'];
-	$complemento = $_POST['complemento'];
-	$bairro = $_POST['bairro'];
-	$cep = $_POST['cep'];
+	if (
+		!empty($_POST['codigo_cidade'])
+		&& !empty($_POST['logradouro'])
+		&& !empty($_POST['numero'])
+		&& !empty($_POST['complemento'])
+		&& !empty($_POST['bairro'])
+		&& !empty($_POST['cep'])
+		&& !empty($_POST['titulo'])
+		&& !empty($_POST['descricao'])
+		&& !empty($_POST['qtd_banheiros'])
+		&& !empty($_POST['qtd_quartos'])
+		&& !empty($_POST['qtd_salas'])
+		&& !empty($_POST['vagas_garagem'])
+		&& !empty($_POST['valor'])
+		&& !empty($_POST['habilitado'])
+		&& !empty($_POST['piscina'])
+	) {
 
-	$titulo = $_POST["titulo"];
-	$descricao = $_POST["descricao"];
-	$qtd_banheiros = $_POST["qtd_banheiros"];
-	$qtd_quartos = $_POST["qtd_quartos"];
-	$qtd_salas = $_POST["qtd_salas"];
-	$vagas_garagem = $_POST["vagas_garagem"];
-	$valor = $_POST["valor"];
-	$habilitado = $_POST["habilitado"];
-	$piscina = $_POST["piscina"];
-	$fotos = "";
-	if ($habilitado == "sim") {
-		$habilitado = 1;
-	} else {
-		$habilitado = 0;
-	}
+		$codigo_cidade = $_POST['codigo_cidade'];
+		$logradouro = $_POST['logradouro'];
+		$numero = $_POST['numero'];
+		$complemento = $_POST['complemento'];
+		$bairro = $_POST['bairro'];
+		$cep = $_POST['cep'];
 
-	if ($piscina == "sim") {
-		$piscina = 1;
-	} else {
-		$piscina = 0;
-	}
+		$titulo = $_POST["titulo"];
+		$descricao = $_POST["descricao"];
+		$qtd_banheiros = $_POST["qtd_banheiros"];
+		$qtd_quartos = $_POST["qtd_quartos"];
+		$qtd_salas = $_POST["qtd_salas"];
+		$vagas_garagem = $_POST["vagas_garagem"];
+		$valor = $_POST["valor"];
+		$habilitado = $_POST["habilitado"];
+		$piscina = $_POST["piscina"];
+		$fotos = "";
+		if ($habilitado == "sim") {
+			$habilitado = 1;
+		} else {
+			$habilitado = 0;
+		}
 
-	$cidade = $cidadeDao->findByCodeCity($codigo_cidade);
+		if ($piscina == "sim") {
+			$piscina = 1;
+		} else {
+			$piscina = 0;
+		}
 
-	$endereco = new Endereco(
-		$codigo_cidade = $cidade->getCodigoCidade(),
-		$uf = $cidade->getUf(),
-		$logradouro = $logradouro,
-		$numero = $numero,
-		$complemento = $complemento,
-		$bairro = $bairro,
-		$cep = $cep,
-	);
-	$enderecoDao->add($endereco);
-	$endereco = $enderecoDao->findEndereco($endereco);
+		$cidade = $cidadeDao->findByCodeCity($codigo_cidade);
 
-	$imovel = new Imovel(
-		$cpf = $_SESSION["cLogin"],
-		$numero_seq_end = $endereco->getNumeroSeqEnd(),
-		$codigo_cidade = $cidade->getCodigoCidade(),
-		$uf = $cidade->getUf(),
-		$descricao = $descricao,
-		$qtd_quartos = $qtd_quartos,
-		$qtd_banheiros = $qtd_banheiros,
-		$qtd_salas = $qtd_salas,
-		$qtd_piscina = $piscina,
-		$vagas_garagem = $vagas_garagem,
-		$valor = $valor,
-		$habilitado = $habilitado,
-		$titulo = $titulo,
-		$fotos = $fotos
-	);
+		$endereco = new Endereco(
+			$codigo_cidade = $cidade->getCodigoCidade(),
+			$uf = $cidade->getUf(),
+			$logradouro = $logradouro,
+			$numero = $numero,
+			$complemento = $complemento,
+			$bairro = $bairro,
+			$cep = $cep,
+		);
+		$enderecoDao->add($endereco);
+		$endereco = $enderecoDao->findEndereco($endereco);
 
-	if ($imovelDao->add($imovel)) {
+		$imovel = new Imovel(
+			$cpf = $_SESSION["cLogin"],
+			$numero_seq_end = $endereco->getNumeroSeqEnd(),
+			$codigo_cidade = $cidade->getCodigoCidade(),
+			$uf = $cidade->getUf(),
+			$descricao = $descricao,
+			$qtd_quartos = $qtd_quartos,
+			$qtd_banheiros = $qtd_banheiros,
+			$qtd_salas = $qtd_salas,
+			$qtd_piscina = $piscina,
+			$vagas_garagem = $vagas_garagem,
+			$valor = $valor,
+			$habilitado = $habilitado,
+			$titulo = $titulo,
+			$fotos = $fotos
+		);
+
+		if ($imovelDao->add($imovel)) {
+		?>
+			<div class="alert alert-success">
+				<strong>Parabéns!</strong> Cadastrado com sucesso.
+			</div>
+		<?php
+		} else {
+		?>
+			<div class="alert alert-warning">
+				Este Imóvel já existe!
+			</div>
+		<?php
+		}
+} else {
 	?>
-		<div class="alert alert-success">
-			<strong>Parabéns!</strong> Cadastrado com sucesso.
-		</div>
-	<?php
-	} else {
-	?>
-		<div class="alert alert-warning">
-			Este Imóvel já existe!
-		</div>
-	<?php
-	}
-} 
+			<div class="alert alert-warning">
+				Por favor, preencha todos os campos do formulário.
+			</div>
+		<?php
+}}
 
 ?>
 
@@ -149,34 +173,32 @@ if (
 			<!-- Logradouro -->
 			<div class="form-group">
 				<label for="logradouro">Logradouro:</label>
-				<textarea name="logradouro" id="logradouro" class="form-control" maxlength="200"> </textarea>
+				<input name="logradouro" id="logradouro" class="form-control" maxlength="200"/>
 			</div>
 
 			<!-- Complemento -->
 			<div class="form-group">
 				<label for="complemento">Complemento:</label>
-				<textarea name="complemento" id="complemento" class="form-control" maxlength="200"> </textarea>
+				<input name="complemento" id="complemento" class="form-control" maxlength="200"/>
 			</div>
 
 			<!-- Bairro -->
 			<div class="form-group">
 				<label for="bairro">Bairro:</label>
-				<textarea name="bairro" id="bairro" class="form-control" maxlength="200"> </textarea>
+				<input name="bairro" id="bairro" class="form-control" maxlength="200"/>
 			</div>
 
 			<!-- CEP -->
 			<div class="form-group">
 				<label for="cep">CEP:</label>
-				<textarea name="cep" id="cep" class="form-control" maxlength="9"> </textarea>
+				<input pattern="[0-9]+" name="cep" id="cep" class="form-control" maxlength="9"/>
 			</div>
 
 			<!-- Número do Endereço -->
 			<div class="form-group">
 				<label for="numero">Número do Endereço:</label>
-				<input type="text" name="numero" id="numero" class="form-control" maxlength="6"/>
+				<input pattern="[0-9]+" type="text" name="numero" id="numero" class="form-control" maxlength="6"/>
 			</div>
-
-
 
 			<!-- Informações do Imóvel -->
 			<h2 class="display-4">Informações do Imóvel</h1>
@@ -185,7 +207,7 @@ if (
 				<!-- Titulo -->
 				<div class="form-group">
 					<label for="titulo">Título:</label>
-					<textarea name="titulo" id="titulo" class="form-control" maxlength="200"> </textarea>
+					<input name="titulo" id="titulo" class="form-control" maxlength="200"/>
 				</div>
 
 				<!-- Descrição -->
@@ -216,7 +238,7 @@ if (
 				<!-- Valor -->
 				<div class="form-group">
 					<label for="valor">Valor:</label>
-					<input type="text" name="valor" id="valor" class="form-control" />
+					<input pattern="[0-9]+" type="text" name="valor" id="valor" class="form-control" />
 				</div>
 
 				<!-- Disponível para Alugar -->
@@ -239,7 +261,7 @@ if (
 					</select>
 				</div>
 
-				<input type="submit" value="Cadastrar" class="btn bg-success " />
+				<input type="submit" value="Cadastrar" class="btn bg-success btn-lg " />
 	</form>
 
 

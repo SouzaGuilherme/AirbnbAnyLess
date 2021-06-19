@@ -16,85 +16,109 @@
 	$enderecoDao = new EnderecoDaoMysql($pdo);
 
 	if (
-		isset($_POST['nome']) && !empty($_POST['nome'])
-		&& 	isset($_POST['cpf']) && !empty($_POST['cpf'])
-		&& 	isset($_POST['email']) && !empty($_POST['email'])
-		&& 	isset($_POST['password']) && !empty($_POST['password'])
-		&& 	isset($_POST['password_again']) && !empty($_POST['password_again'])
-		&& 	isset($_POST['logradouro']) && !empty($_POST['logradouro'])
-		&& 	isset($_POST['numero']) && !empty($_POST['numero'])
-		&& 	isset($_POST['complemento']) && !empty($_POST['complemento'])
-		&& 	isset($_POST['cep']) && !empty($_POST['cep'])
-		&& 	isset($_POST['telefone']) && !empty($_POST['telefone'])
-		&& 	isset($_POST['tipo_usuario']) && !empty($_POST['tipo_usuario'])
+		isset($_POST['nome'])
+		&& 	isset($_POST['cpf'])
+		&& 	isset($_POST['email'])
+		&& 	isset($_POST['password'])
+		&& 	isset($_POST['password_again'])
+		&& 	isset($_POST['logradouro'])
+		&& 	isset($_POST['numero'])
+		&& 	isset($_POST['complemento'])
+		&& 	isset($_POST['cep'])
+		&& 	isset($_POST['telefone'])
+		&& 	isset($_POST['tipo_usuario'])
 	) {
-		$cpf = addslashes($_POST['cpf']);
-		$nome = addslashes($_POST['nome']);
-		$email = addslashes($_POST['email']);
-		$password = $_POST['password'];
-		$password_again = $_POST['password_again'];
-		$logradouro = addslashes($_POST['logradouro']);
-		$numero = addslashes($_POST['numero']);
-		$complemento = addslashes($_POST['complemento']);
-		$codigo_cidade = addslashes($_POST["codigo_cidade"]);
-		$cep = addslashes($_POST['cep']);
-		$bairro = addslashes($_POST['bairro']);
-		$telefone = addslashes($_POST['telefone']);
-		$tipo_usuario = addslashes($_POST['tipo_usuario']);
 
-		if ($password == $password_again) {
+		if (
+			!empty($_POST['nome'])
+			&& !empty($_POST['cpf'])
+			&& !empty($_POST['email'])
+			&& !empty($_POST['password'])
+			&& !empty($_POST['password_again'])
+			&& !empty($_POST['logradouro'])
+			&& !empty($_POST['numero'])
+			&& !empty($_POST['complemento'])
+			&& !empty($_POST['cep'])
+			&& !empty($_POST['telefone'])
+			&& !empty($_POST['tipo_usuario'])
+		) {
 
-			$cidade = $cidadeDaoMysql->findByCodeCity($codigo_cidade);
 
-		
 
-				$endereco = new Endereco(
-					$codigo_cidade = $cidade->getCodigoCidade(),
-					$uf = $cidade->getUf(),
-					$logradouro = $logradouro,
-					$numero = $numero,
-					$complemento = $complemento,
-					$bairro = $bairro,
-					$cep = $cep,
-				);
-				$enderecoDao->add($endereco);
-				$endereco = $enderecoDao->findEndereco($endereco);
 
-				$usuario = new Usuario(
-					$cpf,
-					$endereco->getNumeroSeqEnd(),
-					$cidade->getCodigoCidade(),
-					$cidade->getUf(),
-					$nome,
-					$email,
-					$telefone,
-					"FOTO",
-					$tipo_usuario,
-					$password,
-					"token",
-				);
-				if ($usuarioDao->add($usuario)) {
-					?>
-					<div class="alert alert-success">
-						<strong>Parabéns!</strong> Cadastrado com sucesso. <a href="login.php" class="alert-link">Faça o login agora</a>
-					</div>
-					<?php
-				} else {
-					?>
-					<div class="alert alert-warning">
-						Este usuário já existe! <a href="login.php" class="alert-link">Faça o login agora</a>
-					</div>
-					<?php
+			$cpf = addslashes($_POST['cpf']);
+			$nome = addslashes($_POST['nome']);
+			$email = addslashes($_POST['email']);
+			$password = $_POST['password'];
+			$password_again = $_POST['password_again'];
+			$logradouro = addslashes($_POST['logradouro']);
+			$numero = addslashes($_POST['numero']);
+			$complemento = addslashes($_POST['complemento']);
+			$codigo_cidade = addslashes($_POST["codigo_cidade"]);
+			$cep = addslashes($_POST['cep']);
+			$bairro = addslashes($_POST['bairro']);
+			$telefone = addslashes($_POST['telefone']);
+			$tipo_usuario = addslashes($_POST['tipo_usuario']);
+
+			if ($password == $password_again) {
+
+				$cidade = $cidadeDaoMysql->findByCodeCity($codigo_cidade);
+
 			
-			}	
+
+					$endereco = new Endereco(
+						$codigo_cidade = $cidade->getCodigoCidade(),
+						$uf = $cidade->getUf(),
+						$logradouro = $logradouro,
+						$numero = $numero,
+						$complemento = $complemento,
+						$bairro = $bairro,
+						$cep = $cep,
+					);
+					$enderecoDao->add($endereco);
+					$endereco = $enderecoDao->findEndereco($endereco);
+
+					$usuario = new Usuario(
+						$cpf,
+						$endereco->getNumeroSeqEnd(),
+						$cidade->getCodigoCidade(),
+						$cidade->getUf(),
+						$nome,
+						$email,
+						$telefone,
+						"FOTO",
+						$tipo_usuario,
+						$password,
+						"token",
+					);
+					if ($usuarioDao->add($usuario)) {
+						?>
+						<div class="alert alert-success">
+							<strong>Parabéns!</strong> Cadastrado com sucesso. <a href="login.php" class="alert-link">Faça o login agora</a>
+						</div>
+						<?php
+					} else {
+						?>
+						<div class="alert alert-warning">
+							Este usuário já existe! <a href="login.php" class="alert-link">Faça o login agora</a>
+						</div>
+						<?php
+				
+				}	
+			} else {
+				?>
+				<div class="alert alert-danger">
+					Senhas não são iguais. Tente novamente!
+				</div>
+				<?php
+			}
 		} else {
 			?>
-			<div class="alert alert-danger">
-				Senhas não são iguais. Tente novamente!
+			<div class="alert alert-warning">
+				Por favor, preencha todos os dados necessários do formulário.
 			</div>
 			<?php
 		}
-
 	}
 
 	?>
@@ -105,7 +129,7 @@
 		<!-- CPF -->
 		<div class="form-group">
 			<label for="cpf">CPF:</label>
-			<input type="text" name="cpf" id="cpf" class="form-control" maxlength="11"/>
+			<input pattern="[0-9]+" type="text" name="cpf" id="cpf" class="form-control" maxlength="11"/>
 		</div>
 
 		<!-- Nome -->
@@ -151,7 +175,7 @@
 		<!-- CEP -->
 		<div class="form-group">
 			<label for="cep">CEP:</label>
-			<input type="text" name="cep" id="cep" class="form-control" maxlength="9"/>
+			<input pattern="[0-9]+" type="text" name="cep" id="cep" class="form-control" maxlength="9"/>
 		</div>
 
 		<!-- Bairro -->
@@ -169,7 +193,7 @@
 		<!-- Número -->
 		<div class="form-group">
 			<label for="numero">Numero:</label>
-			<input type="text" name="numero" id="numero" class="form-control" maxlength="6/>
+			<input pattern="[0-9]+" type="text" name="numero" id="numero" class="form-control" maxlength="6"/>
 		</div>
 
 		<!-- Complemento -->
@@ -180,7 +204,7 @@
 
 		<!-- Telefone -->
 		<div class="form-group">
-			<label for="telefone">Telefone:</label>
+			<label pattern="[0-9]+" for="telefone">Telefone:</label>
 			<input type="text" name="telefone" id="telefone" class="form-control" maxlength="50" />
 		</div>
 

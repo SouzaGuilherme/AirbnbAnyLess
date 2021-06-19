@@ -4,11 +4,14 @@
 require 'dao/ImovelDaoMysql.php';
 require "dao/EnderecoDaoMysql.php";
 require "dao/CidadeDaoMysql.php";
+require "dao/ReservaDaoMysql.php";
 
 $imovelDaoMysql = new ImovelDaoMysql($pdo);
 $enderecoDaoMysql = new EnderecoDaoMysql($pdo);
 $cidadeDaoMysql = new CidadeDaoMysql($pdo);
+$reservaDaoMysql = new ReservaDaoMysql($pdo);
 
+# Verifica através do GET se existe o imóvel no Database.
 if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
 	$codigo_imovel = addslashes($_GET['codigo_imovel']);
 } else {
@@ -17,6 +20,103 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
 	<?php
 	exit;
 }
+
+
+if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
+
+	if (!empty($_SESSION["cLogin"])){
+
+		if ($usuario->getTipoUsuario() == "LOCATARIO" || $usuario->getTipoUsuario() == "AMBOS"){
+
+
+			if (!empty($_POST['start_date']) && !empty($_POST['end_date'])) {
+				$start_date = date($_POST['start_date']);
+				$end_date = date($_POST['end_date']);
+				
+
+				echo $start_date; echo $end_date;
+
+				if ($start_date <= $end_date){
+					
+					$reserva = $reservaDaoMysql->estaAlugado($start_date, $end_date, $_GET["codigo_imovel"]);
+					if ($reserva) {
+						?>
+						<div class="alert alert-warning">
+							Esse imóvel já está alugado para o período: <?php echo $start_date ?> < <?php echo $end_date ?>
+
+						</div>
+						<?php
+						
+					} else {
+
+						$nova_reserva = new Reserva(
+							$codigo_imovel=$_GET["codigo_imovel"],
+							$cpf=$_SESSION['cLogin'],
+							$data_inicial=$start_date,
+							$data_final=$end_date,
+						);
+						$reservaDaoMysql->add($nova_reserva);
+
+						?>
+						<div class="alert alert-success">
+							Parabéns, você alugou este imóvel para o período <?php echo $start_date ?> < <?php echo $end_date ?>
+
+						</div>
+						<?php
+
+
+
+					}
+
+
+
+				} else {
+					?>
+					<div class="alert alert-warning">
+						A data inicial deve ser menor do que a final.
+						<?php echo $start_date ?> < <?php echo $end_date ?>
+
+					</div>
+					<?php
+
+				}
+
+
+
+			} else {
+				?>
+				<div class="alert alert-warning">
+					Por favor, preencha as datas que deseja alugar.
+				</div>
+				<?php
+
+			}
+		} else {
+			?>
+			<div class="alert alert-warning">
+				Sua conta é do tipo <?php echo $usuario->getTipoUsuario() ?>, apenas LOCATÁRIO e AMBOS pode realizar reservas.
+			</div>
+			<?php
+
+		}
+
+	} else {
+
+		?>
+			<div class="alert alert-warning">
+				Por favor, faça <a href="login.php" class="alert-link">login</a> antes de continuar!
+			</div>
+		<?php
+	}
+
+}
+
+
+
+
+
+
+
 
 $imovel = $imovelDaoMysql->findByCodigoImovel($codigo_imovel);
 $endereco = $enderecoDaoMysql->findEnderecoByKeys(
@@ -38,7 +138,11 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
 			<div class="carousel slide" data-ride="carousel" id="meuCarousel">
 				<div class="carousel-inner" role="listbox">
 
-					aa
+					<?php if (!empty($imovel->getFotos())) : ?>
+                        <img src="assets/images/imoveis/<?php echo $imovel['url']; ?>" height="500" border="0" />
+                    <?php else : ?>
+                        <img src="assets/images/default.jpg" height="500" border="0" />
+                    <?php endif; ?>
 
 				</div>
 				<a class="left carousel-control" href="#meuCarousel" role="button" data-slide="prev"><span><</span></a>

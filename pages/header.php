@@ -32,13 +32,13 @@ if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
 				<?php if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'] && $usuario)) : ?>
 					
 					<?php if ($usuario->getTipoUsuario() == "AMBOS") : ?>
-						<li><a href="meus_alugueis.php">Meus Alugueis</a></li>
+						<li><a href="minhas_locacoes.php">Minhas Locações</a></li>
 						<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
 
 					<?php elseif  ($usuario->getTipoUsuario() == "LOCATARIO"): ?>
-						<li><a href="meus_alugueis.php">Meus Alugueis</a></li>
+						<li><a href="minhas_locacoes.php">Minhas Locações</a></li>
 
-					<?php else : ?>
+					<?php elseif  ($usuario->getTipoUsuario() == "PROPRIETARIO"): ?>
 						<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
 
 					<?php endif; ?>
@@ -47,7 +47,7 @@ if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
 
 				<?php else : ?>
 					<li><a href="login.php">Login</a></li>
-					<li><a href="cadastrar.php">Cadastre-se</a></li>
+					<li><a href="cadastrar_usuario.php">Cadastre-se</a></li>
 				<?php endif; ?>
 			</ul>
 		</div>
