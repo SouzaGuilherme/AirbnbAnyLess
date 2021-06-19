@@ -2,14 +2,17 @@
 require_once __DIR__ .  '/../models/Imovel.php';
 
 
-class ImovelDaoMysql implements ImovelDAO {
+class ImovelDaoMysql implements ImovelDAO
+{
   private $pdo;
 
-  public function __construct(PDO $pdo) {
+  public function __construct(PDO $pdo)
+  {
     $this->pdo = $pdo;
   }
 
-  private function generateImovel($dictData) {
+  private function generateImovel($dictData)
+  {
     /* Instância um objeto Imóvel de acordo a resposta do database.  
         */
     return new Imovel(
@@ -29,9 +32,14 @@ class ImovelDaoMysql implements ImovelDAO {
     );
   }
 
-  public function add(Imovel $imovel) {
+  public function add(Imovel $imovel)
+  {
     /* Adiciona um imóvel ao banco de dados.
         */
+
+
+
+
     $sql = $this->pdo->prepare("INSERT INTO imoveis (
             cpf, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado
         ) VALUES (
@@ -50,9 +58,11 @@ class ImovelDaoMysql implements ImovelDAO {
     $sql->bindValue(":valor", $imovel->getValor());
     $sql->bindValue(":habilitado", $imovel->getHabilitado());
     $sql->execute();
+    return true;
   }
 
-  public function findByKeys($codigo_imovel, $codigo_cidade, $cpf, $numero_seq_end) {
+  public function findByKeys($codigo_imovel, $codigo_cidade, $cpf, $numero_seq_end)
+  {
     /* Encontra um imóvel pelas chave do imovel, codigo cidade, cpf, e numero.
     */
     if (!empty($codigo_imovel and $codigo_cidade and $cpf and $numero_seq_end)) {
@@ -74,7 +84,8 @@ class ImovelDaoMysql implements ImovelDAO {
 
   public function findByCodigoImovel($codigo_imovel)
   /* Encontra um imóvel pelo seu código no banco de dados.
-  */ {
+  */
+  {
     if (!empty($codigo_imovel)) {
       $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel");
       $sql->bindValue(":codigo_imovel", $codigo_imovel);
@@ -89,7 +100,8 @@ class ImovelDaoMysql implements ImovelDAO {
     return false;
   }
 
-  public function findByCodigoCidade($codigo_cidade) {
+  public function findByCodigoCidade($codigo_cidade)
+  {
     if (!empty($codigo_cidade)) {
       $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_cidade = :codigo_cidade");
       $sql->bindValue(":codigo_cidade", $codigo_cidade);
@@ -104,7 +116,8 @@ class ImovelDaoMysql implements ImovelDAO {
     return false;
   }
 
-  public function findByCodigoUsuario($cpf) {
+  public function findByCodigoUsuario($cpf)
+  {
     if (!empty($cpf)) {
       $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
       $sql->bindValue(":cpf", $cpf);
@@ -119,7 +132,8 @@ class ImovelDaoMysql implements ImovelDAO {
     return false;
   }
 
-  public function findByNumeroSeqEnd($numero_seq_end) {
+  public function findByNumeroSeqEnd($numero_seq_end)
+  {
     if (!empty($numero_seq_end)) {
       $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE numero_seq_end = :numero_seq_end");
       $sql->bindValue(":numero_seq_end", $numero_seq_end);
@@ -134,7 +148,8 @@ class ImovelDaoMysql implements ImovelDAO {
     return false;
   }
 
-  public function update(Imovel $imovel) {
+  public function update(Imovel $imovel)
+  {
     $sql = $this->pdo->prepare(
       "UPDATE imoveis SET
         codigo_imovel = :codigo_imovel,
@@ -171,14 +186,16 @@ class ImovelDaoMysql implements ImovelDAO {
     return true;
   }
 
-  public function remove(Imovel $imovel) {
+  public function remove(Imovel $imovel)
+  {
     $sql = $this->pdo->prepare("DELETE FROM imoveis WHERE codigo_imovel = :codigo_imovel");
     $sql->bindValue(":codigo_imovel", $imovel->getCodigoImovel());
     $sql->execute();
   }
 
 
-  public function findAllImoveis() {
+  public function findAllImoveis()
+  {
     $sql = $this->pdo->prepare("SELECT * FROM imoveis");
     $sql->execute();
 
@@ -187,7 +204,8 @@ class ImovelDaoMysql implements ImovelDAO {
     }
   }
 
-  public function findAllImoveisWithCity() {
+  public function findAllImoveisWithCity()
+  {
     $sql = $this->pdo->prepare("
       SELECT `imoveis`.codigo_cidade, codigo_imovel, cpf, numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, `cidades`.nome FROM `imoveis` 
       LEFT JOIN `cidades`
@@ -202,16 +220,26 @@ class ImovelDaoMysql implements ImovelDAO {
 
 
 
-  public function findAllImoveisByCpf($cpf) {
+  public function findAllImoveisByCpf($cpf)
+  {
 
     $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
     $sql->bindValue(":cpf", $cpf);
     $sql->execute();
 
-    $array = []; 
+    $array = [];
     if ($sql->rowCount() > 0) {
       $array = $sql->fetchAll();
     }
     return $array;
   }
+
+  public function deleteImovel($codigo_imovel){
+
+    $sql = $this->pdo->prepare("DELETE FROM imoveis WHERE codigo_imovel = :codigo_imovel");
+    $sql->bindValue(":codigo_imovel", $codigo_imovel);
+    $sql->execute();
+
+  }
 }
+
