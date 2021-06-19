@@ -1,14 +1,14 @@
-.bg{
+.bg {
     background-image: url('../images/back4.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100%;
 }
 
-.line{
+.line {
     position: absolute;
     left: 35%;
-    top: 50%;
+    top: -35%;
     text-align: center;
     color: black;
     font-family: Roboto;
@@ -19,31 +19,29 @@
     overflow: hidden;
 }
 
-.typing-animation{
-    animation: blinkCursor 500ms steps(40) infinite normal, typing 4s steps(40) 1s normal both; 
+.typing-animation {
+    animation: blinkCursor 500ms steps(40) infinite normal, typing 4s steps(40) 1s normal both;
 }
 
-@keyframes typing{
-    from{
+@keyframes typing {
+    from {
         width: 0;
     }
-
-    to{
+    to {
         width: 16em;
     }
 }
 
-@keyframes blinkCursor{
-    from{
+@keyframes blinkCursor {
+    from {
         border-right-color: black;
     }
-
-    to{
+    to {
         border-right-color: transparent;
     }
 }
 
-.imovel-container{
+.imovel-container {
     background: white;
     position: absolute;
     width: 100%;
@@ -51,61 +49,61 @@
     top: 95%;
 }
 
-.city1{
+.city1 {
     -webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-    max-width:20%;
-    max-height:20%;
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    max-width: 20%;
+    max-height: 20%;
     width: auto;
     height: auto;
     margin-top: 5%;
     margin-left: 10%;
 }
 
-.city2{
+.city2 {
     -webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-    max-width:20%;
-    max-height:20%;
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    max-width: 20%;
+    max-height: 20%;
     width: auto;
     height: auto;
     margin-top: 5%;
     margin-left: 10%;
 }
 
-.city3{
+.city3 {
     -webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-    max-width:20%;
-    max-height:20%;
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    max-width: 20%;
+    max-height: 20%;
     width: auto;
     height: auto;
     margin-top: 5%;
     margin-left: 10%;
 }
 
-.city1:hover{
+.city1:hover {
     -webkit-filter: grayscale(0);
-	filter: grayscale(0);
+    filter: grayscale(0);
 }
 
-.city2:hover{
+.city2:hover {
     -webkit-filter: grayscale(0);
-	filter: grayscale(0);
+    filter: grayscale(0);
 }
 
-.city3:hover{
+.city3:hover {
     -webkit-filter: grayscale(0);
-	filter: grayscale(0);
+    filter: grayscale(0);
 }
 
-.title-city-container{
+.title-city-container {
     margin-left: 10%;
     margin-top: 6%;
 }
@@ -117,5 +115,5 @@
 }
 
 .box {
-	display: inline-block;
+    display: inline-block;
 }
