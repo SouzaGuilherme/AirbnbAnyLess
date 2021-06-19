@@ -1,4 +1,7 @@
+
 <?php require 'pages/header.php'; ?>
+
+
 <?php
 if (empty($_SESSION['cLogin'])) {
 ?>
@@ -9,7 +12,13 @@ if (empty($_SESSION['cLogin'])) {
     exit;
 }
 ?>
+
+
+
+
 <div class="container">
+    
+    <!-- Meus Imóveis Cadastrados -->
     <h1>Meus Imóveis Cadastrados:</h1>
     <hr/>
 
@@ -20,7 +29,7 @@ if (empty($_SESSION['cLogin'])) {
             <tr>
                 <th>Foto</th>
                 <th>Código</th>
-                <th>Valor</th>
+                <th>Diária</th>
                 <th>UF</th>
                 <th>Qtd. Quartos</th>
                 <th>Qtd. Banheiros</th>
@@ -83,39 +92,35 @@ if (empty($_SESSION['cLogin'])) {
     </table>
 
 
-
+    <!-- Meus Imóveis Locados -->
     <h1>Meus Imóveis Locados:</h1>
     <hr/>
 
-    <!-- Header Tabela -->
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Foto</th>
-                <th>Código</th>
-                <th>Valor</th>
-                <th>UF</th>
-                <th>Qtd. Quartos</th>
-                <th>Qtd. Banheiros</th>
-                <th>Qtd. Salas</th>
-                <th>Piscina</th>
-                <th>Vagas Garagem</th>
-                <th>Habilitado</th>
+                <th>Código Reserva</th>
+                <th>Código Imóvel</th>
+                <th>Data Inicial</th>
+                <th>Data Final</th>
+                <th>Nome do Locatário</th>
             </tr>
         </thead>
 
 
         <?php
-        require 'dao/ImovelDaoMysql.php';
-        $imovelDaoMysql = new ImovelDaoMysql($pdo);
+        require 'dao/ReservaDaoMysql.php';
 
-        $imoveis_by_cpf = $imovelDaoMysql->findAllImoveisByCpf($_SESSION['cLogin']);
+        $reservaDaoMysql = new ReservaDaoMysql($pdo);
+    
+        $reservasMeusImoveis = $reservaDaoMysql->findReservaImovelByCpf($_SESSION['cLogin']);
+        
+        foreach ($reservasMeusImoveis as $imovel) :
 
-        foreach ($imoveis_by_cpf as $imovel) :
-        ?>
+            ?>
             <tr>
                 <td>
-
                     <?php if (!empty($imovel['url'])) : ?>
                         <img src="assets/images/imoveis/<?php echo $imovel['url']; ?>" height="50" border="0" />
                     <?php else : ?>
@@ -123,47 +128,15 @@ if (empty($_SESSION['cLogin'])) {
                     <?php endif; ?>
                 </td>
 
+                <td><?php echo $imovel['codigo_reserva']; ?></td>
                 <td><?php echo $imovel['codigo_imovel']; ?></td>
-                <td>R$ <?php echo number_format($imovel['valor'], 2); ?></td>
-                <td><?php echo $imovel['uf']; ?></td>
-                <td><?php echo $imovel['qtd_quartos']; ?></td>
-                <td><?php echo $imovel['qtd_banheiros']; ?></td>
-                <td><?php echo $imovel['qtd_salas']; ?></td>
-                
-                <?php if ($imovel['piscina']): ?>
-                    <td>Sim</td>
-                <?php else : ?>
-                    <td>Não</td>
-                <?php endif; ?>
+                <td><?php echo $imovel['data_inicial']; ?></td>
+                <td><?php echo $imovel['data_final']; ?></td>
+                <td><?php echo $imovel['nome']; ?></td>
 
-                <td><?php echo $imovel['vagas_garagem']; ?></td>
-                
-
-                <?php if ($imovel['habilitado']): ?>
-                    <td>Sim</td>
-                <?php else : ?>
-                    <td>Não</td>
-                <?php endif; ?>
-
-                
-
-                <td>
-                    <a href="editar_imovel.php?codigo_imovel=<?php echo $imovel['codigo_imovel']; ?>" class="btn btn-default">Editar</a>
-                    <a href="excluir_imovel.php?codigo_imovel=<?php echo $imovel['codigo_imovel']; ?>" class="btn btn-danger">Excluir</a>
-                </td>
             </tr>
         <?php endforeach; ?>
     </table>
-
-
-
-
-
-
-
-
-
-
 
 </div>
 <?php require 'pages/footer.php'; ?>

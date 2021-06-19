@@ -123,7 +123,7 @@ class ImovelDaoMysql implements ImovelDAO {
 
 	public function findAllImoveisWithCity() {
 		$sql = $this->pdo->prepare("
-			SELECT `imoveis`.codigo_cidade, codigo_imovel, cpf, titulo, numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, `cidades`.nome FROM `imoveis` 
+			SELECT `imoveis`.codigo_cidade, codigo_imovel, cpf, titulo,numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, `cidades`.nome FROM `imoveis` 
 			LEFT JOIN `cidades`
 			ON `imoveis`.`codigo_cidade` = `cidades`.`codigo_cidade`
 		");
