@@ -39,7 +39,7 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
         </div>
 
         <div class="bottom">
-            <a href="home.php">
+            <a href="list_owner.php">
                 <p class = "option-style"> Meus Imóveis</p>
             </a>
         </div>

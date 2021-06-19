@@ -3,9 +3,14 @@
 require_once __DIR__ . '/../config.php'; 
 require_once __DIR__ . '/../dao/ImovelDaoMysql.php';
 require_once __DIR__ . '/../dao/EnderecoDaoMysql.php';
+require_once __DIR__ . '/../dao/UsuarioDaoMysql.php';
 
 $imovelDao = new ImovelDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
+$usuarioDao = new UsuarioDaoMysql($pdo);
+
+
+$usuario = $usuarioDao->findByToken($_SESSION["token"]);
     
 
 ?>
@@ -41,7 +46,7 @@ $enderecoDao = new EnderecoDaoMysql($pdo);
         </div>
     </div>
 
-    <?php foreach($imovelDao->findAllImoveis() as $imovel): ?>
+    <?php foreach($imovelDao->findAllByCPFImoveis($usuario->getCPF()) as $imovel): ?>
     <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end'])?>
         
         <div class="container-imovel">
