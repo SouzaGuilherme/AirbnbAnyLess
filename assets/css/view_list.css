@@ -1,0 +1,119 @@
+.bg {
+    background-image: url('../images/back4.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.line {
+    position: absolute;
+    left: 35%;
+    top: -35%;
+    text-align: center;
+    color: black;
+    font-family: Roboto;
+    font-size: 3em;
+    margin: 0 auto;
+    border-right: 2px solid black;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.typing-animation {
+    animation: blinkCursor 500ms steps(40) infinite normal, typing 4s steps(40) 1s normal both;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 16em;
+    }
+}
+
+@keyframes blinkCursor {
+    from {
+        border-right-color: black;
+    }
+    to {
+        border-right-color: transparent;
+    }
+}
+
+.imovel-container {
+    background: white;
+    position: absolute;
+    width: 100%;
+    height: 1000px;
+    top: 95%;
+}
+
+.city1 {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    max-width: 20%;
+    max-height: 20%;
+    width: auto;
+    height: auto;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.city2 {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    max-width: 20%;
+    max-height: 20%;
+    width: auto;
+    height: auto;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.city3 {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    max-width: 20%;
+    max-height: 20%;
+    width: auto;
+    height: auto;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.city1:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
+.city2:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
+.city3:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
+.title-city-container {
+    margin-left: 10%;
+    margin-top: 6%;
+}
+
+.text {
+    color: white;
+    font-size: 5px;
+    padding: 16px 32px;
+}
+
+.box {
+    display: inline-block;
+}
