@@ -18,7 +18,6 @@
         <img src="/../assets/images/belo.jpg" class="city3">
         <!--span class="image-text">Belo Horizonte</span-->
 
-        <?php require_once __DIR__ . '/../assets/pages/footer.php' ?>
 
     </div>
 </body>
