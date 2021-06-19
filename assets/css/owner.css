@@ -72,21 +72,6 @@
     font-size: 20px;
 }
 
-.find{
-    position: absolute;
-    width: 184px;
-    height: 63px;
-    left: calc(50% - 384px/2 + 386px);
-    top: calc(160% - 63px/2 - 185.5px);
-    border-radius: 30px;
-    outline: 0;
-    border: 0;
-    background: black;
-    border-radius: 52px;
-    font-family: Roboto;
-    font-size: 15px;
-    color: white;
-}
 
 a:link 
 { 
