@@ -35,6 +35,7 @@ if (
 	&& 	isset($_POST['valor']) && !empty($_POST['valor'])
 	&& 	isset($_POST['habilitado']) && !empty($_POST['habilitado'])
 	&& 	isset($_POST['piscina']) && !empty($_POST['piscina'])
+	&& 	isset($_POST['titulo']) && !empty($_POST['titulo'])
 	) {
 	$codigo_cidade = $_POST['codigo_cidade'];
 	$logradouro = $_POST['logradouro'];
@@ -50,6 +51,7 @@ if (
 	$vagas_garagem = $_POST["vagas_garagem"];
 	$valor = $_POST["valor"];
 	$habilitado = $_POST["habilitado"];
+	$titulo = $_POST["titulo"];
 	$piscina = $_POST["piscina"];
 	if ($habilitado == "sim") {
 		$habilitado = 1;
@@ -63,6 +65,38 @@ if (
 		$piscina = 0;
 	}
 
+	$cidade = $cidadeDao->findByCodeCity($codigo_cidade);
+
+	$imovel = $imovelDao->findByCodigoImovel($_GET["codigo_imovel"]);
+
+    #$imovel->setCpf($cpf);
+    #$imovel->setNumeroSeqEnd($numero_seq_end);
+    $imovel->setCodigoCidade($codigo_cidade);
+    $imovel->setUf($cidade->getUf());
+    $imovel->setDescricao($descricao);
+    $imovel->setQtdBanheiros($qtd_banheiros);
+    $imovel->setQtdQuartos($qtd_quartos);
+    $imovel->setQtdSalas($qtd_salas);
+    $imovel->setPiscina($piscina);
+    $imovel->setVagasGaragem($vagas_garagem);
+    $imovel->setValor($valor);
+    $imovel->setHabilidade($habilitado);
+    $imovel->setTitulos($titulo);
+    #$imovel->setFotos($fotos);
+
+
+	if ($imovelDao->update($imovel)){
+
+		?>
+		<div class="alert alert-success">
+			<strong>Parabéns!</strong> Cadastrado com sucesso. <a href="login.php" class="alert-link">Faça o login agora</a>
+		</div>
+		<?php
+
+	}
+
+
+
 
 }
 
@@ -70,7 +104,8 @@ if (
 if (isset($_GET["codigo_imovel"]) && !empty($_GET["codigo_imovel"])){
 
 	$imovel = $imovelDao->findByCodigoImovel($_GET["codigo_imovel"]);
-	$endereco = $enderecoDao->findEndereco($endereco);
+	$endereco = $enderecoDao->findEnderecoByKeys($imovel->getNumeroSeqEnd(), $imovel->getUf(), $imovel->getCodigoCidade());
+	
 
 	
 	# print_r($imovel);
@@ -98,62 +133,11 @@ if (isset($_GET["codigo_imovel"]) && !empty($_GET["codigo_imovel"])){
 		<h2 class="display-4">Informações de Endereço</h1>
 		<hr>
 
-		<!-- Estado / Cidade -->
+		<!-- Titulo -->
 		<div class="form-group">
-			<label for="codigo_cidade">Estado / Cidade do Endereço:</label>
-			<select name="codigo_cidade" id="codigo_cidade" class="form-control">
-				<?php
-				
-				$cidadeDaoMysql = new CidadeDaoMysql($pdo);
-				$allCities = $cidadeDaoMysql->findAllCity();
-				foreach ($allCities as $city) :
-				?>	
-					
-					<option value="<?php echo $city->getCodigoCidade();?>"  <?php echo ($imovel->getCodigoCidade()==$city->getCodigoCidade())?'selected="selected"':'';?>>
-						<?php echo $city->getUf()." - ".$city->getNome(); ?>
-					</option>
-
-					<option value="<?php echo $city->getCodigoCidade(); ?>"></option>
-				<?php
-				endforeach;
-				?>
-			</select>
+			<label for="titulo">Titulo:</label>
+			<input name="titulo" id="titulo" class="form-control" value="<?php echo $imovel->getTitulo()?>">
 		</div>
-
-		<!-- Logradouro -->
-		<div class="form-group">
-			<label for="logradouro">Logradouro:</label>
-			<textarea name="logradouro" id="logradouro" class="form-control"><?php echo $endereco->getLogradouro()?></textarea>
-		</div>
-
-		<!-- Complemento -->
-		<div class="form-group">
-			<label for="complemento">Complemento:</label>
-			<textarea name="complemento" id="complemento" class="form-control"><?php echo $endereco->getComplemento()?></textarea>
-		</div>
-
-		<!-- Bairro -->
-		<div class="form-group">
-			<label for="bairro">Bairro:</label>
-			<textarea name="bairro" id="bairro" class="form-control"><?php echo $endereco->getBairro()?> </textarea>
-		</div>
-
-		<!-- CEP -->
-		<div class="form-group">
-			<label for="cep">CEP:</label>
-			<textarea name="cep" id="cep" class="form-control"> <?php echo $endereco->getCep()?></textarea>
-		</div>
-
-		<!-- Número do Endereço -->
-		<div class="form-group">
-			<label for="numero">Número do Endereço:</label>
-			<input value="<?php echo $endereco->getNumero()?>" type="text" name="numero" id="numero" class="form-control" />
-		</div>
-
-
-		<!-- Informações do Imóvel -->
-		<h2 class="display-4">Informações do Imóvel</h1>
-		<hr>
 		
 		<!-- Descrição -->
 		<div class="form-group">

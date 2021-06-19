@@ -36,9 +36,9 @@ if (empty($_SESSION['cLogin'])) {
         $reservaDaoMysql = new ReservaDaoMysql($pdo);
     
         $minhasReservas = $reservaDaoMysql->minhasLocacoes($_SESSION['cLogin']);
-        var_dump($minhasReservas);
+
         foreach ($minhasReservas as $reserva) :
-            var_dump($reserva);
+
 
         ?>
             <tr>

@@ -42,6 +42,7 @@ if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
 						<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
 
 					<?php endif; ?>
+					<li > <a href="perfil.php">Perfil</a></li>
 					<li > <a href="sair.php">Sair</a></li>
 
 

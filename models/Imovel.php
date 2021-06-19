@@ -16,7 +16,7 @@ class Imovel {
     private $valor;
     private $habilitado;
     private $titulo;
-    private $foto;
+    private $fotosS;
 
     public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado, $titulo, $fotos){
       $this->codigo_imovel = -1;

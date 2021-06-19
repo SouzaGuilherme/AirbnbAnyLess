@@ -74,8 +74,8 @@ class ImovelDaoMysql implements ImovelDAO {
 			vagas_garagem = :vagas_garagem,
 			valor = :valor,
 			habilitado = :habilitado,
-			titulo = :titulo
-			fotos = :fotos
+			titulo = :titulo,
+			fotos = :fotos 
 			WHERE codigo_imovel = :codigo_imovel;"
 		);
 
@@ -93,7 +93,7 @@ class ImovelDaoMysql implements ImovelDAO {
 		$sql->bindValue(":valor", $imovel->getValor());
 		$sql->bindValue(":habilitado", $imovel->getHabilitado());
 		$sql->bindValue(":titulo", $imovel->getTitulo());
-		$sql->bindValue(":foto", $imovel->getFotos());
+		$sql->bindValue(":fotos", $imovel->getFotos());
 		$sql->execute();
 
 		return true;

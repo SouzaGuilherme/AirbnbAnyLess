@@ -11,16 +11,16 @@ class UsuarioDaoMysql implements UsuarioDAO {
 
     private function generateUser($dictData) {
         return new Usuario(
-            $cpf=$dictData['cpf'],
-            $numero_seq_end=$dictData['numero_seq_end'],
-            $codigo_cidade=$dictData['codigo_cidade'],
-            $uf=$dictData['uf'],
-            $nome=$dictData['nome'],
-            $email=$dictData['email'],
-            $telefone=$dictData['telefone'],
-            $foto=$dictData['foto'],
-            $tipo_usuario=$dictData['tipo_usuario'],
-            $senha=$dictData['senha'],
+            $cpf = $dictData['cpf'],
+            $numero_seq_end = $dictData['numero_seq_end'],
+            $codigo_cidade = $dictData['codigo_cidade'],
+            $uf = $dictData['uf'],
+            $nome = $dictData['nome'],
+            $email = $dictData['email'],
+            $telefone = $dictData['telefone'],
+            $foto = $dictData['foto'],
+            $tipo_usuario = $dictData['tipo_usuario'],
+            $senha = $dictData['senha'],
         );
     }
 
@@ -112,7 +112,7 @@ class UsuarioDaoMysql implements UsuarioDAO {
             telefone = :telefone,
             email = :email,
             foto = :foto,
-            tipo_usuario = :tipo_usuario,
+            tipo_usuario = :tipo_usuario
             WHERE cpf = :cpf;"
         );
 

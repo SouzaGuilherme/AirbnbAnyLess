@@ -98,7 +98,7 @@ class Usuario {
         $this->foto = $foto;
     }
 
-    public function settipo_usuario($tipo_usuario) {
+    public function setTipoUsuario($tipo_usuario) {
         $this->tipo_usuario = $tipo_usuario;
     }
 
