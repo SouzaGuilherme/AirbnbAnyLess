@@ -19,6 +19,12 @@
                     Minha Área
                 </a>
             </div>
+
+            <div class="user">    
+                <a class="link-user" href="../../pages/actions/logout_action.php">
+                    Logout
+                </a>
+            </div>
         </div>
 
     </header>

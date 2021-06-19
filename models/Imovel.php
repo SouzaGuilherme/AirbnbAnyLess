@@ -118,6 +118,7 @@ interface ImovelDAO {
     public function findByCodigoUsuario($cpf);
     public function findByCodigoImovel($codigo_imovel);
     public function findByNumeroSeqEnd($numero_seq_end);
+    public function findAllByCPFImoveis($cpf);
     public function add(Imovel $imovel);
     public function remove(Imovel $imovel);
     public function update(Imovel $imovel);

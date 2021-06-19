@@ -4,6 +4,12 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../dao/ImovelDaoMysql.php';
 $imovelDao = new ImovelDaoMysql($pdo);
 
+if(!isset($_SESSION["token"]))
+{
+header("Location: login.php");
+exit;
+}
+
 ?>
 
 <!DOCTYPE html>

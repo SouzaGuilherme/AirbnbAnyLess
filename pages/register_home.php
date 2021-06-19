@@ -2,6 +2,12 @@
 
 require_once __DIR__ . '/../config.php';
 
+if(!isset($_SESSION["token"]))
+{
+header("Location: login.php");
+exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +42,10 @@ require_once __DIR__ . '/../config.php';
                         DESMARCADO seu imóvel não será visivel por nosso usuarios.
                         </br></br> Deseja HABILITAR seu imóvel?
                     </text>
-                        <select class="input" name="habilitado">
-                            <option value="0">Não</option>
-                            <option value="1">Sim</option>
-                        </select>
+                    <select class="input" name="habilitado">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
                 </div>
             </div>
             <div class="container-down-left">
@@ -78,11 +84,11 @@ require_once __DIR__ . '/../config.php';
                 </div>
                 <div class="container-piscina">
                     <text>Piscina</text>
-                    
-                        <select class="input" name="piscina">
-                            <option value="0">Não</option>
-                            <option value="1">Sim</option>
-                        </select>
+
+                    <select class="input" name="piscina">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
                 </div>
 
             </div>

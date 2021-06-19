@@ -178,4 +178,14 @@ class ImovelDaoMysql implements ImovelDAO {
       }
     }
 
+    public function findAllByCPFImoveis($cpf){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
+      $sql->bindValue(":cpf", $cpf);
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+    }
+
 }
