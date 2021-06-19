@@ -116,9 +116,6 @@
     padding: 16px 32px;
 }
 
-.middle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    text-align: center;
+.box {
+	display: inline-block;
 }
