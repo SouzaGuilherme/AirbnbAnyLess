@@ -34,9 +34,11 @@ $endereco = $enderecoDao->findByNumeroSeqEnd($_SESSION['numero_seq_end']);
 
         <div class = "price">
             <text class="text"> <?= $imovel->getValor() ?> </text>
-        </div>
-            <input class="calendary">
-        </div>   
+        <div class="bottom2">
+            <a href="describ_imovel.php">
+                <p class = "option-style one"> Descrição </p>
+            </a>
+        </div>  
     </div>
 </body>
 </html>
