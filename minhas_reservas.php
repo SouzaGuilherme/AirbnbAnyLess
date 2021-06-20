@@ -61,7 +61,9 @@ if (empty($_SESSION['cLogin'])) {
                 <td><?php echo $reserva['data_final']; ?></td>
                 <td><?php echo $reserva['NomeDonoImove']; ?></td>
 
+              
                 <td>
+                        <a href="produto.php?codigo_imovel=<?php echo $imovel['codigo_imovel']; ?>" class="btn btn-primary">Visualizar</a>
                     <a href="excluir_locacao.php?codigo_imovel=<?php echo $reserva['codigo_imovel']."&cpf=".$reserva['CpfLocatario']."&data_inicial=".$reserva['data_inicial']; ?>" class="btn btn-default">Cancelar</a>
                     
                 </td>
