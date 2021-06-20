@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config.php'; 
+require_once __DIR__ . '/../config.php';
 
 require_once __DIR__ . '/../dao/CidadeDaoMysql.php';
 require_once __DIR__ . '/../dao/EnderecoDaoMysql.php';
@@ -30,42 +30,42 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
 <head>
     <meta charset="UTF-8" />
     <title>Meus Imóveis</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
-    <link rel="icon" type="image/png" href="<?=$base_url;?>/assets/images/favicon.png"/>
-    <link rel="stylesheet" href="<?=$base_url;?>/assets/css/view_list.css"/>
-    <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css"/>
-    <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <link rel="icon" type="image/png" href="<?= $base_url; ?>/assets/images/favicon.png" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/view_list.css" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css" />
 </head>
 
 <body class="bg">
 
-    <?php require_once __DIR__ . '/../assets/pages/header_application.php'?>
+    <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
 
-        <div class="options-component">
-            <form method="POST" action="<?= $base_url; ?>/pages/view_list.php">
-                <input type="text" class="city" placeholder="Cidade" name="city" >
-                <input type="text" class="country" placeholder="País" name="country">
-                <input type="date" class="start-date" placeholder="Check-in" name="start-date">
-                <input type="date" class="end-date" placeholder="Check-out" name="end-date">
-                <input type="text" class="people" placeholder="Nº de Quartos" name="people">
-                <input type="text" class="price" placeholder="Preço" name="price">
-                <input required class="find" type="submit" value="Procurar" />
-            </form>
-        </div>
+    <div class="options-component">
+        <form method="POST" action="<?= $base_url; ?>/pages/view_list.php">
+            <input type="text" class="city" placeholder="Cidade" name="city">
+            <input type="text" class="country" placeholder="País" name="country">
+            <input type="date" class="start-date" placeholder="Check-in" name="start-date">
+            <input type="date" class="end-date" placeholder="Check-out" name="end-date">
+            <input type="text" class="people" placeholder="Nº de Quartos" name="people">
+            <input type="text" class="price" placeholder="Preço" name="price">
+            <input required class="find" type="submit" value="Procurar" />
+        </form>
+    </div>
 
-        <?php foreach($imovelDao->findAllByAll($cidade->getCodigoCidade(), $input_country, $input_start_date, $input_end_date, $input_people, $input_price) as $imovel): ?>
-            <?php if($imovel['habilitado']): ?>
-                <?php 
-                    $show = 1;
-                    foreach($reservaDao->findByCodigoImovel($imovel['codigo_imovel']) as $reserva){
-                        if(($input_start_date < $reserva->getDataFinal() && $input_start_date >$reserva->getDataInicial()) && ($input_end_date < $reserva->getDataFinal() && $input_end_date > $reserva->getDataInicial())){
-                            $show = 0;
-                        }
-                            $show = 0;
-                    }
-                ?>
-                <?php if ($reserva = $reservaDao->findByCodigoImovel($imovel['codigo_imovel']) && $show): ?>
-                <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end']);?>
+    <?php foreach ($imovelDao->findAllByAll($cidade->getCodigoCidade(), $input_country, $input_start_date, $input_end_date, $input_people, $input_price) as $imovel) : ?>
+        <?php if ($imovel['habilitado']) : ?>
+            <?php
+            $show = 1;
+            foreach ($reservaDao->findByCodigoImovel($imovel['codigo_imovel']) as $reserva) {
+                if (($input_start_date < $reserva->getDataFinal() && $input_start_date > $reserva->getDataInicial()) && ($input_end_date < $reserva->getDataFinal() && $input_end_date > $reserva->getDataInicial())) {
+                    $show = 0;
+                }
+                $show = 0;
+            }
+            ?>
+            <?php if ($reserva = $reservaDao->findByCodigoImovel($imovel['codigo_imovel']) && $show) : ?>
+                <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end']); ?>
                 <div class="container-imovel">
 
                     <div class="image">
@@ -89,13 +89,16 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
 
 
                     <div class="bottom">
-                        <a href="um_imovel.php">
-                            <p class="option-style"> Ver Imóvel </p>
-                        </a>
+                        <form method="GET" action="<?= $base_url; ?>/pages/actions/um_imovel.php">
+
+                            <input class="bottom" type="hidden" name="ids" value="<?= $imovel['codigo_imovel']; ?>">
+                            <button class="bottom2"> <text class="option-style">Ver Imóvel</text></button></button>
+                        </form>
                     </div>
                 </div>
-                <?php endif; ?>
+            <?php endif; ?>
         <?php endif; ?>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
 </body>
+
 </html>

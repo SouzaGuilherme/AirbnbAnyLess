@@ -17,11 +17,18 @@ $imovelDao = new ImovelDaoMysql($pdo);
 $usuarioDao = new UsuarioDaoMysql($pdo);
 $reservaDao = new ReservaDaoMysql($pdo);
 
-$check_in = filter_input(INPUT_POST, "check_in");
-$check_out = filter_input(INPUT_POST, "check_out");
-$usuario = $usuarioDao->findByToken($_SESSION["token"]);
+$codigo_imovel = filter_input(INPUT_GET, "ids");
 
-$reserva = new Reserva (-1, 2, $usuario->getCpf(), $check_in, $check_out);
+$check_in = filter_input(INPUT_GET, "check_in");
+$check_out = filter_input(INPUT_GET, "check_out");
+
+$usuario = $usuarioDao->findByToken($_SESSION["token"]);
+if($usuario->getTipoUsuario()=="PROPRIETARIO"){
+    header("Location: ".$base_url."/pages/home.php?id=3");
+    exit;
+}
+
+$reserva = new Reserva (-1, $codigo_imovel, $usuario->getCpf(), $check_in, $check_out);
 $reservaDao->add($reserva);
 
 header("Location: ".$base_url."/pages/home.php?id=1");
