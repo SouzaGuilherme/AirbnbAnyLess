@@ -28,7 +28,19 @@ exit;
 <body class="bg">
 
     <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
-    <?php require_once __DIR__ . '/../assets/pages/find.php' ?>
+
+    <div class="options-component">
+            <form method="POST" action="<?= $base_url; ?>/pages/view_list.php">
+                <input type="text" class="city" placeholder="Cidade" name="city" >
+                <input type="text" class="country" placeholder="País" name="country">
+                <input type="date" class="start-date" name="start-date">
+                <input type="date" class="end-date" name="end-date">
+                <input type="text" class="people" placeholder="Nº de Quartos" name="people">
+                <input type="text" class="price" placeholder="Preço" name="price">
+                <input required class="find" type="submit" value="Procurar" />
+
+            </form>
+        </div>
 
     <p class="line typing-animation">Encontre qualquer lugar para ficar!</p>
 

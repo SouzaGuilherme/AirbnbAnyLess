@@ -19,6 +19,16 @@
     overflow: hidden;
 }
 
+.option-style{
+    position: relative;
+    color: white;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+    top: 30%;
+}
+
 .typing-animation {
     animation: blinkCursor 500ms steps(40) infinite normal, typing 4s steps(40) 1s normal both;
 }
