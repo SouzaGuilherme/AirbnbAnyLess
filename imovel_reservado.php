@@ -36,53 +36,41 @@ if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
 			if (!empty($_POST['start_date']) && !empty($_POST['end_date'])) {
 				$start_date = date($_POST['start_date']);
 				$end_date = date($_POST['end_date']);
-				$date_today = date("Y-m-d");
 				
 
 				
 
 				if ($start_date <= $end_date){
-
-					if ($start_date >= $date_today and $end_date >= $date_today){
 					
-						$reserva = $reservaDaoMysql->estaAlugado($start_date, $end_date, $_GET["codigo_imovel"]);
-						if ($reserva) {
-							?>
-							<div class="alert alert-warning">
-								Esse imóvel já está alugado para o período: <?php echo $start_date ?> < <?php echo $end_date ?>
-
-							</div>
-							<?php
-							
-						} else {
-
-							$nova_reserva = new Reserva(
-								$codigo_imovel=$_GET["codigo_imovel"],
-								$cpf=$_SESSION['cLogin'],
-								$data_inicial=$start_date,
-								$data_final=$end_date,
-							);
-							$reservaDaoMysql->add($nova_reserva);
-
-							?>
-							<div class="alert alert-success">
-								Parabéns, você alugou este imóvel para o período <?php echo $start_date ?> < <?php echo $end_date ?>
-
-							</div>
-							<?php
-						}
-
-
-					}  else {
+					$reserva = $reservaDaoMysql->estaAlugado($start_date, $end_date, $_GET["codigo_imovel"]);
+					if ($reserva) {
 						?>
 						<div class="alert alert-warning">
-							A data que deseja alugar deve ser após o dia de hoje: <?php echo $date_today ?>
-							
+							Esse imóvel já está alugado para o período: <?php echo $start_date ?> < <?php echo $end_date ?>
+
+						</div>
+						<?php
+						
+					} else {
+
+						$nova_reserva = new Reserva(
+							$codigo_imovel=$_GET["codigo_imovel"],
+							$cpf=$_SESSION['cLogin'],
+							$data_inicial=$start_date,
+							$data_final=$end_date,
+						);
+						$reservaDaoMysql->add($nova_reserva);
+
+						?>
+						<div class="alert alert-success">
+							Parabéns, você alugou este imóvel para o período <?php echo $start_date ?> < <?php echo $end_date ?>
+
 						</div>
 						<?php
 
-					}
 
+
+					}
 
 
 
@@ -175,14 +163,14 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
 
 			<br/><br/><br/><br/>
 			<!-- Informações sobre Reservas -->
-			<h3><strong>Datas Indisponíveis para Reservas</strong> </h3> <hr/>
+			<h3><strong>Meus Dias Reservados: </strong> </h3> <hr/>
 
-			<?php foreach ($reservaDaoMysql->reservasCodigoImovel($_GET["codigo_imovel"]) as $reserva) : ?>
+			<?php foreach ($reservaDaoMysql->reservaImovelCpf($_GET["codigo_imovel"], $_SESSION["cLogin"]) as $reserva) : ?>
 
 				<h4>
 					<strong>Período:</strong>
-					<span style="color:red">
-						<?php echo $reserva["data_inicial"]." / ".$reserva["data_final"]?>
+					<span style="color:green;">
+						<strong><?php echo $reserva["data_inicial"]." / ".$reserva["data_final"]?></strong>
 					</span>
 				</h4>
 				
@@ -191,6 +179,7 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
 
 	
 			<?php endforeach; ?>
+            <a href="minhas_reservas.php" class="btn btn-lg btn-primary">Voltar</a>
 			
 		</div>
 
@@ -225,30 +214,7 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
 	
 			<br/>
 
-			<h3><strong>Período para Alugar</strong></h3><hr/>
-			<form method="POST" enctype="multipart/form-data">
 
-			<div class="form-row">
-				<div class="col">
-					<div class="form-group">
-						<label for="start_date">Data Inicial:</label>
-						<input type="date" name="start_date" id="start_date" class="form-control"/>
-					</div>
-				</div>
-				<div class="col">
-					<div class="form-group">
-						<label for="end_date">Data Final:</label>
-						<input type="date" name="end_date" id="end_date" class="form-control"/>
-					</div>
-				</div>
-			</div>
-
-			<input type="submit" value="Alugar" class="btn bg-success btn-lg " />
-			<a href="index.php" class="btn btn-danger btn-lg">Voltar</a>
-
-			</form>
-
-		
 
 		</div>
 

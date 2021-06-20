@@ -81,7 +81,7 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
 			<div class="col-sm-6">
 				
 				<div class="alert alert-danger">
-					Este imóvel não pode ser excluido, pois está alocado no momento!
+					Este imóvel não pode ser excluido, pois está reservado no momento!
 
 				</div>
 				<a href="meus_imoveis.php" class="btn btn-lg btn-primary">Voltar</a>
