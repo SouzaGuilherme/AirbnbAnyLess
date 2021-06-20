@@ -44,7 +44,7 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
         <div class="options-component">
             <form method="POST" action="<?= $base_url; ?>/pages/view_list.php">
                 <input type="text" class="city" placeholder="Cidade" name="city" >
-                <input type="text" class="country" placeholder="País" name="country">
+                <input type="text" class="country" placeholder="Estado" name="country">
                 <input type="date" class="start-date" placeholder="Check-in" name="start-date">
                 <input type="date" class="end-date" placeholder="Check-out" name="end-date">
                 <input type="text" class="people" placeholder="Nº de Quartos" name="people">
@@ -56,46 +56,52 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
         <?php foreach($imovelDao->findAllByAll($cidade->getCodigoCidade(), $input_country, $input_start_date, $input_end_date, $input_people, $input_price) as $imovel): ?>
             <?php if($imovel['habilitado']): ?>
                 <?php 
+                    #echo($input_end_date);
                     $show = 1;
-                    foreach($reservaDao->findByCodigoImovel($imovel['codigo_imovel']) as $reserva){
-                        if(($input_start_date < $reserva->getDataFinal() && $input_start_date >$reserva->getDataInicial()) && ($input_end_date < $reserva->getDataFinal() && $input_end_date > $reserva->getDataInicial())){
-                            $show = 0;
+                    $reserva1 = $reservaDao->findByCodigoImovel($imovel['codigo_imovel']);
+                    #echo($reserva1->getDataFinal());
+                    if($reserva1 != null){
+                        #echo("ASDDASASDSDAASDASSADDSASASDSD");
+                        foreach($reservaDao->findAllByCodigoImovel($imovel['codigo_imovel']) as $reserva){
+                            #echo("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+                            if(($input_start_date < $reserva['data_final'] && $input_start_date > $reserva['data_inicial']) || ($input_end_date < $reserva['data_final'] && $input_end_date > $reserva['data_inicial'])){
+                                $show = 0;
+                            }
                         }
-                            $show = 0;
                     }
                 ?>
-                <?php if ($reserva = $reservaDao->findByCodigoImovel($imovel['codigo_imovel']) && $show): ?>
-                <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end']);?>
-                <div class="container-imovel">
+                <?php if ($show == 1): ?>
+                    <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end']);?>
+                    <div class="container-imovel">
 
-                    <div class="image">
+                        <div class="image">
+                        </div>
+
+                        <div class="city2">
+                            <text class="text2"> <?= $input_city; ?> </text>
+                        </div>
+
+                        <div class="state">
+                            <text class="text2"> <?= $input_country; ?> </text>
+                        </div>
+
+                        <div class="road">
+                            <text class="text2"> <?= $endereco->getLogradouro() ?>, <?= $endereco->getNumero() ?></text>
+                        </div>
+
+                        <div class="price2">
+                            <text class="text2"> <?= $imovel['valor'] ?> </text>
+                        </div>
+
+
+                        <div class="bottom">
+                            <a href="um_imovel.php">
+                                <p class="option-style"> Ver Imóvel </p>
+                            </a>
+                        </div>
                     </div>
-
-                    <div class="city2">
-                        <text class="text2"> <?= $input_city; ?> </text>
-                    </div>
-
-                    <div class="state">
-                        <text class="text2"> <?= $input_country; ?> </text>
-                    </div>
-
-                    <div class="road">
-                        <text class="text2"> <?= $endereco->getLogradouro() ?>, <?= $endereco->getNumero() ?></text>
-                    </div>
-
-                    <div class="price2">
-                        <text class="text2"> <?= $imovel['valor'] ?> </text>
-                    </div>
-
-
-                    <div class="bottom">
-                        <a href="um_imovel.php">
-                            <p class="option-style"> Ver Imóvel </p>
-                        </a>
-                    </div>
-                </div>
                 <?php endif; ?>
-        <?php endif; ?>
+            <?php endif; ?>
         <?php endforeach; ?>
 </body>
 </html>

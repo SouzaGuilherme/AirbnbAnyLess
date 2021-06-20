@@ -13,10 +13,11 @@ function function_alert($message)
     echo "<script>alert('$message');</script>";
 }
 
-if (($_GET['id']) == 1) {
+if (isset($_GET['id'])) {
+    if (($_GET['id']) == 1) {
 
-    function_alert("Reservado com sucesso!!");
-
+        function_alert("Reservado com sucesso!!");
+    }
 }
 ?>
 
@@ -57,7 +58,7 @@ if (($_GET['id']) == 1) {
 
     <?php require_once __DIR__ . '/../assets/pages/footer.php' ?>
 
-    
+
 
 </body>
 
