@@ -43,7 +43,7 @@ if (
 
     ?>
         <div class="alert alert-success">
-            <strong>Parabéns!</strong> Cadastrado com sucesso. <a href="login.php" class="alert-link">Faça o login agora</a>
+            <strong>Dados atualizados com sucesso!</strong>
         </div>
 <?php
 

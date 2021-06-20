@@ -24,7 +24,7 @@ $total_imoveis = $imovelDaoMysql->getTotalImoveis();
 $total_usuarios = $usuarioDaoMysql->getTotalusuarios();
 
 
-$allImoveis = $imovelDaoMysql->findAllImoveisWithCity($filtros);
+$allImoveis = $imovelDaoMysql->findImoveisPaginaInicial($filtros);
 
 ?>
 
@@ -106,8 +106,8 @@ $allImoveis = $imovelDaoMysql->findAllImoveisWithCity($filtros);
 					<tr>
 						<td>
 
-							<?php if (!empty($imovel['url'])) : ?>
-								<img src="assets/images/imoveis/<?php echo $imovel['url']; ?>" height="50" border="0" />
+							<?php if (count($imovelDaoMysql->getFotosImovel($imovel["codigo_imovel"]) ) > 0): ?>
+								<img src="assets/images/imoveis/<?php echo $imovelDaoMysql->getFotosImovel($imovel["codigo_imovel"])[0]['url']; ?>" height="50" border="0" />
 							<?php else : ?>
 								<img src="assets/images/default.jpg" height="50" border="0" />
 							<?php endif; ?>

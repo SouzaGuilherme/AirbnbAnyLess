@@ -25,7 +25,6 @@ class ImovelDaoMysql implements ImovelDAO {
 			$valor = $dictData["valor"],
 			$habilitado = $dictData["habilitado"],
 			$titulo = $dictData["titulo"],
-			$fotos = $dictData["fotos"]
 		);
 
 		$imovel->setCodigoImovel($dictData["codigo_imovel"]);
@@ -36,9 +35,9 @@ class ImovelDaoMysql implements ImovelDAO {
 	public function add(Imovel $imovel) {
 
 		$sql = $this->pdo->prepare("INSERT INTO imoveis (
-            cpf, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, titulo, fotos
+            cpf, numero_seq_end, codigo_cidade, uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, titulo
         ) VALUES (
-            :cpf,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :habilitado, :titulo, :fotos
+            :cpf,:numero_seq_end,:codigo_cidade,:uf,:descricao, :qtd_quartos, :qtd_banheiros, :qtd_salas, :piscina, :vagas_garagem, :valor, :habilitado, :titulo
         );");
 		$sql->bindValue(":numero_seq_end", $imovel->getNumeroSeqEnd());
 		$sql->bindValue(":codigo_cidade", $imovel->getCodigoCidade());
@@ -53,12 +52,11 @@ class ImovelDaoMysql implements ImovelDAO {
 		$sql->bindValue(":valor", $imovel->getValor());
 		$sql->bindValue(":habilitado", $imovel->getHabilitado());
 		$sql->bindValue(":titulo", $imovel->getTitulo());
-		$sql->bindValue(":fotos", $imovel->getFotos());
 		$sql->execute();
 		return true;
 	}
 
-	public function update(Imovel $imovel) {
+	public function update(Imovel $imovel, $fotos) {
 		$sql = $this->pdo->prepare(
 			"UPDATE imoveis SET
 			codigo_imovel = :codigo_imovel,
@@ -74,8 +72,7 @@ class ImovelDaoMysql implements ImovelDAO {
 			vagas_garagem = :vagas_garagem,
 			valor = :valor,
 			habilitado = :habilitado,
-			titulo = :titulo,
-			fotos = :fotos 
+			titulo = :titulo
 			WHERE codigo_imovel = :codigo_imovel;"
 		);
 
@@ -93,8 +90,47 @@ class ImovelDaoMysql implements ImovelDAO {
 		$sql->bindValue(":valor", $imovel->getValor());
 		$sql->bindValue(":habilitado", $imovel->getHabilitado());
 		$sql->bindValue(":titulo", $imovel->getTitulo());
-		$sql->bindValue(":fotos", $imovel->getFotos());
 		$sql->execute();
+
+
+		if(count($fotos) > 0) {
+			for($q=0;$q<count($fotos['tmp_name']);$q++) {
+				$tipo = $fotos['type'][$q];
+				if(in_array($tipo, array('image/jpeg', 'image/png'))) {
+					$tmpname = md5(time().rand(0,9999)).'.jpg';
+					move_uploaded_file($fotos['tmp_name'][$q], 'assets/images/imoveis/'.$tmpname);
+
+					list($width_orig, $height_orig) = getimagesize('assets/images/imoveis/'.$tmpname);
+					$ratio = $width_orig/$height_orig;
+
+					$width = 500;
+					$height = 500;
+
+					if($width/$height > $ratio) {
+						$width = $height*$ratio;
+					} else {
+						$height = $width/$ratio;
+					}
+
+					$img = imagecreatetruecolor($width, $height);
+					if($tipo == 'image/jpeg') {
+						$origi = imagecreatefromjpeg('assets/images/imoveis/'.$tmpname);
+					} elseif($tipo == 'image/png') {
+						$origi = imagecreatefrompng('assets/images/imoveis/'.$tmpname);
+					}
+
+					imagecopyresampled($img, $origi, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+
+					imagejpeg($img, 'assets/images/imoveis/'.$tmpname, 80);
+
+					$sql = $this->pdo->prepare("INSERT INTO imoveis_imagens SET codigo_imovel = :codigo_imovel, url = :url");
+					$sql->bindValue(":codigo_imovel", $imovel->getCodigoImovel());
+					$sql->bindValue(":url", $tmpname);
+					$sql->execute();
+
+				}
+			}
+		}
 
 		return true;
 	}
@@ -121,7 +157,7 @@ class ImovelDaoMysql implements ImovelDAO {
 		}
 	}
 
-	public function findAllImoveisWithCity($filtros) {
+	public function findImoveisPaginaInicial($filtros) {
 		$array = array();
 
 		$filtro_string = array('1=1');
@@ -133,10 +169,11 @@ class ImovelDaoMysql implements ImovelDAO {
 		}
 
 		$sql = $this->pdo->prepare("
-			SELECT `imoveis`.codigo_cidade, codigo_imovel, cpf, titulo,numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, `cidades`.nome FROM `imoveis` 
+			SELECT `imoveis`.codigo_cidade, `imoveis`.codigo_imovel, cpf, titulo,numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, `cidades`.nome FROM `imoveis` 
 			LEFT JOIN `cidades`
 			ON `imoveis`.`codigo_cidade` = `cidades`.`codigo_cidade`
-			WHERE ".implode(' AND ', $filtro_string).";");
+			
+			WHERE habilitado = 1 AND ".implode(' AND ', $filtro_string).";");
 		if(!empty($filtros["city"])){
 			$sql->bindValue(":codigo_cidade", $filtros['city']);
 		}
@@ -157,7 +194,7 @@ class ImovelDaoMysql implements ImovelDAO {
 
 	public function findAllImoveisByCpf($cpf) {
 
-		$sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
+		$sql = $this->pdo->prepare("SELECT `imoveis`.codigo_cidade, `imoveis`.codigo_imovel, cpf, titulo,numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado FROM imoveis WHERE cpf = :cpf");
 		$sql->bindValue(":cpf", $cpf);
 		$sql->execute();
 
@@ -190,7 +227,7 @@ class ImovelDaoMysql implements ImovelDAO {
 
 	public function findByCodigoImovel($codigo_imovel) {
 		if (!empty($codigo_imovel)) {
-			$sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel");
+			$sql = $this->pdo->prepare("SELECT `imoveis`.codigo_cidade, `imoveis`.codigo_imovel, cpf, titulo,numero_seq_end, `imoveis`.uf, descricao, qtd_quartos, qtd_banheiros, qtd_salas, piscina, vagas_garagem, valor, habilitado, url FROM imoveis LEFT JOIN imoveis_imagens ON `imoveis`.codigo_imovel = `imoveis_imagens`.codigo_imovel  WHERE `imoveis`.codigo_imovel = :codigo_imovel");
 			$sql->bindValue(":codigo_imovel", $codigo_imovel);
 			$sql->execute();
 
@@ -254,5 +291,28 @@ class ImovelDaoMysql implements ImovelDAO {
 		$sql = $this->pdo->query("SELECT COUNT(*) as c FROM imoveis");
 		$row = $sql->fetch();
 		return $row["c"];
+	}
+
+	public function getFotosImovel($codigo_imovel){
+		$array = [];
+		if (!empty($codigo_imovel)) {
+			$sql = $this->pdo->prepare("SELECT * FROM imoveis_imagens WHERE codigo_imovel = :codigo_imovel");
+			$sql->bindValue(":codigo_imovel", $codigo_imovel);
+			$sql->execute();
+			
+			if ($sql->rowCount() > 0) {
+				$array = $sql->fetchAll();
+			}
+		}
+		return $array;
+
+	}
+
+	public function removeFotoImovel($codigo_imovel, $url){
+		$sql = $this->pdo->prepare("DELETE FROM imoveis_imagens WHERE codigo_imovel = :codigo_imovel AND url = :url");
+		$sql->bindValue(":codigo_imovel", $codigo_imovel);
+		$sql->bindValue(":url", $url);
+		$sql->execute();
+
 	}
 }

@@ -1,15 +1,19 @@
 <?php require 'pages/header.php'; ?>
 
 <?php
+
+# Imports
 require 'dao/ImovelDaoMysql.php';
 require "dao/EnderecoDaoMysql.php";
 require "dao/CidadeDaoMysql.php";
 require "dao/ReservaDaoMysql.php";
 
+# Criando DAOs
 $imovelDaoMysql = new ImovelDaoMysql($pdo);
 $enderecoDaoMysql = new EnderecoDaoMysql($pdo);
 $cidadeDaoMysql = new CidadeDaoMysql($pdo);
 $reservaDaoMysql = new ReservaDaoMysql($pdo);
+
 
 # Verifica através do GET se existe o imóvel no Database.
 if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
@@ -21,7 +25,7 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
 	exit;
 }
 
-
+# Verificação/Inserção do Imóvel
 if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
 
 	if (!empty($_SESSION["cLogin"])){
@@ -119,6 +123,9 @@ if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
 
 
 $imovel = $imovelDaoMysql->findByCodigoImovel($codigo_imovel);
+$fotosImovel = $imovelDaoMysql->getFotosImovel($codigo_imovel);
+
+
 $endereco = $enderecoDaoMysql->findEnderecoByKeys(
 	$numero_seq_end=$imovel->getNumeroSeqEnd(),
 	$uf=$imovel->getUf(),
@@ -135,20 +142,44 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
         <!-- Fotos do Imóvel: Coluna Esquerda -->
 		<div class="col-sm-5">
 			
-			<div class="carousel slide" data-ride="carousel" id="meuCarousel">
+		<div class="carousel slide" data-ride="carousel" id="meuCarousel">
+		
 				<div class="carousel-inner" role="listbox">
-
-					<?php if (!empty($imovel->getFotos())) : ?>
-                        <img src="assets/images/imoveis/<?php echo $imovel['url']; ?>" height="500" border="0" />
-                    <?php else : ?>
-                        <img src="assets/images/default.jpg" height="500" border="0" />
-                    <?php endif; ?>
+					<?php if (count($fotosImovel) > 0): ?>
+						<?php foreach($fotosImovel as $chave => $foto): ?>
+							
+							<div class="item <?php echo ($chave=='0')?'active':''; ?>">
+								<img src="assets/images/imoveis/<?php echo $foto['url']; ?>" />
+							</div>
+						<?php endforeach; ?>
+					<?php else : ?>
+							<img src="assets/images/default.jpg" height="500" border="0" />
+					<?php endif; ?>
 
 				</div>
 				<a class="left carousel-control" href="#meuCarousel" role="button" data-slide="prev"><span><</span></a>
 				<a class="right carousel-control" href="#meuCarousel" role="button" data-slide="next"><span>></span></a>
 			</div>
 
+			<br/><br/><br/><br/>
+			<!-- Informações sobre Reservas -->
+			<h3><strong>Datas Indisponíveis para Reservas</strong> </h3> <hr/>
+
+			<?php foreach ($reservaDaoMysql->reservasCodigoImovel($_GET["codigo_imovel"]) as $reserva) : ?>
+
+				<h4>
+					<strong>Período:</strong>
+					<span style="color:red">
+						<?php echo $reserva["data_inicial"]." / ".$reserva["data_final"]?>
+					</span>
+				</h4>
+				
+			
+
+
+	
+			<?php endforeach; ?>
+			
 		</div>
 
         <!-- Descrição do Imóvel: Coluna Direita -->

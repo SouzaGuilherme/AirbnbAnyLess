@@ -115,7 +115,6 @@ if (
 			$valor = $valor,
 			$habilitado = $habilitado,
 			$titulo = $titulo,
-			$fotos = $fotos
 		);
 
 		if ($imovelDao->add($imovel)) {

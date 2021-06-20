@@ -176,6 +176,17 @@ class ReservaDaoMysql implements ReservaDAO {
 
     }
 
+    public function removeLocacao($codigo_imovel, $cpf, $data_inicial){
+
+        $sql = $this->pdo->prepare("DELETE FROM reservas WHERE codigo_imovel = :codigo_imovel AND cpf = :cpf AND data_inicial = :data_inicial");
+		$sql->bindValue(":codigo_imovel", $codigo_imovel);
+        $sql->bindValue(":cpf", $cpf);
+        $sql->bindValue(":data_inicial", $data_inicial);
+
+		$sql->execute();
+
+    }
+
 
 
 }

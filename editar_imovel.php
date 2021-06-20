@@ -11,22 +11,15 @@ if (empty($_SESSION['cLogin'])) {
 }
 
 require 'dao/CidadeDaoMysql.php';
-require 'dao/EnderecoDaoMysql.php';
 require 'dao/ImovelDaoMysql.php';
 
-$enderecoDao = new EnderecoDaoMysql($pdo);
 $cidadeDao = new CidadeDaoMysql($pdo);
 $imovelDao = new ImovelDaoMysql($pdo);
 
 
 if (
-	isset($_POST['codigo_cidade']) && !empty($_POST['codigo_cidade'])
-	&& 	isset($_POST['logradouro']) && !empty($_POST['logradouro'])
-	&& 	isset($_POST['numero']) && !empty($_POST['numero'])
-	&& 	isset($_POST['complemento']) && !empty($_POST['complemento'])
-	&& 	isset($_POST['bairro']) && !empty($_POST['bairro'])
-	&& 	isset($_POST['cep']) && !empty($_POST['cep'])
-
+	isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])
+	&& 	isset($_POST['titulo']) && !empty($_POST['titulo'])
 	&& 	isset($_POST['descricao']) && !empty($_POST['descricao'])
 	&& 	isset($_POST['qtd_banheiros']) && !empty($_POST['qtd_banheiros'])
 	&& 	isset($_POST['qtd_quartos']) && !empty($_POST['qtd_quartos'])
@@ -35,15 +28,18 @@ if (
 	&& 	isset($_POST['valor']) && !empty($_POST['valor'])
 	&& 	isset($_POST['habilitado']) && !empty($_POST['habilitado'])
 	&& 	isset($_POST['piscina']) && !empty($_POST['piscina'])
-	&& 	isset($_POST['titulo']) && !empty($_POST['titulo'])
 	) {
-	$codigo_cidade = $_POST['codigo_cidade'];
-	$logradouro = $_POST['logradouro'];
-	$numero = $_POST['numero'];
-	$complemento = $_POST['complemento'];
-	$bairro = $_POST['bairro'];
-	$cep = $_POST['cep'];
-	
+
+
+	if(isset($_FILES['fotos'])) {
+		$fotos = $_FILES['fotos'];
+	} else {
+		$fotos = array();
+	}
+
+
+	# Armazena valores do POST
+	$titulo = $_POST["titulo"];
 	$descricao = $_POST["descricao"];
 	$qtd_banheiros = $_POST["qtd_banheiros"];
 	$qtd_quartos = $_POST["qtd_quartos"];
@@ -51,8 +47,8 @@ if (
 	$vagas_garagem = $_POST["vagas_garagem"];
 	$valor = $_POST["valor"];
 	$habilitado = $_POST["habilitado"];
-	$titulo = $_POST["titulo"];
 	$piscina = $_POST["piscina"];
+
 	if ($habilitado == "sim") {
 		$habilitado = 1;
 	} else{ 	
@@ -65,14 +61,12 @@ if (
 		$piscina = 0;
 	}
 
-	$cidade = $cidadeDao->findByCodeCity($codigo_cidade);
-
+	# Instância Imóvel
 	$imovel = $imovelDao->findByCodigoImovel($_GET["codigo_imovel"]);
+	$cidade = $cidadeDao->findByCodeCity($imovel->getCodigoCidade());
 
-    #$imovel->setCpf($cpf);
-    #$imovel->setNumeroSeqEnd($numero_seq_end);
-    $imovel->setCodigoCidade($codigo_cidade);
-    $imovel->setUf($cidade->getUf());
+	# Atualiza Valores no Objeto
+    $imovel->setTitulos($titulo);
     $imovel->setDescricao($descricao);
     $imovel->setQtdBanheiros($qtd_banheiros);
     $imovel->setQtdQuartos($qtd_quartos);
@@ -81,15 +75,13 @@ if (
     $imovel->setVagasGaragem($vagas_garagem);
     $imovel->setValor($valor);
     $imovel->setHabilidade($habilitado);
-    $imovel->setTitulos($titulo);
-    #$imovel->setFotos($fotos);
 
-
-	if ($imovelDao->update($imovel)){
+	# Atualiza Valores no Database
+	if ($imovelDao->update($imovel, $fotos)){
 
 		?>
 		<div class="alert alert-success">
-			<strong>Parabéns!</strong> Cadastrado com sucesso. <a href="login.php" class="alert-link">Faça o login agora</a>
+			<strong>Dados atualizados com sucesso!</strong>
 		</div>
 		<?php
 
@@ -102,21 +94,13 @@ if (
 
 
 if (isset($_GET["codigo_imovel"]) && !empty($_GET["codigo_imovel"])){
-
 	$imovel = $imovelDao->findByCodigoImovel($_GET["codigo_imovel"]);
-	$endereco = $enderecoDao->findEnderecoByKeys($imovel->getNumeroSeqEnd(), $imovel->getUf(), $imovel->getCodigoCidade());
-	
-
-	
-	# print_r($imovel);
-	# print_r($endereco);
 } else {
 	?>
 	<script type="text/javascript">
 		window.location.href = "meus_imoveis.php";
 	</script>
 	<?php
-
 }
 
 ?>
@@ -136,13 +120,13 @@ if (isset($_GET["codigo_imovel"]) && !empty($_GET["codigo_imovel"])){
 		<!-- Titulo -->
 		<div class="form-group">
 			<label for="titulo">Titulo:</label>
-			<input name="titulo" id="titulo" class="form-control" value="<?php echo $imovel->getTitulo()?>">
+			<input maxlength="200" name="titulo" id="titulo" class="form-control" value="<?php echo $imovel->getTitulo()?>">
 		</div>
 		
 		<!-- Descrição -->
 		<div class="form-group">
 			<label for="descricao">Descrição:</label>
-			<textarea name="descricao" id="descricao" class="form-control"><?php echo $imovel->getDescricao()?></textarea>
+			<textarea maxlength="500" name="descricao" id="descricao" class="form-control"><?php echo $imovel->getDescricao()?></textarea>
 		</div>
 		<!-- Qtd. Banheiros -->
 		<div class="form-group">
@@ -190,6 +174,24 @@ if (isset($_GET["codigo_imovel"]) && !empty($_GET["codigo_imovel"])){
 			<option value="nao" <?php echo ($imovel->getPiscina()==0)?'selected="selected"':'';?>>Não</option>
 			
 			</select>
+		</div>
+		
+		<!-- Adicionar Imagens -->
+		<div class="form-group">
+			<label for="add_foto">Fotos do imóvel:</label>
+			<input type="file" name="fotos[]" multiple /><br/>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Fotos do Imóvel</div>
+				<div class="panel-body">
+					<?php foreach($imovelDao->getFotosImovel($_GET["codigo_imovel"]) as $foto): ?>
+					<div class="foto_item">
+						<img src="assets/images/imoveis/<?php echo $foto['url']; ?>" class="img-thumbnail" border="0" /><br/>
+						<a href="excluir_foto.php?url=<?php echo $foto['url']."&codigo_imovel=".$foto["codigo_imovel"]; ?>" class="btn btn-default">Excluir Imagem</a>
+					</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
 		</div>
 
 		<input type="submit" value="Salvar" class="btn bg-success " />
