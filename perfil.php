@@ -61,10 +61,7 @@ if (
     <!-- Formulário de Cadastrar Usuário -->
     <form method="POST">
 
-        <div class="form-group">
-            <label for="foto-perfil">Foto:</label>
-
-        </div>
+        
 
         <!-- CPF -->
         <div class="form-group">
