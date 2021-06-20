@@ -18,11 +18,11 @@ class CidadeDaoMysql implements CidadeDAO {
     }
 
 
-    public function findByCity($uf, $nome_cidade) {
-        if (!empty($uf AND $nome_cidade)){
-            $sql = $this->pdo->prepare("SELECT * FROM cidades WHERE uf = :uf AND nome = :nome_cidade");
+    public function findByCity($uf, $nome) {
+        if (!empty($uf AND $nome)){
+            $sql = $this->pdo->prepare("SELECT * FROM cidades WHERE uf = :uf AND nome = :nome");
             $sql->bindValue(":uf", $uf);
-            $sql->bindValue(":nome_cidade", $nome_cidade);
+            $sql->bindValue(":nome", $nome);
             $sql->execute();
 
             if ($sql->rowCount() > 0){

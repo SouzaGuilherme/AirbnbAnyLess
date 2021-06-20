@@ -84,15 +84,17 @@ class ReservaDaoMysql implements ReservaDAO {
         }
     }
 
-    public function findAllReservasImovel($codigo_imovel){
+    public function findByCodigoImovel($codigo_imovel){
         $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE codigo_imovel = :codigo_imovel");
         $sql->bindValue(":codigo_imovel", $codigo_imovel);
         $sql->execute();
   
         if ($sql->rowCount() > 0){
-          return $sql->fetchAll();
+            $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+            $reserva = $this->generateReserva($dictData);
+            return $reserva;
         }
-        return NULL;
+       return NULL;
     }
 
     private function lastCodigoReserva(){
