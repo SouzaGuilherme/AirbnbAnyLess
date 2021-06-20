@@ -44,7 +44,7 @@ if (isset($_GET['id']) == 1) {
 
     <div class="options">
         <div class="bottom">
-            <a href="home.php">
+            <a href="agenda.php">
                 <p class="option-style"> Minhas Reservas </p>
             </a>
         </div>

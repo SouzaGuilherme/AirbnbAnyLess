@@ -1,11 +1,11 @@
-.agenda-background{
+.agenda-background {
     background-image: url('/../assets/images/back6.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100%;
 }
 
-.check_in{
+.check_in {
     position: relative;
     left: 5%;
     width: 30px;
@@ -13,15 +13,15 @@
     background-size: cover;
 }
 
-.check_out{
+.check_out {
     position: relative;
-    left:5%;
+    left: 5%;
     width: 30px;
     height: 30px;
     background-size: cover;
 }
 
-.text{
+.text {
     position: absolute;
     width: 320px;
     height: 28px;
@@ -34,38 +34,38 @@
     top: 0px;
 }
 
-.dates-container{
-    margin-top: 10%;
+.dates-container {
+    margin-top: 3%;
     background: rgba(148, 147, 147, 0.5);
     width: 50%;
     margin-left: 25%;
 }
 
-.dates-container:hover{
+.dates-container:hover {
     background: rgba(95, 94, 94, 0.5);
 }
 
-.text-dates{
+.text-dates {
     position: relative;
     font-family: Roboto;
     white-space: nowrap;
     font-size: 24px;
-    left:5%;
+    left: 5%;
     margin-bottom: 25%;
     width: 30px;
     height: 30px;
 }
 
-.titulo{
+.titulo {
     margin-left: 45%;
     margin-top: 5%;
     font-size: 50px;
     font-family: Roboto;
 }
 
-.paragrafo{
+.paragrafo {
     margin-left: 35%;
     margin-top: 5%;
     font-size: 25px;
     font-family: Roboto;
-}   
+}
