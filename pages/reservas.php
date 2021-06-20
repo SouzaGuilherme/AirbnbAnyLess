@@ -4,6 +4,7 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../dao/UsuarioDaoMysql.php';
 require_once __DIR__ . '/../dao/ReservaDaoMysql.php';
 require_once __DIR__ . '/../dao/EnderecoDaoMysql.php';
+require_once __DIR__ . '/../dao/ImovelDaoMysql.php';
 
 if (!isset($_SESSION["token"])) {
     header("Location: login.php");
@@ -13,10 +14,10 @@ if (!isset($_SESSION["token"])) {
 $usuarioDao = new UsuarioDaoMysql($pdo);
 $reservaDao = new ReservaDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
-
-$usuario = $usuarioDao->findByToken($_SESSION["token"]);
+$imovelDao = new ImovelDaoMysql($pdo);
 
 $var = 0;
+$usuario = $usuarioDao->findByToken($_SESSION["token"]);
 ?>
 
 <!DOCTYPE html>
@@ -37,29 +38,31 @@ $var = 0;
 
     <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
 
-    <h1 class="titulo">Sua agenda</h1>
-    <p class="paragrafo"> Aqui temos suas datas de check-in e check-out de suas reservas.</p>
+    <h1 class="titulo">Seus Imóveis</h1>
+    <p class="paragrafo"> Aqui temos suas datas de check-in e check-out dos seus imoveis reservados.</p>
 
     <div class="reservas-container">
-        <?php foreach ($reservaDao->findAllReservas($usuario->getCPF()) as $reservas) : ?>
-            <?php $var=$var+1; ?>
-            <?php ?>
+        <?php foreach ($imovelDao->findAllByCPFImoveis($usuario->getCpf()) as $imovel): ?>
+        <?php $var=$var+1; ?>
+            <?php foreach ($reservaDao->findAllReservasImovel($imovel['codigo_imovel']) as $reservas) : ?>
+                <?php ?>
 
-            <div class="dates-container">
-                <div>
-                    <text class="text-dates"> Reserva: <?php print($var) ?></text>
-                </div>
-                <div class="check_in">
-                    <div class="text-dates">Check in:</div>
-                    <text class="text"> <?= $reservas['data_inicial'] ?> </text>
+                <div class="dates-container">
+                   <div>
+                       <text class="text-dates"> Residência: <?php print($var) ?></text>
+                   </div>
+                    <div class="check_in">
+                        <div class="text-dates">Check in:</div>
+                        <text class="text"> <?= $reservas['data_inicial'] ?> </text>
+                    </div>
+
+                    <div class="check_out">
+                        <div class="text-dates">Check out:</div>
+                        <text class="text"> <?= $reservas['data_final'] ?> </text>
+                    </div>
                 </div>
 
-                <div class="check_out">
-                    <div class="text-dates">Check out:</div>
-                    <text class="text"> <?= $reservas['data_final'] ?> </text>
-                </div>
-            </div>
-
+            <?php endforeach; ?>
         <?php endforeach; ?>
     </div>
 </body>

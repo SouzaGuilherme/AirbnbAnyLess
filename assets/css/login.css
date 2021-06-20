@@ -4,7 +4,8 @@
     margin: 0;
     padding: 0;
 }
-.containers-main{
+
+.containers-main {
     background-image: url('/../assets/images/back5.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -120,7 +121,6 @@ form .input {
     border: 0;
     background-color: #EEE;
     border-radius: 10px;
-    padding: 15px;
     margin-bottom: 10px;
 }
 
@@ -140,7 +140,6 @@ form .button {
     border-radius: 52px;
     outline: 0;
     border: 0;
-
 }
 
 form .button:hover {

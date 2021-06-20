@@ -76,7 +76,7 @@ if ($cidade){
             $input_habilitado
         );
         $imovelDao->add($imovel);
-        header("Location: ".$base_url."/pages/home.php");
+        header("Location: ".$base_url."/pages/owner.php");
         return true;
     }
 }
