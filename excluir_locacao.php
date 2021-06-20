@@ -14,13 +14,13 @@ $reservaDaoMysql = new ReservaDaoMysql($pdo);
 if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel']) && isset($_GET['cpf']) && !empty($_GET['cpf'] && isset($_GET['data_inicial']) && !empty($_GET['data_inicial']))) {
 
 
-	$date1 = strtotime("NOW"); 
-	$date2 = strtotime($_GET['data_inicial']); 
-	$diff = abs($date2 - $date1); 
-	$years = floor($diff / (365*60*60*24)); 
-	$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
-	$days = floor(($diff - $years * 365*60*60*24 -  $months*30*60*60*24)/ (60*60*24));
-	if ($days >= 3) {
+	$date1 =  date_create_from_format('Y-m-d', date("Y-m-d")); 
+	$date2 = date_create_from_format('Y-m-d', date($_GET['data_inicial'])); 
+
+	$diff = date_diff($date1, $date2);	
+	#print_r($diff)."<br/>";
+	#echo $diff->d."<br/>";
+	if ($diff->y > 0 || $diff->m > 0 || $diff->d > 3) {
 		$reservaDaoMysql->removeLocacao($_GET['codigo_imovel'], $_GET['cpf'], $_GET['data_inicial']);
 		header("Location: minhas_reservas.php");
 	} else {
