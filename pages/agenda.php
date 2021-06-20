@@ -37,18 +37,28 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
 
     <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
 
-    <?php foreach ($reservaDao->findAllReservas($usuario->getCPF()) as $reservas) : ?>
-        <?php ?>
-            <div class="check_in">
-                <text class="text"> <?= $reservas['data_inicial'] ?> </text>
+    <h1 class="titulo">Sua agenda</h1>
+    <p class="paragrafo"> Aqui temos suas datas de check-in e check-out de suas reservas.</p>
+
+    <div class="reservas-container">
+        <?php foreach ($reservaDao->findAllReservas($usuario->getCPF()) as $reservas) : ?>
+            <?php ?>
+
+            <div class="dates-container">
+
+                <div class="check_in">
+                    <div class="text-dates">Check in:</div>
+                    <text class="text"> <?= $reservas['data_inicial'] ?> </text>
+                </div>
+                
+                <div class="check_out">
+                    <div class="text-dates">Check out:</div>
+                    <text class="text"> <?= $reservas['data_final'] ?> </text>
+                </div>
             </div>
 
-            <div class="check_out">
-                <text class="text"> <?= $reservas['data_final'] ?> </text>
-            </div>
-
-    <?php endforeach; ?>
-
+        <?php endforeach; ?>
+    </div>    
 </body>
 
 </html>
