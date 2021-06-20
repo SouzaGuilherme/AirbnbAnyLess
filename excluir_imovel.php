@@ -54,11 +54,11 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
 						<?php if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'] && $usuario)) : ?>
 							
 							<?php if ($usuario->getTipoUsuario() == "AMBOS") : ?>
-								<li><a href="minhas_locacoes.php">Minhas Locações</a></li>
+								<li><a href="minhas_reservas.php">Minhas Locações</a></li>
 								<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
 
 							<?php elseif  ($usuario->getTipoUsuario() == "LOCATARIO"): ?>
-								<li><a href="minhas_locacoes.php">Minhas Locações</a></li>
+								<li><a href="minhas_reservas.php">Minhas Locações</a></li>
 
 							<?php elseif  ($usuario->getTipoUsuario() == "PROPRIETARIO"): ?>
 								<li><a href="meus_imoveis.php">Meus Imóveis</a></li>

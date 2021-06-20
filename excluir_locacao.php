@@ -22,7 +22,7 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel']) && isset($_GE
 	$days = floor(($diff - $years * 365*60*60*24 -  $months*30*60*60*24)/ (60*60*24));
 	if ($days >= 3) {
 		$reservaDaoMysql->removeLocacao($_GET['codigo_imovel'], $_GET['cpf'], $_GET['data_inicial']);
-		header("Location: minhas_locacoes.php");
+		header("Location: minhas_reservas.php");
 	} else {
 		?>
 		<html>
@@ -59,11 +59,11 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel']) && isset($_GE
 						<?php if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'] && $usuario)) : ?>
 							
 							<?php if ($usuario->getTipoUsuario() == "AMBOS") : ?>
-								<li><a href="minhas_locacoes.php">Minhas Locações</a></li>
+								<li><a href="minhas_reservas.php">Minhas Locações</a></li>
 								<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
 
 							<?php elseif  ($usuario->getTipoUsuario() == "LOCATARIO"): ?>
-								<li><a href="minhas_locacoes.php">Minhas Locações</a></li>
+								<li><a href="minhas_reservas.php">Minhas Locações</a></li>
 
 							<?php elseif  ($usuario->getTipoUsuario() == "PROPRIETARIO"): ?>
 								<li><a href="meus_imoveis.php">Meus Imóveis</a></li>
@@ -89,7 +89,7 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel']) && isset($_GE
 					Este imóvel não pode ser desalocado, no mínimo é necessário realizar o aviso com 3 dias de antecedência.
 
 				</div>
-				<a href="minhas_locacoes.php" class="btn btn-lg btn-primary">Voltar</a>
+				<a href="minhas_reservas.php" class="btn btn-lg btn-primary">Voltar</a>
 			</div>		
 			<div class="col-sm-3"></div>					
 
