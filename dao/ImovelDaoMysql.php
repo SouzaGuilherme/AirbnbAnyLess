@@ -186,6 +186,7 @@ class ImovelDaoMysql implements ImovelDAO {
       if ($sql->rowCount() > 0){
         return $sql->fetchAll();
       }
+      return NULL;
     }
 
     public function findAllByAll($codigo_cidade, $uf, $data_inicial, $data_final, $qtd_quartos, $valor){

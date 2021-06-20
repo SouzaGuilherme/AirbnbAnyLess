@@ -70,46 +70,48 @@ if (isset($_GET['ids'])) {
         </div>
     </div>
 
-    <?php foreach ($imovelDao->findAllByCPFImoveis($usuario->getCPF()) as $imovel) : ?>
-        <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end']) ?>
+    <?php if ($imovelDao->findAllByCPFImoveis($usuario->getCPF())!=NULL) : ?>
+        <?php foreach ($imovelDao->findAllByCPFImoveis($usuario->getCPF()) as $imovel) : ?>
+            <?php $endereco = $enderecoDao->findByNumeroSeqEnd($imovel['numero_seq_end']) ?>
 
-        <div class="container-imovel">
-            <div class="image">
-            </div>
+            <div class="container-imovel">
+                <div class="image">
+                </div>
 
-            <div class="city">
-                <text class="text"> <?= $imovel['codigo_cidade']; ?> </text>
-            </div>
+                <div class="city">
+                    <text class="text"> <?= $imovel['codigo_cidade']; ?> </text>
+                </div>
 
-            <div class="state">
-                <text class="text"> <?= $imovel['uf']; ?> </text>
-            </div>
+                <div class="state">
+                    <text class="text"> <?= $imovel['uf']; ?> </text>
+                </div>
 
-            <div class="road">
-                <text class="text"> <?= $endereco->getLogradouro() ?>, <?= $endereco->getNumero() ?></text>
-            </div>
+                <div class="road">
+                    <text class="text"> <?= $endereco->getLogradouro() ?>, <?= $endereco->getNumero() ?></text>
+                </div>
 
-            <div class="price">
-                <text class="text"> <?= $imovel['valor'] ?> </text>
-            </div>
+                <div class="price">
+                    <text class="text"> <?= $imovel['valor'] ?> </text>
+                </div>
 
-            <div class="options2">
-                <form method="GET" action="imovel_edit.php">
-                    <input class="bottom" type="hidden" name="id" value="<?= $imovel['codigo_imovel']; ?>">
-                    <button class="bottom2">
-                        <text class="color">Editar</text></button>
-                </form>
-
-                <div>
-                    <form method="GET" action="<?= $base_url; ?>/pages/actions/imovel_remove.php">
-
-                        <input class="bottom" type="hidden" name="ids" value="<?= $imovel['codigo_imovel']; ?>">
-                        <button class="bottom2"> <text class="color">Remover</text></button></button>
+                <div class="options2">
+                    <form method="GET" action="imovel_edit.php">
+                        <input class="bottom" type="hidden" name="id" value="<?= $imovel['codigo_imovel']; ?>">
+                        <button class="bottom2">
+                            <text class="color">Editar</text></button>
                     </form>
+
+                    <div>
+                        <form method="GET" action="<?= $base_url; ?>/pages/actions/imovel_remove.php">
+
+                            <input class="bottom" type="hidden" name="ids" value="<?= $imovel['codigo_imovel']; ?>">
+                            <button class="bottom2"> <text class="color">Remover</text></button></button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </body>
 
 </html>
