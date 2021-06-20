@@ -38,7 +38,7 @@ if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
 				$end_date = date($_POST['end_date']);
 				
 
-				echo $start_date; echo $end_date;
+				
 
 				if ($start_date <= $end_date){
 					
@@ -183,7 +183,7 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
 		</div>
 
         <!-- Descrição do Imóvel: Coluna Direita -->
-		<div class="col-sm-7">
+		<div class="col-sm-5">
 			<h3><strong><?php echo $imovel->getTitulo(); ?></strong></h3>
 			<hr/>
 			<p><?php echo $imovel->getDescricao(); ?></p>
@@ -238,6 +238,9 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
 
 		
 
+		</div>
+
+		<div class="col-sm-2">
 		</div>
 	</div>
 </div>

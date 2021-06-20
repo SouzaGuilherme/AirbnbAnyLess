@@ -107,8 +107,8 @@ class ReservaDaoMysql implements ReservaDAO {
 
             foreach ($reservasImovel as $reserva) {
                
-                if (date($date_start) >= date($reserva["data_inicial"]) && date($date_end) <= date($reserva["data_final"])) {
-                    echo "   True</br>";
+                if (date($date_start) >= date($reserva["data_inicial"]) && date($date_start) <= date($reserva["data_final"])) {
+                    
                     return True;
                 }
             }
