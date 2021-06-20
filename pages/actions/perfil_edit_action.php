@@ -61,7 +61,7 @@ $cidade = $cidadeDAO->findByCity($input_siglaUF, $input_nome_cidade);
                     $usuario->getToken(),
                 );
                 $usuarioDao->update($usuarioNew);
-                header("Location: ".$base_url."/pages/home.php");
+                header("Location: ".$base_url."/pages/owner.php");
                 return true;
                 exit;
             }     

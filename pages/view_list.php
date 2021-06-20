@@ -43,12 +43,12 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
 
     <div class="options-component">
         <form method="POST" action="<?= $base_url; ?>/pages/view_list.php">
-            <input type="text" class="city" placeholder="Cidade" name="city">
-            <input type="text" class="country" placeholder="Estado" name="country">
-            <input type="date" class="start-date" placeholder="Check-in" name="start-date">
-            <input type="date" class="end-date" placeholder="Check-out" name="end-date">
-            <input type="text" class="people" placeholder="Nº de Quartos" name="people">
-            <input type="text" class="price" placeholder="Preço" name="price">
+            <input type="text" required class="city" placeholder="Cidade" name="city">
+            <input type="text" required class="country" placeholder="Estado" name="country">
+            <input type="date" required  class="start-date" placeholder="Check-in" name="start-date">
+            <input type="date" required class="end-date" placeholder="Check-out" name="end-date">
+            <input type="text" required class="people" placeholder="Nº de Quartos" name="people">
+            <input type="text" required class="price" placeholder="Preço" name="price">
             <input required class="find" type="submit" value="Procurar" />
         </form>
     </div>
