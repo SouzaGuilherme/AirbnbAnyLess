@@ -15,7 +15,7 @@ $reservaDao = new ReservaDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 
 $usuario = $usuarioDao->findByToken($_SESSION["token"]);
-if($usuario->getTipoUsuario()=="PROPRIETARIO"){
+if ($usuario->getTipoUsuario() == "PROPRIETARIO") {
     header("Location: " . $base_url . "/pages/owner.php?id=2");
 }
 $var = 0;
@@ -43,26 +43,29 @@ $var = 0;
     <p class="paragrafo"> Aqui temos suas datas de check-in e check-out de suas reservas.</p>
 
     <div class="reservas-container">
-        <?php foreach ($reservaDao->findAllReservas($usuario->getCPF()) as $reservas) : ?>
-            <?php $var = $var + 1; ?>
-            <?php ?>
+        <?php if ($reservaDao->findAllReservas($usuario->getCPF()) != NULL) : ?>
 
-            <div class="dates-container">
-                <div>
-                    <text class="text-dates"> Reserva: <?php print($var) ?></text>
-                </div>
-                <div class="check_in">
-                    <div class="text-dates">Check in:</div>
-                    <text class="text"> <?= $reservas['data_inicial'] ?> </text>
+            <?php foreach ($reservaDao->findAllReservas($usuario->getCPF()) as $reservas) : ?>
+                <?php $var = $var + 1; ?>
+                <?php ?>
+
+                <div class="dates-container">
+                    <div>
+                        <text class="text-dates"> Reserva: <?php print($var) ?></text>
+                    </div>
+                    <div class="check_in">
+                        <div class="text-dates">Check in:</div>
+                        <text class="text"> <?= $reservas['data_inicial'] ?> </text>
+                    </div>
+
+                    <div class="check_out">
+                        <div class="text-dates">Check out:</div>
+                        <text class="text"> <?= $reservas['data_final'] ?> </text>
+                    </div>
                 </div>
 
-                <div class="check_out">
-                    <div class="text-dates">Check out:</div>
-                    <text class="text"> <?= $reservas['data_final'] ?> </text>
-                </div>
-            </div>
-
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </body>
 

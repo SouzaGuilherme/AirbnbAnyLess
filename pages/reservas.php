@@ -42,28 +42,34 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
     <p class="paragrafo"> Aqui temos suas datas de check-in e check-out dos seus imoveis reservados.</p>
 
     <div class="reservas-container">
-        <?php foreach ($imovelDao->findAllByCPFImoveis($usuario->getCpf()) as $imovel): ?>
-        <?php $var=$var+1; ?>
-            <?php foreach ($reservaDao->findAllReservasImovel($imovel['codigo_imovel']) as $reservas) : ?>
-                <?php ?>
+        <?php if ($imovelDao->findAllByCPFImoveis($usuario->getCpf()) != NULL) : ?>
 
-                <div class="dates-container">
-                   <div>
-                       <text class="text-dates"> Residência: <?php print($var) ?></text>
-                   </div>
-                    <div class="check_in">
-                        <div class="text-dates">Check in:</div>
-                        <text class="text"> <?= $reservas['data_inicial'] ?> </text>
-                    </div>
+            <?php foreach ($imovelDao->findAllByCPFImoveis($usuario->getCpf()) as $imovel) : ?>
+                <?php $var = $var + 1; ?>
+                <?php if ($reservaDao->findAllReservasImovel($imovel['codigo_imovel']) != NULL) : ?>
 
-                    <div class="check_out">
-                        <div class="text-dates">Check out:</div>
-                        <text class="text"> <?= $reservas['data_final'] ?> </text>
-                    </div>
-                </div>
+                    <?php foreach ($reservaDao->findAllReservasImovel($imovel['codigo_imovel']) as $reservas) : ?>
+                        <?php ?>
 
+                        <div class="dates-container">
+                            <div>
+                                <text class="text-dates"> Residência: <?php print($var) ?></text>
+                            </div>
+                            <div class="check_in">
+                                <div class="text-dates">Check in:</div>
+                                <text class="text"> <?= $reservas['data_inicial'] ?> </text>
+                            </div>
+
+                            <div class="check_out">
+                                <div class="text-dates">Check out:</div>
+                                <text class="text"> <?= $reservas['data_final'] ?> </text>
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
+                <?php endif; ?>
             <?php endforeach; ?>
-        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </body>
 
