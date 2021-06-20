@@ -75,12 +75,19 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
 				</div>
 			</nav>
 
+			<div class="row">
+
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				
 				<div class="alert alert-danger">
 					Este imóvel não pode ser excluido, pois está alocado no momento!
 
 				</div>
 				<a href="meus_imoveis.php" class="btn btn-lg btn-primary">Voltar</a>
-
+			</div>
+			<div class="col-sm-3"></div>
+			</div>
 
 
 	
@@ -93,5 +100,3 @@ if(isset($_GET['codigo_imovel']) && !empty($_GET['codigo_imovel'])) {
 		
 	}
 }
-# header("Location: meus_imoveis.php");
-
