@@ -87,6 +87,7 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
                         <text class="text2"> <?= $imovel['valor'] ?> </text>
                     </div>
 
+
                     <div class="bottom">
                         <a href="um_imovel.php">
                             <p class="option-style"> Ver Imóvel </p>

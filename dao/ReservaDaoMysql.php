@@ -61,7 +61,7 @@ class ReservaDaoMysql implements ReservaDAO {
  
             if ($sql->rowCount() > 0){
                  $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                 $reserva = new Reserva(
+                 $reserva = new Reserva(NULL,
                     $dictData['codigo_imovel'],
                     $dictData['cpf'],
                     $dictData['data_inicial'],
@@ -94,6 +94,7 @@ class ReservaDaoMysql implements ReservaDAO {
             $reserva = $this->generateReserva($dictData);
             return $reserva;
         }
+       return NULL;
     }
 
     private function lastCodigoReserva(){

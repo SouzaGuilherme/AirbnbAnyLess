@@ -200,6 +200,19 @@ class ImovelDaoMysql implements ImovelDAO {
         return $sql->fetchAll();
       }
     }
+  
+  
+    public function findAllByCpf($cpf){
+
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
+      $sql->bindValue(":cpf", $cpf);
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+    }
+
 
     public function findByPeople($qtd_quartos){
       $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE qtd_quartos = :qtd_quartos");
@@ -208,6 +221,18 @@ class ImovelDaoMysql implements ImovelDAO {
 
       if ($sql->rowCount() > 0){
         return $sql->fetchAll();
+      }
+    }
+
+    public function findByCodigo_imovel($codigo_imovel){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel");
+      $sql->bindValue(":codigo_imovel", $codigo_imovel);
+      $sql->execute();
+
+      $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+      $imovel = $this->generateImovel($dictData);
+      if ($sql->rowCount() > 0){
+        return $imovel;
       }
     }
 

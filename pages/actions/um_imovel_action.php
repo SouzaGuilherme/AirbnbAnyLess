@@ -23,3 +23,6 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
 
 $reserva = new Reserva (-1, 2, $usuario->getCpf(), $check_in, $check_out);
 $reservaDao->add($reserva);
+
+header("Location: ".$base_url."/pages/home.php?id=1");
+exit;

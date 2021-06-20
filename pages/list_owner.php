@@ -9,6 +9,13 @@ $imovelDao = new ImovelDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 $usuarioDao = new UsuarioDaoMysql($pdo);
 
+function function_alert($message)
+{
+
+    // Display the alert box 
+    echo "<script>alert('$message');</script>";
+}
+
 if (!isset($_SESSION["token"])) {
     header("Location: home.php");
     exit;
@@ -20,6 +27,13 @@ if ($usuario->getTipoUsuario() == "LOCATARIO") {
 
     header("Location: owner.php?id=1");
     exit;
+}
+
+if($_GET['ids']==1){
+    function_alert("Você tem reservas neste imóvel, não é possivel apaga-lo!");
+}
+else if($_GET['ids']==2){
+    function_alert("Imóvel Removido com sucesso!");
 }
 
 ?>
@@ -43,7 +57,7 @@ if ($usuario->getTipoUsuario() == "LOCATARIO") {
 
     <div class="options">
         <div class="bottom">
-            <a href="home.php">
+            <a href="reservas.php">
                 <p class="option-style"> Ver Agendas </p>
             </a>
         </div>
