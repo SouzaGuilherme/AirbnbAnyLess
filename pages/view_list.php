@@ -32,7 +32,7 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
     <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
 
     <div class="options-component">
-
+    <form method="POST" action="<?= $base_url; ?>/pages/actions/cadastrar_usuario_action.php">
         <input type="text" class="city" placeholder="Cidade" name="city" >
         <input type="text" class="country" placeholder="País" name="country">
         <input type="text" class="start-date" placeholder="Check-in" name="start-date">
@@ -44,7 +44,7 @@ $usuario = $usuarioDao->findByToken($_SESSION["token"]);
         <?php 
         
         ?>
-
+    </form>
     </div>
 
 </body>

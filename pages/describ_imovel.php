@@ -10,6 +10,8 @@ header("Location: login.php");
 exit;
 }
 
+$codigo_imovel = $_GET['ids'];
+
 ?>
 
 <!DOCTYPE html>
@@ -34,19 +36,19 @@ exit;
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css" />
 </head>
 
-<body class="container-background">
+<body class="container-backgrounds">
     <?php require_once __DIR__ . '/../assets/pages/header_application.php' ?>
-    <?php $imovel = $imovelDao->findByCodigoImovel(1) ?>
+    <?php $imovel = $imovelDao->findByCodigoImovel($codigo_imovel) ?>
     <?php ($imovel->getPiscina() === 1) ? $foo = "sim" : $foo = "nao"; ?>
     
     <div class="container-infos">
         <div class = "imovel-infos">
         <p style = "font-weight: bold";>Informações sobre o Imóvel <br/> 
-        <p> <span class="tab1"></span> Quartos   <span class="tab1"></span> &ensp;&nbsp; <?= $imovel->getQtdQuartos() ?> <br/> </p>
-        <p> <span class="tab1"></span> Salas     <span class="tab2"></span> <?= $imovel->getQtdSalas() ?> <br/> </p>
-        <p> <span class="tab1"></span> Banheiros <span class="tab1"></span> <?= $imovel->getQtdBanheiros() ?> <br/></p>
-        <p> <span class="tab1"></span> Piscina   <span class="tab1"></span> &ensp;&ensp; <?= $foo; ?> <br/> </p>
-        <p> <span class="tab1"></span> Garagem   <span class="tab1"></span> &ensp;<?= $imovel->getVagasGaragem()?> <br/> </p>
+        <p> <span class="tab1"></span> Quartos:   <span class="tab1"></span> &ensp;&nbsp; <?= $imovel->getQtdQuartos() ?> <br/> </p>
+        <p> <span class="tab1"></span> Salas:     <span class="tab2"></span> <?= $imovel->getQtdSalas() ?> <br/> </p>
+        <p> <span class="tab1"></span> Banheiros: <span class="tab1"></span> <?= $imovel->getQtdBanheiros() ?> <br/></p>
+        <p> <span class="tab1"></span> Piscina:   <span class="tab1"></span> &ensp;&ensp; <?= $foo; ?> <br/> </p>
+        <p> <span class="tab1"></span> Garagem:   <span class="tab1"></span> &ensp;<?= $imovel->getVagasGaragem()?> <br/> </p>
     </div>    
 
         <div class="container-describe">

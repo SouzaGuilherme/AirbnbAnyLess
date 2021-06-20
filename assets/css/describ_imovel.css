@@ -1,13 +1,12 @@
 @import 'defaults.css';
-
-.container-background{
-    background-image: url(/assets/images/background1.png);
+.container-backgrounds {
+    background-image: url(/assets/images/isaac-quesada-WWMY9sRuP0c-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     background-attachment: fixed;
 }
 
-.container-infos{
+.container-infos {
     position: absolute;
     height: 52.58%;
     width: 81.05%;
@@ -16,33 +15,31 @@
     background: rgba(196, 196, 196, 0.92);
 }
 
-.imovel-infos{
+.imovel-infos {
     position: absolute;
     width: 302px;
     height: 28px;
     left: 5%;
     top: 20%;
-    
     font-family: Roboto;
     font-style: normal;
     font-size: 24px;
     line-height: 28px;
-    
     color: #000000;
 }
 
-.container-describe{
+.container-describe {
     position: absolute;
     height: 90%;
     width: 60%;
     right: 5%;
-    top:5%;
+    top: 5%;
     bottom: 5%;
     background: #FFFFFF;
     border-radius: 30px;
 }
 
-.image-user{
+.image-user {
     position: absolute;
     width: 140px;
     height: 141px;
@@ -52,18 +49,16 @@
     border-radius: 100px;
 }
 
-.describe{
+.describe {
     position: absolute;
     width: 57.22%;
     height: 91.25%;
     right: 9.24%;
     top: 5%;
-    
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 21px;
-    
     color: #000000;
 }
