@@ -6,7 +6,7 @@
     <div class="options-component">
 
         <input type="text" class="city" placeholder="Cidade">
-        <input type="text" class="country" placeholder="País">
+        <input type="text" class="country" placeholder="Estado">
         <input type="text" class="start-date" placeholder="Check-in">
         <input type="text" class="end-date" placeholder="Check-out">
         <input type="text" class="people" placeholder="Nº de Quartos">
