@@ -1,0 +1,187 @@
+.container-background2 {
+    position: relative;
+    background-image: url(/assets/images/image45.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.check_in {
+    position: relative;
+    left: 50%;
+    bottom: 86%;
+    width: 30px;
+    height: 30px;
+}
+
+.bottom2 {
+    padding: 5px;
+    width: 150px;
+    height: 35px;
+    background: black;
+    border-radius: 52px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.calendary {
+    position: relative;
+    width: 174px;
+    height: 41px;
+    left: 56%;
+    bottom: 60%;
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.options2 {
+    position: relative;
+    width: 350px;
+    left: 54%;
+    bottom: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.option-style {
+    color: white;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.text-style {
+    color: black;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.bottom:hover {
+    background-color: #373b42;
+    transition: all 0.5s ease-in;
+    font-family: Roboto;
+}
+
+.bottom2:hover {
+    background-color: #373b42;
+    transition: all 0.5s ease-in;
+    font-family: Roboto;
+}
+
+.container-imovel {
+    position: relative;
+    margin-top: 10%;
+    width: 1200px;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(196, 196, 196, 0.5);
+}
+
+.image {
+    width: 55%;
+    height: 98%;
+    background-size: cover;
+    background-image: url(../images/croissant-matzZGQk4o4-unsplash.jpg);
+    border-radius: 30px;
+}
+
+.text {
+    position: absolute;
+    width: 320px;
+    height: 28px;
+    left: 130%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.city {
+    position: relative;
+    left: 58%;
+    bottom: 92%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/cidade.png);
+}
+
+.state {
+    position: relative;
+    left: 58%;
+    bottom: 86%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/image13.png);
+}
+
+.road {
+    position: relative;
+    left: 58%;
+    bottom: 81%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/localization.png);
+}
+
+.price {
+    position: relative;
+    left: 58%;
+    bottom: 77%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-image: url(../images/dinheiro.png);
+}
+
+.check {
+    position: relative;
+    left: 26%;
+    bottom: 70%;
+    display: flex;
+    grid-gap: 10px;
+}
+
+.check form input {
+    padding: 10px 15px;
+    border-radius: 30px;
+    outline: 0;
+    border: 0;
+}
+
+.check form .button-group {
+    display: flex;
+    grid-gap: 10px;
+}
+
+.check form {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+}
+
+.check form .option-style.button-submit {
+    position: relative;
+    left: 55%;
+    bottom: -15px;
+    width: 100px;
+    padding: 5px;
+    width: 150px;
+    height: 35px;
+    background: black;
+    border-radius: 52px;
+    color: white;
+}

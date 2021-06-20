@@ -45,7 +45,7 @@ if ($cidade){
     $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
 
     if (!$endereco) {
-        $endereco = new Endereco(
+        $endereco = new Endereco(NULL,
             $cidade->getCodigoCidade(),
             $cidade->getUf(),
             $input_logradouro,
@@ -61,7 +61,7 @@ if ($cidade){
 
         $endereco = $enderecoDao->findEndereco($cidade->getCodigoCidade(), $cidade->getUf(), $input_numero, $input_cep);
 
-        $imovel = new Imovel(            
+        $imovel = new Imovel(NULL,            
             $usuario->getCpf(),
             $endereco->getNumeroSeqEnd(),
             $cidade->getCodigoCidade(),
@@ -76,10 +76,10 @@ if ($cidade){
             $input_habilitado
         );
         $imovelDao->add($imovel);
-        header("Location: ".$base_url."/pages/home.php");
+        header("Location: ".$base_url."/pages/owner.php");
         return true;
     }
 }
 
-header("Location: ".$base_url."/pages/cadastrar_imovel.php");
+header("Location: ".$base_url."/pages/register_home.php");
 exit;

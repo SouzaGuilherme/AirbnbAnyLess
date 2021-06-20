@@ -8,7 +8,8 @@ class Reserva {
     private $data_inicial;
     private $data_final;
 
-    public function __construct($cpf, $data_inicial, $data_final){ 
+    public function __construct($codigo_reserva, $codigo_imovel, $cpf, $data_inicial, $data_final){ 
+        $this->codigo_reserva = -1;
         $this->codigo_imovel = $codigo_imovel;
         $this->cpf = $cpf;
         $this->data_inicial = $data_inicial;

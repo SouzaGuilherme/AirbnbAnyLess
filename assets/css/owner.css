@@ -1,0 +1,85 @@
+.container-background1{
+    background-image: url(/assets/images/owner_back.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: local;
+}
+
+.user-image{
+    width: 200px;
+    height: 203px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    background: url(/assets/images/image27.png);
+    border-radius: 100px;
+}
+
+.settings{
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin-top: 11%;
+    margin-left: 10%;
+    background: url(/assets/images/settings.png);
+}
+
+.user-name{
+    width: 419px;
+    height: 40px;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.user-name-style{
+    font-family: Roboto;
+    font-style: normal;
+    padding: 6px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: #000000;
+}
+
+.options{
+    width: 850px;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.bottom{
+    padding: 5px;
+    width: 244px;
+    height: 35px;
+    background: black;
+    border-radius: 52px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.option-style{
+    color: white;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+
+a:link 
+{ 
+ text-decoration:none; 
+} 
+
+.bottom:hover{
+    background-color: #373b42;
+    transition: all 0.5s ease-in;
+    font-family: Roboto;
+}

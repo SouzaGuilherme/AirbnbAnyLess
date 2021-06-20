@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Reserva.php';
+require __DIR__ .  '/../models/Reserva.php';
 
 
 class ReservaDaoMysql implements ReservaDAO {
@@ -7,6 +7,17 @@ class ReservaDaoMysql implements ReservaDAO {
     
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
+    }
+
+    private function generateReserva($dictData) {
+        return new Reserva(
+            $dictData['codigo_reserva'],
+            $dictData['codigo_imovel'],
+            $dictData['cpf'],
+            $dictData['data_inicial'],
+            $dictData['data_final'],
+        );
+        
     }
 
     public function add(Reserva $reserva) {
@@ -61,7 +72,7 @@ class ReservaDaoMysql implements ReservaDAO {
  
             if ($sql->rowCount() > 0){
                  $dictData = $sql->fetch(PDO::FETCH_ASSOC);
-                 $reserva = new Reserva(
+                 $reserva = new Reserva(NULL,
                     $dictData['codigo_imovel'],
                     $dictData['cpf'],
                     $dictData['data_inicial'],
@@ -73,7 +84,45 @@ class ReservaDaoMysql implements ReservaDAO {
         }
         return false;
      }
-      
+    
+    public function findAllReservas($cpf){
+        $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE cpf = :cpf");
+        $sql->bindValue(":cpf", $cpf);
+        $sql->execute();
+  
+        if ($sql->rowCount() > 0){
+          return $sql->fetchAll();
+        }
+    }
+
+    public function findByCodigoImovel($codigo_imovel){
+        if (!empty($codigo_imovel)){
+            $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE codigo_imovel = :codigo_imovel");
+            $sql->bindValue(":codigo_imovel", $codigo_imovel);
+            $sql->execute();
+    
+            if ($sql->rowCount() > 0){
+                $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+                $reserva = $this->generateReserva($dictData);
+                return $reserva;
+            }
+        }
+       return NULL;  
+    }
+
+    public function findAllByCodigoImovel($codigo_imovel){
+        if (!empty($codigo_imovel)){
+            $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE codigo_imovel = :codigo_imovel");
+            $sql->bindValue(":codigo_imovel", $codigo_imovel);
+            $sql->execute();
+    
+            if ($sql->rowCount() > 0){
+                return $sql->fetchAll();
+            }
+        }
+       return NULL;  
+    }
+
     private function lastCodigoReserva(){
         $sql = $this->pdo->prepare("SELECT MAX(codigo_reserva) FROM reservas");
         $sql->execute();
@@ -83,4 +132,17 @@ class ReservaDaoMysql implements ReservaDAO {
        }
 
     }
+
+
+    public function findAllReservasImovel($codigo_imovel){
+        $sql = $this->pdo->prepare("SELECT * FROM reservas WHERE codigo_imovel = :codigo_imovel");
+        $sql->bindValue(":codigo_imovel", $codigo_imovel);
+        $sql->execute();
+  
+        if ($sql->rowCount() > 0){
+          return $sql->fetchAll();
+        }
+        return NULL;
+    }
+
 }

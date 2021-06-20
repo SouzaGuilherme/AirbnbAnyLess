@@ -16,8 +16,8 @@ class Imovel {
     private $valor;
     private $habilitado;
 
-    public function __construct($cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado){
-      $this->codigo_imovel = -1;
+    public function __construct($codigo_imovel, $cpf, $numero_seq_end, $codigo_cidade, $uf, $descricao, $qtd_quartos, $qtd_banheiros, $qtd_salas, $piscina, $vagas_garagem, $valor, $habilitado){
+      $this->codigo_imovel = $codigo_imovel;
       $this->cpf = $cpf;
       $this->numero_seq_end = $numero_seq_end;
       $this->codigo_cidade = $codigo_cidade;
@@ -107,7 +107,7 @@ class Imovel {
     public function setValor($valor){
       $this->valor = $valor;
     }
-    public function setHabilidade($habilitado){
+    public function setHabilitado($habilitado){
       $this->habilitado = $habilitado;
     }
   }
@@ -118,6 +118,7 @@ interface ImovelDAO {
     public function findByCodigoUsuario($cpf);
     public function findByCodigoImovel($codigo_imovel);
     public function findByNumeroSeqEnd($numero_seq_end);
+    public function findAllByCPFImoveis($cpf);
     public function add(Imovel $imovel);
     public function remove(Imovel $imovel);
     public function update(Imovel $imovel);

@@ -178,4 +178,73 @@ class ImovelDaoMysql implements ImovelDAO {
       }
     }
 
+    public function findAllByCPFImoveis($cpf){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
+      $sql->bindValue(":cpf", $cpf);
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+      return NULL;
+    }
+
+    public function findAllByAll($codigo_cidade, $uf, $data_inicial, $data_final, $qtd_quartos, $valor){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_cidade = :codigo_cidade AND uf=:uf AND qtd_quartos = :qtd_quartos AND valor <= :valor");
+      $sql->bindValue(":codigo_cidade", $codigo_cidade);
+      $sql->bindValue(":uf", $uf);
+      $sql->bindValue(":qtd_quartos", $qtd_quartos);
+      $sql->bindValue(":valor", $valor);
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+    }
+  
+  
+    public function findAllByCpf($cpf){
+
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE cpf = :cpf");
+      $sql->bindValue(":cpf", $cpf);
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+    }
+
+
+    public function findByPeople($qtd_quartos){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE qtd_quartos = :qtd_quartos");
+      $sql->bindValue(":qtd_quartos", $qtd_quartos);
+      $sql->execute();
+
+      if ($sql->rowCount() > 0){
+        return $sql->fetchAll();
+      }
+    }
+
+    public function findByCodigo_imovel($codigo_imovel){
+      $sql = $this->pdo->prepare("SELECT * FROM imoveis WHERE codigo_imovel = :codigo_imovel");
+      $sql->bindValue(":codigo_imovel", $codigo_imovel);
+      $sql->execute();
+
+      $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+      $imovel = $this->generateImovel($dictData);
+      if ($sql->rowCount() > 0){
+        return $imovel;
+      }
+    }
+
+    
+    public function removeCod($codigo_imovel){
+      $sql = $this->pdo->prepare("DELETE FROM imoveis WHERE codigo_imovel = :codigo_imovel");
+      $sql->bindValue(":codigo_imovel", $codigo_imovel);
+      $sql->execute();
+      
+      return true;
+    }
+
+
 }

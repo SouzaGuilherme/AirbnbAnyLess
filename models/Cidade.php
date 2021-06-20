@@ -25,5 +25,6 @@ class Cidade {
 }
 
 interface CidadeDao {
-    public function findByCity($uf, $nome_cidade);
+    public function findByCity($uf, $nome);
+    public function findByCodigoCidade($codigo_cidade);
 }

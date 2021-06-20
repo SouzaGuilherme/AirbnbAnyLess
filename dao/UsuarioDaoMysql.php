@@ -60,6 +60,23 @@ class UsuarioDaoMysql implements UsuarioDAO {
         return false;
     }
 
+    public function findByCPF($cpf) { 
+
+        if (!empty($cpf)){
+
+            $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");
+            $sql->bindValue(":cpf", $cpf);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0){
+                $dictData = $sql->fetch(PDO::FETCH_ASSOC);
+                $user = $this->generateUser($dictData);
+                return $user;
+            }
+        }
+        return false;
+    }
+
     public function add(Usuario $user) {
         $sql = $this->pdo->prepare("INSERT INTO usuarios (
             cpf, numero_seq_end, codigo_cidade, uf, nome, email, telefone, foto, tipo_usuario, senha, token
@@ -92,14 +109,14 @@ class UsuarioDaoMysql implements UsuarioDAO {
         $sql = $this->pdo->prepare("UPDATE usuarios SET
             cpf = :cpf,
             numero_seq_end = :numero_seq_end,
-            senha = :senha,
-            nome = :nome,
             codigo_cidade = :codigo_cidade,
             uf = :uf,
-            telefone = :telefone,
+            nome = :nome,
             email = :email,
+            telefone = :telefone,
             foto = :foto,
             tipo_usuario = :tipo_usuario,
+            senha = :senha,
             token = :token
             WHERE cpf = :cpf;"
         );

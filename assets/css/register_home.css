@@ -1,0 +1,323 @@
+.container-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../images/backg_cadastro.svg');
+    background-position: center;
+    background-size: 100%, 100%, contain;
+    background-repeat: no-repeat;
+}
+
+.endereco-text {
+    position: absolute;
+    width: 308.57px;
+    height: 23.78px;
+    left: calc(50% - 308.57px/2 + 10.29px);
+    top: calc(50% - 23.78px/2 - 320.51px);
+    font-family: 'Luckiest Guy', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 64px;
+    color: #000000;
+    transform: rotate(-0.3deg);
+}
+
+.container-top-left {
+    position: absolute;
+    width: 400px;
+    height: 381px;
+    left: calc(50% - 431px/2 - 420.5px);
+    top: calc(50% - 381px/2 - 150.5px);
+    background: rgba(196, 188, 188, 0.79);
+    border-radius: 30px;
+}
+
+.container-middle {
+    position: absolute;
+    width: 478px;
+    height: 730px;
+    left: calc(50% - 478px/2 + 20px);
+    top: calc(50% - 381px/2 - 150.5px);
+    background: rgba(196, 188, 188, 0.79);
+    border-radius: 30px;
+}
+
+.container-down-left {
+    position: absolute;
+    width: 400px;
+    height: 150px;
+    left: calc(50% - 431px/2 - 420.5px);
+    top: calc(50% - 340px/2 + 220px);
+    background: rgba(196, 188, 188, 0.79);
+    border-radius: 30px;
+}
+
+.container-right {
+    position: absolute;
+    width: 400px;
+    height: 730px;
+    left: calc(50% - 424px/2 + 485px);
+    top: calc(50% - 381px/2 - 150.5px);
+    background: rgba(196, 188, 188, 0.79);
+    border-radius: 30px;
+}
+
+.container-text {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.input {
+    background: #FFFFFF;
+    border-radius: 30px;
+    outline: 0;
+    border: 0;
+    font-size: 24px;
+}
+
+.container-cidade input {
+    position: absolute;
+    width: 419px;
+    height: 43px;
+    left: calc(50% - 419px/2);
+    top: calc(50% - 63px/2 - 230.5px);
+    padding-left: 15px;
+}
+
+.container-estado input {
+    position: absolute;
+    width: 419px;
+    height: 43px;
+    left: calc(50% - 419px/2);
+    top: calc(50% - 63px/2 - 160.5px);
+    padding-left: 15px;
+}
+
+.container-logradouro input {
+    position: absolute;
+    width: 419px;
+    height: 43px;
+    left: calc(50% - 419px/2);
+    top: calc(50% - 63px/2 - 90.5px);
+    padding-left: 15px;
+}
+
+.container-complemento input {
+    position: absolute;
+    width: 250px;
+    height: 43px;
+    left: calc(50% - 419px/2);
+    top: calc(50% - 63px/2 - 20.5px);
+    padding-left: 15px;
+}
+
+.container-numero input {
+    position: absolute;
+    width: 150px;
+    height: 43px;
+    left: calc(50% + 50px);
+    top: calc(50% - 63px/2 - 20.5px);
+    padding-left: 15px;
+}
+
+.container-bairro input {
+    position: absolute;
+    width: 419px;
+    height: 43px;
+    left: calc(50% - 419px/2);
+    top: calc(50% + 20px);
+    padding-left: 15px;
+}
+
+.container-cep input {
+    position: absolute;
+    width: 419px;
+    height: 43px;
+    left: calc(50% - 419px/2);
+    top: calc(50% + 90px);
+    padding-left: 15px;
+}
+
+.container-descricao input {
+    position: absolute;
+    width: 380px;
+    height: 301px;
+    left: calc(50% - 382px/2);
+    top: calc(50% - 360px);
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.container-qtd_quartos text {
+    position: absolute;
+    width: 59px;
+    height: 28px;
+    left: calc(50% - 295px/2);
+    top: calc(50% - 28px/2 + 19px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.container-qtd_quartos input {
+    position: absolute;
+    width: 150px;
+    height: 43px;
+    padding-left: 15px;
+    left: calc(50% - 90px/2);
+    top: calc(50% - 28px/2 + 10px);
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.container-qtd_salas text {
+    position: absolute;
+    width: 59px;
+    height: 28px;
+    left: calc(50% - 295px/2);
+    top: calc(50% - 28px/2 + 89px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.container-qtd_salas input {
+    position: absolute;
+    width: 150px;
+    height: 43px;
+    padding-left: 15px;
+    left: calc(50% - 90px/2);
+    top: calc(50% - 28px/2 + 80px);
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.container-qtd_banheiros text {
+    position: absolute;
+    width: 59px;
+    height: 28px;
+    left: calc(50% - 328px/2);
+    top: calc(50% - 28px/2 + 159px);
+    padding-left: 15px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.container-qtd_banheiros input {
+    position: absolute;
+    width: 150px;
+    height: 43px;
+    left: calc(50% - 90px/2);
+    top: calc(50% - 28px/2 + 150px);
+    padding-left: 15px;
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.container-qtd_vagas_garagem text {
+    position: absolute;
+    width: 59px;
+    height: 28px;
+    left: calc(50% - 295px/2);
+    top: calc(50% - 28px/2 + 229px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.container-qtd_vagas_garagem input {
+    position: absolute;
+    width: 150px;
+    height: 43px;
+    left: calc(50% - 90px/2);
+    padding-left: 15px;
+    top: calc(50% - 28px/2 + 220px);
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.container-piscina text {
+    position: absolute;
+    width: 59px;
+    height: 28px;
+    left: calc(50% - 295px/2);
+    top: calc(50% - 28px/2 + 305px);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.container-piscina select {
+    position: absolute;
+    width: 150px;
+    height: 43px;
+    left: calc(50% - 90px/2);
+    top: calc(50% - 28px/2 + 290px);
+    background: #FFFFFF;
+    padding-left: 15px;
+    border-radius: 30px;
+}
+
+.container-text select {
+    position: absolute;
+    width: 150px;
+    height: 43px;
+    left: calc(50% - 170px/2);
+    top: calc(50% - 28px/2 + 180px);
+    background: #FFFFFF;
+    padding-left: 15px;
+    border-radius: 30px;
+}
+
+.container-valor input {
+    position: absolute;
+    width: 300px;
+    padding-left: 55px;
+    height: 43px;
+    left: calc(50% - 250px/2);
+    top: calc(50% - 28px/2 + 50px);
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+
+.valor-image {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: calc(50% - 245px/2);
+    top: calc(50% - 28px/2 + 52px);
+}
+
+.container-addimage {
+    position: absolute;
+    width: 244px;
+    height: 45px;
+    left: calc(50% - 244px/2 + 13px);
+    top: calc(50% - 45px/2 + 190.5px);
+}

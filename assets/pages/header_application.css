@@ -1,0 +1,54 @@
+.container-header-application{
+    position: relative;
+    width: auto;
+    height: 8.3vh;
+    top: 0px;
+    background: black;
+}
+
+.header-image-application{
+    position: absolute;
+    bottom: 35%;
+    left: 5%;
+    transform: scale(3.5);
+}
+
+.users-links{
+    position: relative;
+    top: 30%;
+    right: 1%;
+}
+
+.link-user{
+    position: absolute;
+    text-decoration: none;
+    width: auto;
+    height: 28px;
+    right: 15%;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+.link-user:hover{
+    color: #E36666;
+    transition: all 0.5s ease-in;
+}
+
+.link-owner{
+    position: absolute;
+    text-decoration: none;
+    width: auto;
+    height: 28px;
+    right: 5%;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 28px;
+    color: #FFFFFF; 
+}
+
+.link-owner:hover{
+    color: #E36666;
+    transition: all 0.5s ease-in;
+}

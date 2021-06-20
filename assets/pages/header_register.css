@@ -1,0 +1,14 @@
+.container-header-register{
+    position: relative;
+    width: auto;
+    height: 8.3vh;
+    top: 0px;
+    background: black;
+}
+
+.header-image{
+    position: absolute;
+    bottom: 35%;
+    left: 50%;
+    transform: scale(3.5);
+}
