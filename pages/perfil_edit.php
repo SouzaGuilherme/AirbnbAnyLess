@@ -42,7 +42,7 @@ $cidade = $cidadeDao->findByCodigoCidade($endereco->getCodigoCidade());
             <input required placeholder="E-mail" class="input" type="email" name="email" value = "<?php echo $usuario->getEmail(); ?>"/>
             <label>
                 Tipo de Usuário:
-                <select class="input" name="tipo_usuario">
+                <select class="input" name="tipo_usuario" >
                     <option value="LOCATARIO">Locatário</option>
                     <option value="PROPRIETARIO">Proprietário</option>
                     <option value="AMBOS">Ambos</option>
