@@ -149,7 +149,7 @@ $cidade = $cidadeDaoMysql->findByCodeCity($endereco->getCodigoCidade());
 						<?php foreach($fotosImovel as $chave => $foto): ?>
 							
 							<div class="item <?php echo ($chave=='0')?'active':''; ?>">
-								<img src="assets/images/imoveis/<?php echo $foto['url']; ?>" />
+                                <img style="min-height: 450px; max-height: 450px;" src="assets/images/imoveis/<?php echo $foto['url']; ?>" />
 							</div>
 						<?php endforeach; ?>
 					<?php else : ?>
