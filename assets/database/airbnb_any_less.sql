@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 20-Jun-2021 às 19:07
+-- Tempo de geração: 20-Jun-2021 às 19:16
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
@@ -5759,6 +5759,32 @@ INSERT INTO `imoveis` (`codigo_imovel`, `cpf`, `numero_seq_end`, `codigo_cidade`
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `imoveis_imagens`
+--
+
+CREATE TABLE `imoveis_imagens` (
+  `codigo_imovel` int(11) NOT NULL,
+  `url` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `imoveis_imagens`
+--
+
+INSERT INTO `imoveis_imagens` (`codigo_imovel`, `url`) VALUES
+(25, '1d82dc064d3e1134d10dafb748270aa7.jpg'),
+(25, '49f952c5a2b76888c0702818af72d389.jpg'),
+(34, '1693efd0b1db0b5194c2cff011c7cde2.jpg'),
+(34, 'a12e5295fbe1c5b12494643052642ed3.jpg'),
+(34, 'af23fedd4d70929e26a614e4057bab2a.jpg'),
+(2707206, '51212fd70bc5714b9332c91d99933f7d.jpg'),
+(2707206, '869b9aa98e3dcd469f867f6b83043e68.jpg'),
+(2707206, '94c0d9949462ab66cc0a94efc652cccb.jpg'),
+(2707206, 'ab0fcb983c5c1c5dfe04be978543913e.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `reservas`
 --
 
@@ -5846,6 +5872,12 @@ ALTER TABLE `imoveis`
   ADD KEY `imoveis_cpf` (`cpf`),
   ADD KEY `imoveis_codigo_cidade` (`codigo_cidade`),
   ADD KEY `imoveis_numero_seq_end` (`numero_seq_end`);
+
+--
+-- Índices para tabela `imoveis_imagens`
+--
+ALTER TABLE `imoveis_imagens`
+  ADD PRIMARY KEY (`codigo_imovel`,`url`);
 
 --
 -- Índices para tabela `reservas`
