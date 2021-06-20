@@ -59,22 +59,30 @@ $endereco = $enderecoDao->findByNumeroSeqEnd($imovel->getNumeroSeqEnd());
         <div class="check">
 
             <form method="POST" action="<?= $base_url; ?>/pages/actions/um_imovel_action.php">
-                <input type="date" name="check_in" id="check_in">
-                <input type="date" name="check_out" id="check_out">
-                <input type="submit" class="option-style" value="Alocar">
+                <div class="button-group">
+                    <div>
+                        <p class="text-style">Check In</p>
+                        <input type="date" name="check_in" id="check_in">
+                    </div>
+                    <div>
+                        <p class="text-style">Check Out</p>
+                        <input type="date" name="check_out" id="check_out">
+                    </div>
+                </div>
+                <input type="submit" class="option-style button-submit" value="Alocar">
             </form>
         </div>
 
         <div class="options2">
 
-                <form method="GET" action="<?= $base_url; ?>/pages/describ_imovel.php">
+            <form method="GET" action="<?= $base_url; ?>/pages/describ_imovel.php">
 
-                    <input class="bottom2" type="hidden" name="ids" value="<?= $imovel->getCodigoImovel(); ?>">
-                    <button class="bottom2">
-                        <p class="option-style one">Descrição</p>
-                    </button>
-                </form>
-                </a>
+                <input class="bottom2" type="hidden" name="ids" value="<?= $imovel->getCodigoImovel(); ?>">
+                <button class="bottom2">
+                    <p class="option-style one">Descrição</p>
+                </button>
+            </form>
+            </a>
 
         </div>
     </div>

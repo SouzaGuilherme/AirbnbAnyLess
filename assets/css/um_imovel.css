@@ -6,6 +6,14 @@
     background-attachment: fixed;
 }
 
+.check_in {
+    position: relative;
+    left: 50%;
+    bottom: 86%;
+    width: 30px;
+    height: 30px;
+}
+
 .bottom2 {
     padding: 5px;
     width: 150px;
@@ -29,8 +37,8 @@
 .options2 {
     position: relative;
     width: 350px;
-    left: 50%;
-    bottom: 80%;
+    left: 54%;
+    bottom: 75%;
     display: flex;
     justify-content: space-between;
     align-content: space-between;
@@ -38,6 +46,14 @@
 
 .option-style {
     color: white;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.text-style {
+    color: black;
     text-align: center;
     font-family: Roboto;
     font-weight: normal;
@@ -133,15 +149,39 @@ a:link {
 
 .check {
     position: relative;
-    left: 58%;
-    bottom: 65%;
+    left: 26%;
+    bottom: 70%;
     display: flex;
     grid-gap: 10px;
 }
 
-.check input {
+.check form input {
     padding: 10px 15px;
     border-radius: 30px;
     outline: 0;
     border: 0;
+}
+
+.check form .button-group {
+    display: flex;
+    grid-gap: 10px;
+}
+
+.check form {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+}
+
+.check form .option-style.button-submit {
+    position: relative;
+    left: 55%;
+    bottom: -15px;
+    width: 100px;
+    padding: 5px;
+    width: 150px;
+    height: 35px;
+    background: black;
+    border-radius: 52px;
+    color: white;
 }
