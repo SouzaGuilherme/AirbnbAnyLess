@@ -13,9 +13,12 @@ function function_alert($message)
 }
 
 if (isset($_GET['id']) == 1) {
+    if (($_GET['id']) == 1) {
 
-    function_alert("Edite seu perfil e habilite TAMBÉM a função PROPRIETÁRIO para ter acesso aos recursos de proprietário.");
-
+        function_alert("Edite seu perfil e habilite TAMBÉM a função PROPRIETÁRIO para ter acesso aos recursos de proprietário.");
+    } else if (($_GET['id']) == 2) {
+        function_alert("Edite seu perfil e habilite TAMBÉM a função LOCATÁRIO para ter acesso aos recursos de locatário.");
+    }
 }
 ?>
 
@@ -26,7 +29,7 @@ if (isset($_GET['id']) == 1) {
     <meta charset="UTF-8" />
     <title>Usuário</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-    <link rel="icon" type="image/png" href="<?=$base_url;?>/assets/images/favicon.png"/>
+    <link rel="icon" type="image/png" href="<?= $base_url; ?>/assets/images/favicon.png" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/owner.css" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css" />
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css" />
@@ -44,7 +47,7 @@ if (isset($_GET['id']) == 1) {
 
     <div class="options">
         <div class="bottom">
-            <a href="agenda.php">
+            <a href="agenda.php?id=2">
                 <p class="option-style"> Minhas Reservas </p>
             </a>
         </div>

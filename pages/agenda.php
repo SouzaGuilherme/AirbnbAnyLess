@@ -15,7 +15,9 @@ $reservaDao = new ReservaDaoMysql($pdo);
 $enderecoDao = new EnderecoDaoMysql($pdo);
 
 $usuario = $usuarioDao->findByToken($_SESSION["token"]);
-
+if($usuario->getTipoUsuario()=="PROPRIETARIO"){
+    header("Location: " . $base_url . "/pages/owner.php?id=2");
+}
 $var = 0;
 ?>
 
@@ -42,7 +44,7 @@ $var = 0;
 
     <div class="reservas-container">
         <?php foreach ($reservaDao->findAllReservas($usuario->getCPF()) as $reservas) : ?>
-            <?php $var=$var+1; ?>
+            <?php $var = $var + 1; ?>
             <?php ?>
 
             <div class="dates-container">

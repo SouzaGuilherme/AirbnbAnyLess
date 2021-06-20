@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config.php'; 
+require_once __DIR__ . '/../config.php';
 
 require_once __DIR__ . '/../dao/CidadeDaoMysql.php';
 require_once __DIR__ . '/../dao/EnderecoDaoMysql.php';
@@ -30,11 +30,11 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
 <head>
     <meta charset="UTF-8" />
     <title>Meus Imóveis</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
-    <link rel="icon" type="image/png" href="<?=$base_url;?>/assets/images/favicon.png"/>
-    <link rel="stylesheet" href="<?=$base_url;?>/assets/css/view_list.css"/>
-    <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css"/>
-    <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <link rel="icon" type="image/png" href="<?= $base_url; ?>/assets/images/favicon.png" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/view_list.css" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/pages/header_application.css" />
+    <link rel="stylesheet" href="<?= $base_url; ?>/assets/css/login.css" />
 </head>
 
 <body class="bg">
@@ -93,15 +93,17 @@ $cidade = $cidadeDao->findByCity($input_country, $input_city);
                             <text class="text2"> <?= $imovel['valor'] ?> </text>
                         </div>
 
+                    <div class="bottom">
+                        <form method="GET" action="<?= $base_url; ?>/pages/actions/um_imovel.php">
 
-                        <div class="bottom">
-                            <a href="um_imovel.php">
-                                <p class="option-style"> Ver Imóvel </p>
-                            </a>
-                        </div>
+                            <input class="bottom" type="hidden" name="ids" value="<?= $imovel['codigo_imovel']; ?>">
+                            <button class="bottom2"> <text class="option-style">Ver Imóvel</text></button></button>
+                        </form>
                     </div>
-                <?php endif; ?>
+                </div>
             <?php endif; ?>
-        <?php endforeach; ?>
+        <?php endif; ?>
+    <?php endforeach; ?>
 </body>
+
 </html>

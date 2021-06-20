@@ -12,7 +12,8 @@ $enderecoDao = new EnderecoDaoMysql($pdo);
 $reservaDao = new ReservaDaoMysql($pdo);
 $usuarioDao = new UsuarioDaoMysql($pdo);
 $usuario = $usuarioDao->findByToken($_SESSION["token"]);
-$imovel = $imovelDao->findByCodigo_imovel('5');
+$codigo_imovel = $_GET['ids'];
+$imovel = $imovelDao->findByCodigo_imovel($codigo_imovel);
 $endereco = $enderecoDao->findByNumeroSeqEnd($imovel->getNumeroSeqEnd());
 ?>
 
@@ -58,7 +59,7 @@ $endereco = $enderecoDao->findByNumeroSeqEnd($imovel->getNumeroSeqEnd());
         <?php $reserva = new Reserva(-1, $usuario->getCpf(), "", "", $imovel->getCodigoImovel()); ?>
         <div class="check">
 
-            <form method="POST" action="<?= $base_url; ?>/pages/actions/um_imovel_action.php">
+            <form method="GET" action="<?= $base_url; ?>/pages/actions/um_imovel_action.php">
                 <div class="button-group">
                     <div>
                         <p class="text-style">Check In</p>
@@ -69,7 +70,10 @@ $endereco = $enderecoDao->findByNumeroSeqEnd($imovel->getNumeroSeqEnd());
                         <input type="date" name="check_out" id="check_out">
                     </div>
                 </div>
-                <input type="submit" class="option-style button-submit" value="Alocar">
+                <input class="option-style button-submit" type="hidden" name="ids" value="<?= $imovel->getCodigoImovel(); ?>">
+                <button class="option-style button-submit">
+                    <p class="option-style one">Alocar</p>
+                </button>
             </form>
         </div>
 
