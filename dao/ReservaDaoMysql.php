@@ -106,14 +106,17 @@ class ReservaDaoMysql implements ReservaDAO {
             $reservasImovel = $this->reservasCodigoImovel($codigo_imovel);
 
             foreach ($reservasImovel as $reserva) {
-               
-                if (date($date_start) >= date($reserva["data_inicial"]) && date($date_start) <= date($reserva["data_final"])) {
-                    
+
+
+                if (
+                    ( date($date_start) >= date($reserva["data_inicial"]) && date($date_start) <= date($reserva["data_final"]) )
+                    || ( date($date_end) >= date($reserva["data_inicial"]) && date($date_start) <= date($reserva["data_final"]))
+                ){
                     return True;
                 }
             }
-        return false;
         }
+        return false;
     }
 
     public function estaAlugadoByCodigo($codigo_imovel){
